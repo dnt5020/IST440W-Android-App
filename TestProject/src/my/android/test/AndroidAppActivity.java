@@ -3,7 +3,7 @@ package my.android.test;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class TestProjectActivity extends Activity {
+public class AndroidAppActivity extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
