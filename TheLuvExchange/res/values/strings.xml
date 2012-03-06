@@ -2,6 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, TheLuvExchange!</string>
-    <string name="app_name">TheLuvExchange</string>
+    <string name="cities">Cities</string>
+    <string name="app_name">Luv Exchange</string>
 
 </resources>
