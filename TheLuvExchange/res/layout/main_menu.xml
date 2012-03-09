@@ -196,6 +196,7 @@
                     android:text="@string/buy_sell"
                     android:textStyle="bold" />
             </RelativeLayout>
+
         </TableRow>
     </TableLayout>
 
