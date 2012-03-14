@@ -20,6 +20,10 @@
             android:label="@string/cities" >
         </activity>
         <activity
+            android:name=".IndivGallery"
+            android:label="@string/gallery" >
+        </activity>
+        <activity
             android:name=".MainMenu"
             android:label="@string/main_menu" >
             <intent-filter>

@@ -11,6 +11,8 @@ import android.widget.ImageButton;
  * @author Niranjan Singh
  * 
  * This is the Main Menu activity. The user can click one of the several options.
+ * 
+ * Joe DiZio and Matt Glaser - Edited for Gallery on 3/14/2012 @ 11:19
  */
 public class MainMenu extends Activity {
 	 private Activity activity = this;
@@ -26,6 +28,12 @@ public class MainMenu extends Activity {
         
      // Listener waits for a click on cities button
         citiesButton.setOnClickListener(toCities);
+     
+     // Button to click to Gallery activity for testing
+        ImageButton galleryButton = (ImageButton)findViewById(R.id.imageButtonGallery); 
+        
+      // Listener waits for a click on gallery button
+        galleryButton.setOnClickListener(toGallery);
         
         
         
@@ -36,5 +44,12 @@ public class MainMenu extends Activity {
 		public void onClick(View view) {
 			startActivity(new Intent(activity, Cities.class));
 		}
+    };
+		
+// On click on cities button, opens Gallery activity
+	private View.OnClickListener toGallery = new View.OnClickListener() {
+		public void onClick(View view) {
+			startActivity(new Intent(activity, IndivGallery.class));
+			}
     };
 }

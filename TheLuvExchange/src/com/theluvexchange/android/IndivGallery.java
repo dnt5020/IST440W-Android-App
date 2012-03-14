@@ -28,7 +28,7 @@ public class IndivGallery extends Activity
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.gallery);
 
 		Gallery gallery = (Gallery) findViewById(R.id.gallery);
 		gallery.setAdapter(new ImageAdapter(this));
