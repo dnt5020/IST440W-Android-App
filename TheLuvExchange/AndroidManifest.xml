@@ -12,10 +12,6 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".TheLuvExchange"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
             android:name=".Cities"
             android:label="@string/cities" >
         </activity>
@@ -24,8 +20,8 @@
             android:label="@string/gallery" >
         </activity>
         <activity
-            android:name=".MainMenu"
-            android:label="@string/main_menu" >
+            android:name=".TheLuvExchange"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
