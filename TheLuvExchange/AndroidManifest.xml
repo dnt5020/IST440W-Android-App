@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".TheLuvExchange"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
@@ -20,7 +21,11 @@
             android:label="@string/gallery" >
         </activity>
         <activity
-            android:name=".TheLuvExchange"
+            android:name=".MainMenu"
+            android:label="@string/main_menu" >
+        </activity>
+        <activity
+            android:name=".Login"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

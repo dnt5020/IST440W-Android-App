@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, TheLuvExchange!</string>
     <string name="cities">Cities</string>
-    <string name="app_name">Luv Exchange</string>
-    <string name="username">Username</string>
+    <string name="app_name">The LUV Exchange</string>
+    <string name="username">User Name</string>
     <string name="password">Password</string>
-    <string name="register">Register</string>
+    <string name="remember">Remember Me</string>
+    <string name="register">New to The LUV Exchange? Register Here</string>
     <string name="main_menu">Main Menu</string>
     <string name="profile">Profile</string>
     <string name="forum">Forum</string>
