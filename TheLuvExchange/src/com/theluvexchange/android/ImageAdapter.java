@@ -1,61 +1,59 @@
 package com.theluvexchange.android;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Gallery;
+import android.widget.GridView;
 import android.widget.ImageView;
 
-public class ImageAdapter extends BaseAdapter 
-{
-	int mGalleryItemBackground;
-	private Context mContext;
+public class ImageAdapter extends BaseAdapter {
+    private Context mContext;
 
-	private Integer[] mImageIds = 
-		{
-        R.drawable.sample_1,
-        R.drawable.sample_2,
-        R.drawable.sample_3,
-        R.drawable.sample_4,
-        R.drawable.sample_5,
-        R.drawable.sample_6,
-        R.drawable.sample_7
-		};
+    public ImageAdapter(Context c) {
+        mContext = c;
+    }
 
-	public ImageAdapter(Context c)
-	{
-		mContext = c;
-		TypedArray a = c.obtainStyledAttributes(R.styleable.Gallery1);
-		mGalleryItemBackground = a.getResourceId(R.styleable.Gallery1_android_galleryItemBackground, 0);
-		a.recycle();
-	}
+    public int getCount() {
+        return mThumbIds.length;
+    }
 
-	public int getCount() 
-	{
-		return mImageIds.length;
-	}
+    public Object getItem(int position) {
+        return null;
+    }
 
-	public Object getItem(int position) 
-	{
-		return position;
-	}
+    public long getItemId(int position) {
+        return 0;
+    }
 
-	public long getItemId(int position) 
-	{
-		return position;
-	}
+    // create a new ImageView for each item referenced by the Adapter
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ImageView imageView;
+        if (convertView == null) {  // if it's not recycled, initialize some attributes
+            imageView = new ImageView(mContext);
+            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setPadding(8, 8, 8, 8);
+        } else {
+            imageView = (ImageView) convertView;
+        }
 
-	public View getView(int position, View convertView, ViewGroup parent) 
-	{
-		ImageView imageView = new ImageView(mContext);
+        imageView.setImageResource(mThumbIds[position]);
+        return imageView;
+    }
 
-		imageView.setImageResource(mImageIds[position]);
-		imageView.setLayoutParams(new Gallery.LayoutParams(150, 100));
-		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-		imageView.setBackgroundResource(mGalleryItemBackground);
-
-		return imageView;
-	}
+    // references to our images
+    private Integer[] mThumbIds = {
+            R.drawable.sample_2, R.drawable.sample_3,
+            R.drawable.sample_4, R.drawable.sample_5,
+            R.drawable.sample_6, R.drawable.sample_7,
+            R.drawable.sample_0, R.drawable.sample_1,
+            R.drawable.sample_2, R.drawable.sample_3,
+            R.drawable.sample_4, R.drawable.sample_5,
+            R.drawable.sample_6, R.drawable.sample_7,
+            R.drawable.sample_0, R.drawable.sample_1,
+            R.drawable.sample_2, R.drawable.sample_3,
+            R.drawable.sample_4, R.drawable.sample_5,
+            R.drawable.sample_6, R.drawable.sample_7
+    };
 }
