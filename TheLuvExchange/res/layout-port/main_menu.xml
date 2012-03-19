@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#003684"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:drawablePadding="5dip"
+            android:padding="5dip"
+            android:text="@string/app_name"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:gravity="center" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="10dp"
+        android:text="@string/main_menu"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="20dp" >
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="30dp" >
+
+                <ImageButton
+                    android:id="@+id/imageButtonGallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageButtonGallery"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/gallery"
+                    android:textColor="#372c24"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="30dp" >
+
+                <ImageButton
+                    android:id="@+id/imageButtonCities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageButtonCities"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/sw_cities"
+                    android:textColor="#372c24"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="30dp" >
+
+                <ImageButton
+                    android:id="@+id/imageButtonProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageButtonProfile"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/profile"
+                    android:textColor="#372c24"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="30dp" >
+
+                <ImageButton
+                    android:id="@+id/imageButtonForum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageButtonForum"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/buy_sell"
+                    android:textColor="#372c24"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </TableRow>
+
+        
+
+<!--         <TableRow -->
+<!--             android:id="@+id/tableRow3" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" > -->
+
+<!--             <RelativeLayout -->
+<!--                 android:id="@+id/relativeLayout5" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:padding="10dp" > -->
+
+<!--                 <ImageButton -->
+<!--                     android:id="@+id/imageButtonWeather" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:src="@drawable/ic_launcher" /> -->
+
+<!--                 <TextView -->
+<!--                     android:id="@+id/textView6" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_below="@+id/imageButtonWeather" -->
+<!--                     android:layout_centerHorizontal="true" -->
+<!--                     android:text="@string/weather" -->
+<!--                     android:textStyle="bold" /> -->
+<!--             </RelativeLayout> -->
+
+<!--             <RelativeLayout -->
+<!--                 android:id="@+id/relativeLayout6" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:padding="10dp" > -->
+
+<!--                 <ImageButton -->
+<!--                     android:id="@+id/imageButtonLuvNews" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:src="@drawable/ic_launcher" /> -->
+
+<!--                 <TextView -->
+<!--                     android:id="@+id/textView7" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_below="@+id/imageButtonLuvNews" -->
+<!--                     android:layout_centerHorizontal="true" -->
+<!--                     android:text="@string/luvNews" -->
+<!--                     android:textStyle="bold" /> -->
+<!--             </RelativeLayout> -->
+<!--         </TableRow> -->
+
+<!--         <TableRow -->
+<!--             android:id="@+id/tableRow4" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" > -->
+
+<!--             <RelativeLayout -->
+<!--                 android:id="@+id/relativeLayout7" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:padding="10dp" > -->
+
+<!--                 <ImageButton -->
+<!--                     android:id="@+id/imageButtonBuySell" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:src="@drawable/ic_launcher" /> -->
+
+<!--                 <TextView -->
+<!--                     android:id="@+id/textView8" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_below="@+id/imageButtonBuySell" -->
+<!--                     android:layout_centerHorizontal="true" -->
+<!--                     android:text="@string/buy_sell" -->
+<!--                     android:textStyle="bold" /> -->
+<!--             </RelativeLayout> -->
+<!--         </TableRow> -->
+    </TableLayout>
+
+</LinearLayout>
