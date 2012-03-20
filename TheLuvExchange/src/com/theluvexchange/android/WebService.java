@@ -132,4 +132,39 @@ public class WebService {
 		// Return the list of cities
 		return cities;
 	}
+
+public static List<Restaurant> getRestaurants(User user, City city) {
+		
+		// List of cities to be populated and returned
+		List<Restaurant> restaurants = null;
+		
+		try {
+			// URL object used to create a connection to the cities XML page
+			URL url = new URL(ADDRESS + "restaurants/" + city.getId() 
+					+ "/sort:Pick.rating_count/direction:desc/viewer_id:" + user.getUserId());
+			
+			// SAX XMLReader object used for parsing the XML file
+			XMLReader reader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+			
+			// SAXHandler class used for parsing the XML
+			RestaurantHandler handler = new RestaurantHandler();
+			
+			// Set the XMLReader to use the SAXHandler for parsing rules
+			reader.setContentHandler(handler);
+			
+			// Run the parsing
+			reader.parse(new InputSource(url.openStream()));
+			
+			// Receive the list of City objects from the parse
+			restaurants = handler.getRestaurantData();
+			
+		} catch (Exception e) {
+			// Log error to be able to debug using LogCat
+			Log.e("TheLuvExchange", "WebServiceError", e);
+		}
+		
+		
+		return restaurants;
+	}	
+
 } 
