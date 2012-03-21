@@ -16,8 +16,7 @@
             android:name=".Cities"
             android:label="@string/cities" >
         </activity>
-        <activity
-            android:name=".CityMenu">
+        <activity android:name=".CityMenu" >
         </activity>
         <activity
             android:name=".IndivGallery"
@@ -26,6 +25,8 @@
         <activity
             android:name=".MainMenu"
             android:label="@string/main_menu" >
+        </activity>
+        <activity android:name=".ThingsToDo" >
         </activity>
         <activity
             android:name=".Login"

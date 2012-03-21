@@ -15,6 +15,8 @@
     <string name="weather">Weather</string>
     <string name="luvNews">Luv News</string>
     <string name="buy_sell">Buy/Sell</string>
+    <string name="address">Address:</string>
+    <string name="rating">"Rating: "</string>
     <string name="RandC">Restaurants and Clubs</string>
     <string name="Thingstodo">Things to do</string>
     <string name="AirportEats">Airport Eats</string>
