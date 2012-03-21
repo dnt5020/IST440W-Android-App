@@ -1,3 +1,7 @@
+/** Image Adapter takes images and makes a grid view.
+ * Joe DiZio 3/19/12
+ **/
+
 package com.theluvexchange.android;
 
 import android.content.Context;
@@ -42,8 +46,8 @@ public class ImageAdapter extends BaseAdapter {
         return imageView;
     }
 
-    // references to our images
-    private Integer[] mThumbIds = {
+    // references to images samples
+    public Integer[] mThumbIds = {
             R.drawable.sample_2, R.drawable.sample_3,
             R.drawable.sample_4, R.drawable.sample_5,
             R.drawable.sample_6, R.drawable.sample_7,

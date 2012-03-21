@@ -2,12 +2,12 @@ package com.theluvexchange.android;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.Toast;
 
 
 /**
@@ -18,23 +18,6 @@ import android.widget.Toast;
 public class IndivGallery extends Activity
 {
 
-
-	/*@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.gallery);
-
-		Gallery gallery = (Gallery) findViewById(R.id.gallery);
-		gallery.setAdapter(new ImageAdapter(this));
-
-		gallery.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Toast.makeText(IndivGallery.this, "" + position, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-}*/
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -42,10 +25,16 @@ public class IndivGallery extends Activity
 
 	    GridView gridview = (GridView) findViewById(R.id.gallery);
 	    gridview.setAdapter(new ImageAdapter(this));
-
+	    
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
-	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	            Toast.makeText(IndivGallery.this, "" + position, Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, View v,
+                    int position, long id) {
+ 
+                // Sending image id to FullScreenActivity
+                Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
+                // passing array index
+                i.putExtra("id", position);
+                startActivity(i);
 	        }
 	    });
 	}
