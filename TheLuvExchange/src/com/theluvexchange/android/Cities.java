@@ -2,23 +2,35 @@ package com.theluvexchange.android;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
+ 
+
 
 /**
  * @author Tristan Maschke
  * 
  * This Activity simply creates a list of cities populated from the web service.
+ * 
+ * edited by Shibani Chadha 3/20/12 cities now displayed in pop up window.
  */
 public class Cities extends Activity {
+	Dialog listDialog;
+	private Activity activity = this;
 	// cities tracks the list of cities
 	List<City> cities = new ArrayList<City>();
 	
@@ -38,17 +50,37 @@ public class Cities extends Activity {
 			// Need to call the superclass constructor first
 			super.onCreate(savedInstanceState);
 			
+			
 			// Use the cities XML layout for this Activity
-			setContentView(R.layout.cities);
+			//setContentView(R.layout.cities);
+			listDialog = new Dialog(this);
+	        listDialog.setTitle("Select City");
+	        // used an inflator to pop the window out
+	         LayoutInflater li = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	         View v = li.inflate(R.layout.cities, null, false);
+	         listDialog.setContentView(v);
+	         listDialog.setCancelable(true);
+	        // add the listview to the dialog 
+	         ListView list1 = (ListView) listDialog.findViewById(R.id.cities);
+	         list1.setOnItemClickListener(new OnItemClickListener(){
+	        	 public void onItemClick(AdapterView<?> parent, View view,
+	        	          int position, long id) {
+	        	        
+	        		 startActivity(new Intent(activity, CityMenu.class));// When clicked, go to city menu page       	        
+	        	 }
+	         
+	         });
+	         //now that the dialog is set up, it's time to show it
+	         listDialog.show();
 			
 			// Get the ListView from the cities layout
-			ListView list = (ListView)findViewById(R.id.cities);
+		//ListView list = (ListView)layout.findViewById(R.id.cities);
 			
 			// Instantiate the adapter for populating the ListView
 			adapter = new CityAdapter();
 			
 			// Set the ListView to use the adapter
-			list.setAdapter(adapter);
+			list1.setAdapter(adapter);
 			
 			// Call the WebService.getCities() method to populate the cities list.
 			cities.addAll(WebService.getCities());
@@ -58,7 +90,30 @@ public class Cities extends Activity {
 			Log.e("TheLuvExchange", "CitiesError", e);
 		}
 	}
-	
+	/*public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+    {
+ 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Delete item "+arg2)
+                   .setPositiveButton("OK ", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                       System.out.println("OK CLICKED");
+ 
+                   }
+               });
+        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int id) {
+                 dialog.dismiss();
+                 listDialog.cancel();
+ 
+               }
+           });
+ 
+        AlertDialog alert = builder.create();
+        alert.setTitle("Information");
+        alert.show();
+    }
+*/
 	/**
 	 * This class is used to create the adapter for populating the ListView
 	 */
