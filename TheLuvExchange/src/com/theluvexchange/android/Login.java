@@ -29,6 +29,9 @@ public class Login extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+		
 		activity = this;
 		savedUser = getPreferences(MODE_PRIVATE);
 		boolean ping = WebService.ping();
@@ -45,6 +48,11 @@ public class Login extends Activity {
 		passwordField = (EditText)findViewById(R.id.editTextPassword);
 		rememberMe = (CheckBox)findViewById(R.id.rememberCheckbox);
 
+		
+		// Testing -- next line edited by Niranjan
+		userNameField = (EditText)findViewById(R.id.editTextUsername);
+		
+		
 		Button login = (Button)findViewById(R.id.btnLogin);
 		login.setOnClickListener(onLogin);
 
