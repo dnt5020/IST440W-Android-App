@@ -17,6 +17,9 @@
             android:label="@string/cities" >
         </activity>
         <activity
+            android:name=".CityMenu">
+        </activity>
+        <activity
             android:name=".IndivGallery"
             android:label="@string/gallery" >
         </activity>

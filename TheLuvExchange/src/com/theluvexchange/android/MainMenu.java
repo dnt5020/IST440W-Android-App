@@ -27,6 +27,7 @@ public class MainMenu extends Activity {
         
      // Listener waits for a click on cities button
         citiesButton.setOnClickListener(toCities);
+        
      
      // Button to click to Gallery activity for testing
         ImageButton galleryButton = (ImageButton)findViewById(R.id.imageButtonGallery); 
