@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.apache.http.NameValuePair;
@@ -31,6 +32,18 @@ import android.util.Log;
 public class WebService {
 	// Base URL is always going to start with this
 	private static final String ADDRESS = "http://www.theluvexchange.com/iphone/";
+	private static SAXParser parser;
+
+	private static SAXParser getParser() {
+		if (parser == null) {
+			try {
+				parser = SAXParserFactory.newInstance().newSAXParser();
+			} catch (Exception e) {
+				Log.e("TheLuvExchange", "WebServiceError", e);
+			}
+		}
+		return parser;
+	}
 
 	public static boolean ping() {
 		try {
@@ -72,7 +85,7 @@ public class WebService {
 
 			httpPost.setEntity(new UrlEncodedFormEntity(pairs));
 
-			XMLReader reader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+			XMLReader reader = getParser().getXMLReader();
 
 			LoginHandler handler = new LoginHandler();
 			reader.setContentHandler(handler);
@@ -110,7 +123,7 @@ public class WebService {
 			URL url = new URL(ADDRESS + "cities");
 
 			// SAX XMLReader object used for parsing the XML file
-			XMLReader reader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+			XMLReader reader = getParser().getXMLReader();
 
 			// SAXHandler class used for parsing the XML
 			CityHandler handler = new CityHandler();
@@ -133,38 +146,100 @@ public class WebService {
 		return cities;
 	}
 
-public static List<Restaurant> getRestaurants(User user, City city) {
-		
-		// List of cities to be populated and returned
-		List<Restaurant> restaurants = null;
-		
+	public static List<Pick> getRestaurants(User user, City city) {
+		URL url = null;
 		try {
 			// URL object used to create a connection to the cities XML page
-			URL url = new URL(ADDRESS + "restaurants/" + city.getId() 
+			url = new URL(ADDRESS + "restaurants/" + city.getId() 
 					+ "/sort:Pick.rating_count/direction:desc/viewer_id:" + user.getUserId());
-			
-			// SAX XMLReader object used for parsing the XML file
-			XMLReader reader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-			
-			// SAXHandler class used for parsing the XML
-			RestaurantHandler handler = new RestaurantHandler();
-			
-			// Set the XMLReader to use the SAXHandler for parsing rules
-			reader.setContentHandler(handler);
-			
-			// Run the parsing
-			reader.parse(new InputSource(url.openStream()));
-			
-			// Receive the list of City objects from the parse
-			restaurants = handler.getRestaurantData();
-			
 		} catch (Exception e) {
 			// Log error to be able to debug using LogCat
 			Log.e("TheLuvExchange", "WebServiceError", e);
 		}
-		
-		
-		return restaurants;
-	}	
+		return getPicks(url);
+	}
 
+	public static List<Pick> getThings(User user, City city) {
+		URL url = null;
+		try {
+			// URL object used to create a connection to the cities XML page
+			url = new URL(ADDRESS + "things/" + city.getId() 
+					+ "/sort:Pick.rating_count/direction:desc/viewer_id:" + user.getUserId());
+		} catch (Exception e) {
+			// Log error to be able to debug using LogCat
+			Log.e("TheLuvExchange", "WebServiceError", e);
+		}
+		return getPicks(url);
+	}
+
+	public static List<Pick> getAirportEats(User user, City city) {
+		URL url = null;
+		try {
+			// URL object used to create a connection to the cities XML page
+			url = new URL(ADDRESS + "airports/" + city.getId() 
+					+ "/sort:Pick.rating_count/direction:desc/viewer_id:" + user.getUserId());
+		} catch (Exception e) {
+			// Log error to be able to debug using LogCat
+			Log.e("TheLuvExchange", "WebServiceError", e);
+		}
+		return getPicks(url);
+	}
+
+	private static List<Pick> getPicks(URL url) {
+		// List of cities to be populated and returned
+		List<Pick> picks = null;
+
+		try {
+			// SAX XMLReader object used for parsing the XML file
+			XMLReader reader = getParser().getXMLReader();
+
+			// SAXHandler class used for parsing the XML
+			PickHandler handler = new PickHandler();
+
+			// Set the XMLReader to use the SAXHandler for parsing rules
+			reader.setContentHandler(handler);
+
+			// Run the parsing
+			reader.parse(new InputSource(url.openStream()));
+
+			// Receive the list of City objects from the parse
+			picks = handler.getPickData();
+
+		} catch (Exception e) {
+			// Log error to be able to debug using LogCat
+			Log.e("TheLuvExchange", "WebServiceError", e);
+		}
+		return picks;
+	}
+
+	public static List<Rating> getRatings(Pick pick) {
+		List<Rating> ratings = null;
+
+		try {
+			// URL object used to create a connection to the cities XML page
+			URL url = new URL(ADDRESS + "pick/" + pick.getId() 
+					+ "/sort:Pick.rating_count/direction:desc");
+
+			// SAX XMLReader object used for parsing the XML file
+			XMLReader reader = getParser().getXMLReader();
+
+			// SAXHandler class used for parsing the XML
+			RatingHandler handler = new RatingHandler();
+
+			// Set the XMLReader to use the SAXHandler for parsing rules
+			reader.setContentHandler(handler);
+
+			// Run the parsing
+			reader.parse(new InputSource(url.openStream()));
+
+			// Receive the list of City objects from the parse
+			ratings = handler.getRatingData();
+
+		} catch (Exception e) {
+			// Log error to be able to debug using LogCat
+			Log.e("TheLuvExchange", "WebServiceError", e);
+		}
+
+		return ratings;
+	}
 } 

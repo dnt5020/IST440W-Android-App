@@ -17,7 +17,7 @@ import android.widget.TextView;
 	
 	public class Restaurants extends Activity {
 		// cities tracks the list of cities
-		List<Restaurant> restaurants = new ArrayList<Restaurant>();
+		List<Pick> restaurants = new ArrayList<Pick>();
 		
 		// city holds a current city
 		Restaurant restaurant = null;
@@ -63,7 +63,7 @@ import android.widget.TextView;
 		/**
 		 * This class is used to create the adapter for populating the ListView
 		 */
-		class RestaurantAdapter extends ArrayAdapter<Restaurant> {
+		class RestaurantAdapter extends ArrayAdapter<Pick> {
 			
 			/**
 			 * Constructor calls the supertype constructor.
@@ -128,7 +128,7 @@ import android.widget.TextView;
 			}
 			
 			// Populate the TextView with the city name
-			void populateFrom(Restaurant restaurant) {
+			void populateFrom(Pick restaurant) {
 				name.setText(restaurant.getName());
 			}
 		}

@@ -7,7 +7,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class RestaurantHandler extends DefaultHandler {
+public class PickHandler extends DefaultHandler {
 	// Boolean flags to mark when we are inside of an element
 	private boolean inId = false;
 	private boolean inName = false;
@@ -25,10 +25,10 @@ public class RestaurantHandler extends DefaultHandler {
 	private boolean inViewerRating = false;
 	
 	// restaurantData holds the list of City objects to populate
-	private List<Restaurant> restaurantData;
+	private List<Pick> pickData;
 	
 	// city is used for creating City objects and setting fields
-	private Restaurant restaurant;
+	private Pick pick;
 	
 	/**
 	 * startDocument is called automatically when the parsing begins.
@@ -36,7 +36,7 @@ public class RestaurantHandler extends DefaultHandler {
 	 */
 	@Override
 	public void startDocument() throws SAXException {
-		restaurantData = new ArrayList<Restaurant>();
+		pickData = new ArrayList<Pick>();
 	}
 	
 	/**
@@ -49,8 +49,8 @@ public class RestaurantHandler extends DefaultHandler {
 		
 		if (localName.equals("restaurant")) {
 			
-			restaurant = new Restaurant();
-			restaurantData.add(restaurant);
+			pick = new Pick();
+			pickData.add(pick);
 			
 		} else if (localName.equals("id")) {
 			// Track if we're inside the id tag
@@ -90,17 +90,17 @@ public class RestaurantHandler extends DefaultHandler {
 			inDiscounts = true;
 		}
 		
-		else if (localName.equals("ratingTotal")) {
+		else if (localName.equals("rating_total")) {
 			// Track if we're inside the state tag
 			inRatingTotal = true;
 		}
 		
-		else if (localName.equals("ratingCount")) {
+		else if (localName.equals("rating_count")) {
 			// Track if we're inside the state tag
 			inRatingCount = true;
 		}
 		
-		else if (localName.equals("ratingAverage")) {
+		else if (localName.equals("rating_avg")) {
 			// Track if we're inside the state tag
 			inRatingAverage = true;
 		}
@@ -110,7 +110,7 @@ public class RestaurantHandler extends DefaultHandler {
 			inLocation = true;
 		}
 		
-		else if (localName.equals("viewerRating")) {
+		else if (localName.equals("viewer_rating")) {
 			// Track if we're inside the state tag
 			inViewerRating = true;
 		}
@@ -128,67 +128,67 @@ public class RestaurantHandler extends DefaultHandler {
 		
 		if (inId) {
 			// If this text is inside an id tag, set the city id
-			restaurant.setId(new String(ch, start, length));
+			pick.setId(new String(ch, start, length));
 			
 		} else if (inName) {
 			// If this text is inside a name tag, set the city name
-			restaurant.setName(new String(ch, start, length));
+			pick.setName(new String(ch, start, length));
 			
 		} else if (inCategory) {
 			// If this text is inside a state tag, set the city state
-			restaurant.setCategory (new String(ch, start, length));
+			pick.setCategory (new String(ch, start, length));
 		}
 		 else if (inAddress) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setAddress (new String(ch, start, length));
+				pick.setAddress (new String(ch, start, length));
 			}
 		 else if (inPhone) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setPhone (new String(ch, start, length));
+				pick.setPhone (new String(ch, start, length));
 			}
 		
 		 else if (inBody) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setBody (new String(ch, start, length));
+				pick.setBody (new String(ch, start, length));
 			}
 		
 		 else if (inLatitude) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setLatitude (new String(ch, start, length));
+				pick.setLatitude (new String(ch, start, length));
 			}
 		
 		 else if (inLongitude) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setLongitude (new String(ch, start, length));
+				pick.setLongitude (new String(ch, start, length));
 			}
 		
 		 else if (inDiscounts) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setDiscounts (new String(ch, start, length));
+				pick.setDiscounts (new String(ch, start, length));
 			}
 		
 		 else if (inRatingTotal) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setRatingTotal (new String(ch, start, length));
+				pick.setRatingTotal (new String(ch, start, length));
 			}
 			
 			else if (inRatingCount) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setRatingCount (new String(ch, start, length));
+				pick.setRatingCount (new String(ch, start, length));
 			}
 			
 			else if (inRatingAverage) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setRatingAverage (new String(ch, start, length));
+				pick.setRatingAverage (new String(ch, start, length));
 			}
 			
 			else if (inLocation) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setLocation (new String(ch, start, length));
+				pick.setLocation (new String(ch, start, length));
 			}
 			else if (inViewerRating) {
 				// If this text is inside a state tag, set the city state
-				restaurant.setViewerRating (new String(ch, start, length));
+				pick.setViewerRating (new String(ch, start, length));
 			}
 	}
 	
@@ -240,17 +240,17 @@ public class RestaurantHandler extends DefaultHandler {
 			inDiscounts = false;
 		}
 		
-		else if (localName.equals("ratingTotal")) {
+		else if (localName.equals("rating_total")) {
 			// Track if we're inside the state tag
 			inRatingTotal = false;
 		}
 		
-		else if (localName.equals("ratingCount")) {
+		else if (localName.equals("rating_count")) {
 			// Track if we're inside the state tag
 			inRatingCount = false;
 		}
 		
-		else if (localName.equals("ratingAverage")) {
+		else if (localName.equals("rating_avg")) {
 			// Track if we're inside the state tag
 			inRatingAverage = false;
 		}
@@ -260,7 +260,7 @@ public class RestaurantHandler extends DefaultHandler {
 			inLocation = false;
 		}
 		
-		else if (localName.equals("viewerRating")) {
+		else if (localName.equals("viewer_rating")) {
 			// Track if we're inside the state tag
 			inViewerRating = false;
 		}
@@ -272,7 +272,7 @@ public class RestaurantHandler extends DefaultHandler {
 	 * This method returns the populated list of City objects from the parsing.
 	 * @return
 	 */
-	public List<Restaurant> getRestaurantData() {
-		return restaurantData;
+	public List<Pick> getPickData() {
+		return pickData;
 	}
 }
