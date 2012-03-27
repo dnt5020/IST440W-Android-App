@@ -47,7 +47,7 @@ public class PickHandler extends DefaultHandler {
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
 		
-		if (localName.equals("restaurant")) {
+		if (localName.equals("restaurant") || localName.equals("thing") || localName.equals("airport")) {
 			
 			pick = new Pick();
 			pickData.add(pick);
