@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingTop="20dp" >
+        android:paddingTop="40dp" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -35,11 +35,13 @@
                 android:id="@+id/relativeLayout1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_weight="1"
+                
+                android:padding="20dp"
                 android:paddingLeft="30sp" >
  
                 <ImageButton
-                    android:id="@+id/imageButtonProfile"
+                    android:id="@+id/imageButtonThingsToDo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_launcher" />
@@ -48,17 +50,19 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageButtonProfile"
+                    android:layout_below="@+id/imageButtonThingsToDo"
                     android:layout_centerHorizontal="true"
                     android:text="@string/Thingstodo"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#372c24" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/relativeLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_weight="1"
+                android:padding="20dp"
                 android:paddingLeft="30sp" >
 
                 <ImageButton
@@ -73,8 +77,20 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageButtonForum"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/RandC"
+                    android:text="@string/restaurants"
+                    android:textStyle="bold"
+                    android:textColor="#372c24" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView3"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/bars"
+                    android:textColor="#372c24"
                     android:textStyle="bold" />
+
             </RelativeLayout>
         </TableRow>
 
@@ -87,7 +103,7 @@
                 android:id="@+id/relativeLayout3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp" >
+                android:padding="20dp" >
 
                 <ImageButton
                     android:id="@+id/imageButtonGallery"
@@ -102,14 +118,15 @@
                     android:layout_below="@+id/imageButtonGallery"
                     android:layout_centerHorizontal="true"
                     android:text="@string/AirportEats"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#372c24" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/relativeLayout4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp" >
+                android:padding="20dp" >
 
                 <ImageButton
                     android:id="@+id/imageButtonCities"
@@ -124,7 +141,8 @@
                     android:layout_alignLeft="@+id/imageButtonCities"
                     android:layout_below="@+id/imageButtonCities"
                     android:text="@string/CityGallery"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#372c24" />
 
             </RelativeLayout>
         </TableRow>

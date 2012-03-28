@@ -22,5 +22,7 @@
     <string name="AirportEats">Airport Eats</string>
     <string name="CityGallery">City Gallery</string>
     <string name="Weather">Weather</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="bars">&amp; Bars</string>
 
 </resources>

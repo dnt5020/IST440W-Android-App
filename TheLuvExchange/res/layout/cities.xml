@@ -10,7 +10,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#ffffff" 
-    android:textColor="#372c24" >
+    android:textColor="#372c24" 
+        android:cacheColorHint="#ffffff"
+    >
 
     
 </ListView>

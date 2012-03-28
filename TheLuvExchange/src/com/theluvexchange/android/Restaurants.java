@@ -20,7 +20,7 @@ import android.widget.TextView;
 		List<Pick> restaurants = new ArrayList<Pick>();
 		
 		// city holds a current city
-		Restaurant restaurant = null;
+		Pick restaurant = null;
 		
 		// adapter is used to populate the ListView with the city names
 		RestaurantAdapter adapter = null;

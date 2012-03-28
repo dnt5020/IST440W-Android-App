@@ -46,7 +46,8 @@
                     android:layout_below="@+id/imageButtonProfile"
                     android:layout_centerHorizontal="true"
                     android:text="@string/profile"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#372c24" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -68,7 +69,8 @@
                     android:layout_below="@+id/imageButtonForum"
                     android:layout_centerHorizontal="true"
                     android:text="@string/forum"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" 
+                    android:textColor="#372c24"/>
             </RelativeLayout>
         </TableRow>
 
@@ -96,7 +98,8 @@
                     android:layout_below="@+id/imageButtonGallery"
                     android:layout_centerHorizontal="true"
                     android:text="@string/gallery"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#372c24" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -118,7 +121,8 @@
                     android:layout_below="@+id/imageButtonCities"
                     android:layout_centerHorizontal="true"
                     android:text="@string/sw_cities"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" 
+                    android:textColor="#372c24"/>
             </RelativeLayout>
         </TableRow>
 
@@ -146,7 +150,8 @@
                     android:layout_below="@+id/imageButtonWeather"
                     android:layout_centerHorizontal="true"
                     android:text="@string/weather"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" 
+                    android:textColor="#372c24"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -168,7 +173,8 @@
                     android:layout_below="@+id/imageButtonLuvNews"
                     android:layout_centerHorizontal="true"
                     android:text="@string/luvNews"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" 
+                    android:textColor="#372c24"/>
             </RelativeLayout>
         </TableRow>
 
@@ -196,7 +202,8 @@
                     android:layout_below="@+id/imageButtonBuySell"
                     android:layout_centerHorizontal="true"
                     android:text="@string/buy_sell"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" 
+                    android:textColor="#372c24"/>
             </RelativeLayout>
         </TableRow>
     </TableLayout>

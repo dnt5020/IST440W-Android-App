@@ -65,6 +65,11 @@ public class Cities extends Activity {
 	         list1.setOnItemClickListener(new OnItemClickListener(){
 	        	 public void onItemClick(AdapterView<?> parent, View view,
 	        	          int position, long id) {
+	        		 
+	        		 TheLuvExchange application = (TheLuvExchange)getApplication();		
+	 				 application.setCity(cities.get(position));
+	 				 
+
 	        	        
 	        		 startActivity(new Intent(activity, CityMenu.class));// When clicked, go to city menu page       	        
 	        	 }

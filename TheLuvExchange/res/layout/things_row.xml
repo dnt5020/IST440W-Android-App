@@ -18,6 +18,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:text="1"
+              android:textColor="#372c24"
+            
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -29,52 +31,47 @@
             android:layout_marginLeft="25dp"
             android:layout_toRightOf="@+id/textViewNumber"
             android:text="Restaurant - Flintstones"
+            android:minLines="2"
+              android:textColor="#372c24"
+                  android:textStyle="bold"
+              
+            
+           
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textViewRestaurantName"
-            android:layout_below="@+id/textViewRestaurantName"
-            android:layout_marginTop="15dp"
-            android:text="@string/address" />
 
         <TextView
             android:id="@+id/textViewAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView1"
-            android:layout_alignBottom="@+id/textView1"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/textView1"
-            android:text="TextView " />
-
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textViewRestaurantName"
             android:layout_below="@+id/textViewRestaurantName"
-            android:layout_marginTop="15dp"
-            android:text="@string/address" />
+            android:layout_marginTop="25dp"
+            android:text="Address"
+              android:textColor="#372c24"
+            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/TextView02"
+            android:id="@+id/textViewPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView1"
-            android:layout_below="@+id/textView1"
-            android:layout_marginTop="10dp"
-            android:text="@string/rating" />
+            android:layout_alignLeft="@+id/textViewAddress"
+            android:layout_below="@+id/textViewAddress"
+            android:layout_marginTop="15dp"
+            android:text="(771) 544-0987"
+              android:textColor="#372c24"
+            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RatingBar
             android:id="@+id/ratingBar1"
             style="@style/MyCustomRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textViewAddress"
-            android:layout_alignTop="@+id/TextView02" />
+            android:layout_alignLeft="@+id/textViewPhoneNumber"
+            android:layout_below="@+id/textViewPhoneNumber"
+            android:layout_marginTop="15dp" 
+            android:isIndicator="true"/>
 
     </RelativeLayout>
 

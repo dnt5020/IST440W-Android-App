@@ -1,13 +1,15 @@
 package com.theluvexchange.android;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -15,118 +17,83 @@ import android.widget.TextView;
 /**
  * @author Niranjan Singh
  * 
- * Activity to set up the custom list view
+ * Activity to set up the custom list view of Restaurants and Bars
  * 
- *  -- The code is a mess. Was trying to make it working first. Hardcoded the 3 resaturants to test
+ * 
  */
-
-// The code is a mess and has to be cleaned up and commented
-
-// Reference - http://chengalva.com/dnn_site/Home/tabid/41/EntryId/83/Android-Create-Custom-ListView-by-adding-an-Image-Icon-and-Rating-Bar.aspx
 
 public class ThingsToDo extends Activity {
 	
-	private ArrayList <HashMap<String, Object>> thingsList;
-	private static final String NUMBER = "Number";
-	private static final String NAME = "Name";
-	private static final String ADDRESS = "Address";
-	private static final String RATING = "Rating";
-
-
+	private TheLuvExchange application = null;
+	private List<Pick> restaurantsList = null;
+	private User user;
+	private City city;
+	
+	private int rowCount = 0;
 	
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.things_to_do);
 	        
+	       application = (TheLuvExchange)this.getApplication();
+	       restaurantsList  = new ArrayList<Pick>();
+	        
 	        ListView listThings = (ListView)findViewById(R.id.thingsToDoList);
 	        
-	        thingsList = new ArrayList<HashMap<String,Object>>();
-	        HashMap<String, Object> hashMap;
+	        Log.d("ThingsToDo.java", "just before user ");
 	        
-	        //HashMap and Key, Values of list
-	        hashMap = new HashMap<String, Object>();
-	        hashMap.put(NUMBER, "1");
-	        hashMap.put(NAME, "Sheetz");
-	        hashMap.put(ADDRESS, "Queenswood, York");
-	        hashMap.put(RATING, 5);
+	        user = application.getUser();
+	        city = application.getCity();
 	        
-	        thingsList.add(hashMap);
+	     // Call the WebService.getRestaurants() method to populate the cities list.
+	     	restaurantsList.addAll(WebService.getRestaurants(user, city));
 	        
-	      //HashMap and Key, Values of list
-	        hashMap = new HashMap<String, Object>();
-	        hashMap.put(NUMBER, "2");
-	        hashMap.put(NAME, "Red Lobster");
-	        hashMap.put(ADDRESS, "southQueen, York");
-	        hashMap.put(RATING, 3);
 	        
-	        thingsList.add(hashMap);
+	     
 	        
-	      //HashMap and Key, Values of list
-	        hashMap = new HashMap<String, Object>();
-	        hashMap.put(NUMBER, "3");
-	        hashMap.put(NAME, "Something");
-	        hashMap.put(ADDRESS, "Queenswood, York");
-	        hashMap.put(RATING, 5);
-	        
-	        thingsList.add(hashMap);
-	        
-	        listThings.setAdapter(new myListAdapter(thingsList, this));
+	        listThings.setAdapter(new RestaurantAdapter());
 	        listThings.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 	               
 	 }
 	 
-	 private class myListAdapter extends BaseAdapter {
+	 private class RestaurantAdapter extends ArrayAdapter<Pick> {
 
-		 private ArrayList<HashMap<String, Object>> things;
-		 private LayoutInflater layoutInflater;
-		 
-		 public myListAdapter(ArrayList<HashMap<String, Object>> things, Context context) {
-			 
-			 this.things = things;
-			 layoutInflater = LayoutInflater.from(context);
-			 
-		 }
-		 
-		public int getCount() {
-			return things.size();
+		 public RestaurantAdapter() {
+			super(ThingsToDo.this, R.layout.things_row, restaurantsList);
+			
 		}
 
-		public Object getItem(int position) {
-			return things.get(position);
-		}
-
-		public long getItemId(int position) {
-			return position;
-		}
+		 private LayoutInflater layoutInflater = getLayoutInflater();
 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			
+			// If the row was already created before, we'll receive it here
+			View row = convertView;
+			
 			// a ViewHolder keeps references to children views to avoid unnecessary calls 
 			// to findById() on each row
-			ViewHolder myViewHolder;
+			ViewHolder myViewHolder = null;
 			
-			if(convertView == null){
-				convertView = layoutInflater.inflate(R.layout.things_row, null);
+			// If this row wasn't created before, we'll create it here
+			if(row == null){
+
 				
-				myViewHolder = new ViewHolder();
-				myViewHolder.textViewNumber = (TextView) convertView.findViewById(R.id.textViewNumber);
-				myViewHolder.textViewAddress = (TextView) convertView.findViewById(R.id.textViewAddress);
-				myViewHolder.textViewName = (TextView) convertView.findViewById(R.id.textViewRestaurantName);
+				// inflater will be used to create Views from the things_row layout
+				row = layoutInflater.inflate(R.layout.things_row, null);
 				
-				convertView.setTag(myViewHolder);
+				myViewHolder = new ViewHolder(row);
+				
+				row.setTag(myViewHolder);
 				
 			} else {
-				myViewHolder = (ViewHolder) convertView.getTag();
+				myViewHolder = (ViewHolder) row.getTag();
 			}
 			
-			myViewHolder.textViewAddress.setText((String) thingsList.get(position).get(ADDRESS));
-			myViewHolder.textViewName.setText((String) thingsList.get(position).get(NAME));
-			myViewHolder.textViewNumber.setText((String) thingsList.get(position).get(NUMBER));
-//			myViewHolder.rating.setRating((Integer) thingsList.get(position).get(RATING));
+			
+			myViewHolder.populateFrom(restaurantsList.get(position));
 			
 			
-			
-			return convertView;
+			return row;
 
 
 
@@ -135,10 +102,32 @@ public class ThingsToDo extends Activity {
 		}
 		
 		class ViewHolder {
-			TextView textViewNumber;
-			TextView textViewName;
-			TextView textViewAddress;
-			RatingBar rating;
+			TextView textViewNumber = null;
+			TextView textViewName = null;
+			TextView textViewAddress = null;
+			TextView textViewPhoneNumber = null;
+			RatingBar rating = null;
+			
+			public ViewHolder (View row){
+				textViewNumber = (TextView) row.findViewById(R.id.textViewNumber);
+				textViewAddress = (TextView) row.findViewById(R.id.textViewAddress);
+				textViewName = (TextView) row.findViewById(R.id.textViewRestaurantName);
+				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewPhoneNumber);
+				rating = (RatingBar) row.findViewById(R.id.ratingBar1);
+				 
+			}
+			
+			public void populateFrom(Pick restaurant){
+				rowCount++;
+
+				textViewAddress.setText(restaurant.getAddress());
+				textViewName.setText(restaurant.getName());
+				textViewPhoneNumber.setText(restaurant.getPhone());
+				
+				// This is not the right method to display count, will need to change - Niranjan
+				textViewNumber.setText(rowCount + ".");
+				rating.setRating(Integer.parseInt(restaurant.getRatingAverage()));
+			}
 			
 		}
 		 
@@ -147,3 +136,5 @@ public class ThingsToDo extends Activity {
 	 }
 
 }
+
+
