@@ -18,6 +18,22 @@ public class CityHandler extends DefaultHandler {
 	private boolean inId = false;
 	private boolean inName = false;
 	private boolean inState = false;
+	private boolean inAirport = false;
+	private boolean inIsActive = false;
+	private boolean inIsBase = false;
+	private boolean inFormId = false;
+	private boolean inCityAblumId = false;
+	private boolean inIphoneAblumId = false;
+	private boolean inLat = false;
+	private boolean inLongitude = false;
+	private boolean inCreated = false;
+	private boolean inModified = false;
+
+	
+	
+
+	
+	
 	
 	// cityData holds the list of City objects to populate
 	private List<City> cityData;
@@ -57,6 +73,50 @@ public class CityHandler extends DefaultHandler {
 			// Track if we're inside the state tag
 			inState = true;
 		}
+		else if (localName.equals("airport")) {
+			// Track if we're inside the state tag
+			inAirport = true;
+		}
+		else if (localName.equals("is_active")) {
+			// Track if we're inside the state tag
+			inIsActive = true;
+		}
+		else if (localName.equals("is_base")) {
+			// Track if we're inside the state tag
+			inIsBase = true;
+		}
+		else if (localName.equals("form_id")) {
+			// Track if we're inside the state tag
+			inFormId = true;
+		}
+		else if (localName.equals("is_base")) {
+			// Track if we're inside the state tag
+			inIsBase = true;
+		}
+		else if (localName.equals("city_ablum_id")) {
+			// Track if we're inside the state tag
+			inCityAblumId = true;
+		}
+		else if (localName.equals("iphone_ablum_id")) {
+			// Track if we're inside the state tag
+			inIphoneAblumId = true;
+		}
+		else if (localName.equals("lat")) {
+			// Track if we're inside the state tag
+			inLat = true;
+		}
+		else if (localName.equals("long")) {
+			// Track if we're inside the state tag
+			inLongitude = true;
+		}
+		else if (localName.equals("created")) {
+			// Track if we're inside the state tag
+			inCreated = true;
+		}
+		else if (localName.equals("modified")) {
+			// Track if we're inside the state tag
+			inModified = true;
+		}
 	}
 	
 	/**
@@ -79,6 +139,53 @@ public class CityHandler extends DefaultHandler {
 			// If this text is inside a state tag, set the city state
 			city.setState(new String(ch, start, length));
 		}
+		
+		else if (inAirport) {
+			// If this text is inside a state tag, set the city state
+			city.setAirport(new String(ch, start, length));
+		}
+		
+		else if (inIsActive) {
+			// If this text is inside a state tag, set the city state
+			city.setIsActive(new String(ch, start, length));
+		}
+		else if (inIsBase) {
+			// If this text is inside a state tag, set the city state
+			city.setIsBase(new String(ch, start, length));
+		}
+		
+		else if (inFormId) {
+			// If this text is inside a state tag, set the city state
+			city.setFormId(new String(ch, start, length));
+		}
+		else if (inCityAblumId) {
+			// If this text is inside a state tag, set the city state
+			city.setCityAblumId(new String(ch, start, length));
+		}
+		
+		else if (inIphoneAblumId) {
+			// If this text is inside a state tag, set the city state
+			city.setIphoneAblumId(new String(ch, start, length));
+		}
+		else if (inLat) {
+			// If this text is inside a state tag, set the city state
+			city.setLat(new String(ch, start, length));
+		}
+		else if (inLongitude) {
+			// If this text is inside a state tag, set the city state
+			city.setLongitude(new String(ch, start, length));
+		}
+		else if (inCreated) {
+			// If this text is inside a state tag, set the city state
+			city.setCreated(new String(ch, start, length));
+		}
+		
+		else if (inModified) {
+			// If this text is inside a state tag, set the city state
+			city.setModified(new String(ch, start, length));
+		}
+		
+		
 	}
 	
 	/**
@@ -90,16 +197,61 @@ public class CityHandler extends DefaultHandler {
 			throws SAXException {
 		
 		if (localName.equals("id")) {
-			// Track if we've exited the id tag
+			
 			inId = false;
 			
 		} else if (localName.equals("name")) {
-			// Track if we've exited the name tag
+			
 			inName = false;
 			
 		} else if (localName.equals("state")) {
-			// Track if we've exited the state tag
+			
 			inState = false;
+		}
+		
+		else if (localName.equals("airport")) {
+			
+			inAirport = false;
+		}
+		else if (localName.equals("is_active")) {
+			
+			inIsActive = false;
+		}
+		else if (localName.equals("is_base")) {
+			
+			inIsBase = false;
+		}
+		else if (localName.equals("form_id")) {
+			
+			inFormId = false;
+		}
+		else if (localName.equals("is_base")) {
+		
+			inIsBase = false;
+		}
+		else if (localName.equals("city_ablum_id")) {
+			
+			inCityAblumId = false;
+		}
+		else if (localName.equals("iphone_ablum_id")) {
+			
+			inIphoneAblumId = false;
+		}
+		else if (localName.equals("lat")) {
+		
+			inLat = false;
+		}
+		else if (localName.equals("long")) {
+			
+			inLongitude = false;
+		}
+		else if (localName.equals("created")) {
+			
+			inCreated = false;
+		}
+		else if (localName.equals("modified")) {
+			
+			inModified = false;
 		}
 	}
 	
