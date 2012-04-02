@@ -30,10 +30,15 @@ import android.util.Log;
  * Implementation as of 3/5/12 includes just a static method for getting the list of cities
  */
 public class WebService {
-	// Base URL is always going to start with this
+	// Base URL is usually going to start with this
 	private static final String ADDRESS = "http://www.theluvexchange.com/iphone/";
-	private static SAXParser parser;
-
+	private static SAXParser parser; // Singleton SAXParser object
+	
+	/*
+	 * Singleton object that is used to create XMLReader objects for other service calls.
+	 * This prevents the SAXParser object from having to be created multiple times,
+	 * and boosts responsiveness of all the methods slightly.
+	 */
 	private static SAXParser getParser() {
 		if (parser == null) {
 			try {
@@ -44,7 +49,11 @@ public class WebService {
 		}
 		return parser;
 	}
-
+	
+	/**
+	 * Returns true if website is reachable.
+	 * @return
+	 */
 	public static boolean ping() {
 		try {
 			HttpURLConnection connection = (HttpURLConnection) new URL(
@@ -60,12 +69,21 @@ public class WebService {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * Method to authenticate login credentials with the website.
+	 * Returns an Object that will either be an instanceof User or String.
+	 * If the return value is a User, then the login was successful.
+	 * Otherwise the String will be a message explaining why it was not.
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	public static Object login(String userName, String password) {
 		User user = null;
 
-		boolean blankUserName = userName == null || userName.equals("");
-		boolean blankPassword = password == null || password.equals("");
+		boolean blankUserName = userName == null || userName.trim().equals("");
+		boolean blankPassword = password == null || password.trim().equals("");
 		if (blankUserName && blankPassword) {
 			return "Please enter a user name and password.";
 		}
@@ -77,7 +95,7 @@ public class WebService {
 		}
 
 		HttpClient httpClient = new DefaultHttpClient();
-		HttpPost httpPost = new HttpPost("http://www.theluvexchange.com/iphone/login");
+		HttpPost httpPost = new HttpPost(ADDRESS + "login");
 		try {
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>(2);
 			pairs.add(new BasicNameValuePair("data[Account][username]", userName));
@@ -145,7 +163,14 @@ public class WebService {
 		// Return the list of cities
 		return cities;
 	}
-
+	
+	/**
+	 * Returns a list of Picks that represent restaurants given a user and city.
+	 * The return value will be null if the service call failed.
+	 * @param user
+	 * @param city
+	 * @return
+	 */
 	public static List<Pick> getRestaurants(User user, City city) {
 		URL url = null;
 		try {
@@ -158,7 +183,14 @@ public class WebService {
 		}
 		return getPicks(url);
 	}
-
+	
+	/**
+	 * Returns a list of Picks that represent things to do given a user and city.
+	 * The return value will be null if the service call failed.
+	 * @param user
+	 * @param city
+	 * @return
+	 */
 	public static List<Pick> getThings(User user, City city) {
 		URL url = null;
 		try {
@@ -171,7 +203,14 @@ public class WebService {
 		}
 		return getPicks(url);
 	}
-
+	
+	/**
+	 * Returns a list of Picks that represent airport eats given a user and city.
+	 * The return value will be null if the service call failed.
+	 * @param user
+	 * @param city
+	 * @return
+	 */
 	public static List<Pick> getAirportEats(User user, City city) {
 		URL url = null;
 		try {
@@ -184,7 +223,10 @@ public class WebService {
 		}
 		return getPicks(url);
 	}
-
+	
+	/*
+	 * Used by other methods, not for public access
+	 */
 	private static List<Pick> getPicks(URL url) {
 		// List of cities to be populated and returned
 		List<Pick> picks = null;
@@ -211,7 +253,13 @@ public class WebService {
 		}
 		return picks;
 	}
-
+	
+	/**
+	 * This returns a list of Ratings for a given Pick.
+	 * The return value will be null if the service call failed.
+	 * @param pick
+	 * @return
+	 */
 	public static List<Rating> getRatings(Pick pick) {
 		List<Rating> ratings = null;
 
@@ -241,5 +289,73 @@ public class WebService {
 		}
 
 		return ratings;
+	}
+	
+	/**
+	 * This method takes inputs of a user, city, pick, comment, rating, and discount.
+	 * It returns an Object which is either an instanceof Rating or String.
+	 * If a Rating is returned, then the post was successful.
+	 * If the result is a String, then its an error message describing why it failed.
+	 * @param user
+	 * @param city
+	 * @param pick
+	 * @param comment
+	 * @param rating
+	 * @param discount
+	 * @return
+	 */
+	public static Object postRating(User user, City city, Pick pick, String comment,
+			int rating, boolean discount) {
+		
+		Rating vote = new Rating(pick);
+		vote.setBody(comment);
+		vote.setViewerRating(Integer.toString(rating));
+		vote.setDiscounts(discount ? "1" : "0");
+		
+		HttpClient httpClient = new DefaultHttpClient();
+		
+		StringBuilder address = new StringBuilder(ADDRESS);
+		address.append("picks_add?user_id=");
+		address.append(user.getUserId());
+		address.append("&code=");
+		address.append(user.getCode());
+		
+		HttpPost httpPost = new HttpPost(address.toString());
+		try {
+			List<NameValuePair> pairs = new ArrayList<NameValuePair>(2);
+			pairs.add(new BasicNameValuePair("data[Pick][name]", vote.getName()));
+			pairs.add(new BasicNameValuePair("data[Pick][body]", vote.getBody()));
+			pairs.add(new BasicNameValuePair("data[Pick][location]", vote.getLocation()));
+			pairs.add(new BasicNameValuePair("data[Pick][near]", null)); // ?
+			pairs.add(new BasicNameValuePair("data[Pick][address]", vote.getAddress()));
+			pairs.add(new BasicNameValuePair("data[Pick][phone]", vote.getPhone()));
+			pairs.add(new BasicNameValuePair("data[Pick][latitude]", vote.getLatitude()));
+			pairs.add(new BasicNameValuePair("data[Pick][longitude]", vote.getLongitude()));
+			pairs.add(new BasicNameValuePair("data[Pick][discounts]", vote.getDiscounts()));
+			pairs.add(new BasicNameValuePair("data[Pick][category]", vote.getCategory()));
+			pairs.add(new BasicNameValuePair("data[Pick][parent_id]", vote.getId()));
+			pairs.add(new BasicNameValuePair("data[Pick][city_id]", city.getId()));
+			pairs.add(new BasicNameValuePair("data[Pick][rating]", vote.getViewerRating()));
+
+			httpPost.setEntity(new UrlEncodedFormEntity(pairs));
+
+			XMLReader reader = getParser().getXMLReader();
+
+			PostHandler handler = new PostHandler();
+			reader.setContentHandler(handler);
+
+			String response = httpClient.execute(httpPost, new BasicResponseHandler());
+			InputSource input = new InputSource();
+			input.setCharacterStream(new StringReader(response));
+			reader.parse(input);
+
+			String result = handler.getResult();
+			
+			return result.equals("success") ? vote : result;
+
+		} catch (Exception e) {
+			Log.e("TheLuvExchange", "WebServiceError", e);
+			return "Error: " + e;
+		}
 	}
 } 
