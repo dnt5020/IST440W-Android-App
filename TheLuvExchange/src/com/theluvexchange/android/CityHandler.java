@@ -229,11 +229,11 @@ public class CityHandler extends DefaultHandler {
 		
 			inIsBase = false;
 		}
-		else if (localName.equals("city_ablum_id")) {
+		else if (localName.equals("city_album_id")) {
 			
 			inCityAblumId = false;
 		}
-		else if (localName.equals("iphone_ablum_id")) {
+		else if (localName.equals("iphone_album_id")) {
 			
 			inIphoneAblumId = false;
 		}
