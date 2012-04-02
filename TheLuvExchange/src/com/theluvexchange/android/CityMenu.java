@@ -14,13 +14,24 @@ import android.widget.ImageButton;
  * 
  * */
 public class CityMenu extends Activity {
-	// private Activity activity = this;
+	private Activity activity = this;
 	 
 	  /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.citymenu);
+        // Button just to give a way to get to the Cities activity for testing
+        ImageButton weatherButton = (ImageButton)findViewById(R.id.weatherImageButton); 
+        
+     // Listener waits for a click on cities button
+        weatherButton.setOnClickListener(toWeather);
         
     }
+    // On click on cities button, opens Cities activity
+    private View.OnClickListener toWeather = new View.OnClickListener() {
+		public void onClick(View view) {
+			startActivity(new Intent(activity, Weather_Main.class));
+		}
+    };
 }

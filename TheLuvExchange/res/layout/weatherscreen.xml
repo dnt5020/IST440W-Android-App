@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget69"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff" >
+
+    <ImageButton
+        android:id="@+id/ImageButton01"
+        android:layout_width="49dp"
+        android:layout_height="wrap_content"
+        android:layout_x="-1dp"
+        android:layout_y="489dp" />
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:background="#003684"
+        android:drawableLeft="@drawable/ic_launcher"
+        android:drawablePadding="5dip"
+        android:gravity="center"
+        android:padding="5dip"
+        android:text="@string/app_name"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/citySelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="112dp"
+        android:layout_y="60dp"
+        android:text="TextView"
+        android:textColor="#372c24"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/desc3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="54dp"
+        android:layout_y="403dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/min2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="56dp"
+        android:layout_y="373dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/max2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="134dp"
+        android:layout_y="375dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/desc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="56dp"
+        android:layout_y="348dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/widget58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="122dp"
+        android:layout_y="374dp"
+        android:text="/"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/widget62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="120dp"
+        android:layout_y="323dp"
+        android:text="/"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/max1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="130dp"
+        android:layout_y="323dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/min1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="56dp"
+        android:layout_y="322dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/desc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="58dp"
+        android:layout_y="297dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/min3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="54dp"
+        android:layout_y="428dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/max3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="132dp"
+        android:layout_y="428dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/widget66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="120dp"
+        android:layout_y="428dp"
+        android:text="/"
+        android:textColor="#372c24" />
+
+    <ImageButton
+        android:id="@+id/weather_image3"
+        android:layout_width="53dp"
+        android:layout_height="wrap_content"
+        android:layout_x="-3dp"
+        android:layout_y="400dp" />
+
+    <ImageButton
+        android:id="@+id/weather_image2"
+        android:layout_width="53dp"
+        android:layout_height="wrap_content"
+        android:layout_x="-3dp"
+        android:layout_y="346dp" />
+
+    <ImageButton
+        android:id="@+id/weather_image1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_x="-2dp"
+        android:layout_y="296dp" />
+
+    <TextView
+        android:id="@+id/widget52"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_x="0dp"
+        android:layout_y="266dp"
+        android:text="@string/forecast_label"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/windD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="160dp"
+        android:layout_y="124dp"
+        android:text="@string/WindD"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/hum_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="119dp"
+        android:layout_y="144dp"
+        android:text="@string/Humidity_Label"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="185dp"
+        android:layout_y="144dp"
+        android:text="@string/hum"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/vis_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="120dp"
+        android:layout_y="168dp"
+        android:text="@string/Vis_Label"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/tempMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="185dp"
+        android:layout_y="191dp"
+        android:text="@string/tempMax"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/max_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="113dp"
+        android:layout_y="192dp"
+        android:text="@string/max_label"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/min_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="114dp"
+        android:layout_y="214dp"
+        android:text="@string/min_label"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/precip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="96dp"
+        android:layout_y="236dp"
+        android:text="@string/Prec_Label"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/visibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="186dp"
+        android:layout_y="166dp"
+        android:text="@string/Vis"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/wind_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="118dp"
+        android:layout_y="125dp"
+        android:text="@string/Wind_Label"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/currentF"
+        android:layout_width="123dp"
+        android:layout_height="45dp"
+        android:layout_x="118dp"
+        android:layout_y="84dp"
+        android:text="@string/curF"
+        android:textColor="#372c24"
+        android:textSize="25sp" />
+
+    <ImageButton
+        android:id="@+id/currentImage"
+        android:layout_width="71dp"
+        android:layout_height="63dp"
+        android:layout_x="9dp"
+        android:layout_y="91dp" />
+
+    <TextView
+        android:id="@+id/at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="191dp"
+        android:layout_y="127dp"
+        android:text="@string/at"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/windS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="210dp"
+        android:layout_y="126dp"
+        android:text="@string/WindS"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/tempMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="186dp"
+        android:layout_y="214dp"
+        android:text="@string/tempMin"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/prec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="187dp"
+        android:layout_y="236dp"
+        android:text="@string/prec"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="75dp"
+        android:layout_height="-41px"
+        android:layout_x="9dp"
+        android:layout_y="164dp"
+        android:text="TextView"
+        android:textColor="#372c24" />
+
+</AbsoluteLayout>

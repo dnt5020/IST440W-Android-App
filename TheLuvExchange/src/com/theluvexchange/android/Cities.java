@@ -62,6 +62,9 @@ public class Cities extends Activity {
 	         listDialog.setCancelable(true);
 	        // add the listview to the dialog 
 	         ListView list1 = (ListView) listDialog.findViewById(R.id.cities);
+	         listDialog.show();
+	         
+	         
 	         list1.setOnItemClickListener(new OnItemClickListener(){
 	        	 public void onItemClick(AdapterView<?> parent, View view,
 	        	          int position, long id) {
@@ -76,9 +79,9 @@ public class Cities extends Activity {
 	         
 	         });
 	         //now that the dialog is set up, it's time to show it
-	         listDialog.show();
+	        
 			
-			// Get the ListView from the cities layout
+			//Get the ListView from the cities layout
 		//ListView list = (ListView)layout.findViewById(R.id.cities);
 			
 			// Instantiate the adapter for populating the ListView

@@ -21,8 +21,25 @@
     <string name="Thingstodo">Things to do</string>
     <string name="AirportEats">Airport Eats</string>
     <string name="CityGallery">City Gallery</string>
-    <string name="Weather">Weather</string>
+    <string name="Weather">Get Weather</string>
     <string name="restaurants">Restaurants</string>
     <string name="bars">&amp; Bars</string>
-
+    <string name="today_humidity">--</string>
+    <string name="Humidity_Label">Humidity:</string>
+    <string name="Vis_Label">Visibility:</string>
+    <string name="Prec_Label">Precipitation:</string>
+    <string name="Wind_Label">Wind:</string>
+    <string name="WindD">---</string>
+    <string name="WindS">--</string>
+    <string name="forecast_label">Forecast for next 3 days:</string>
+    <string name="curF">--`F</string>
+    <string name="at">at</string>
+    <string name="prec">--</string>
+    <string name="tempMin">--`F</string>
+   <string name="hum">-%</string>
+   <string name="tempMax">--`F</string>
+   <string name="max_label">TempMax</string>
+   <string name="min_label">TempMin</string>
+   <string name="Vis">--mi</string>
+  
 </resources>

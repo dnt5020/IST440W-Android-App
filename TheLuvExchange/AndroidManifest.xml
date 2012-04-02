@@ -25,20 +25,29 @@
             android:label="@string/gallery" >
         </activity>
         <activity
+            android:name=".Weather_Main"
+            android:label="@string/Weather" >
+        </activity>
+        <activity
             android:name=".MainMenu"
             android:label="@string/main_menu" >
         </activity>
         <activity android:name=".ThingsToDo" >
         </activity>
+        <activity android:name=".Splash" >
+           
+        </activity>
+        
         <activity
             android:name=".Login"
             android:label="@string/app_name" >
-            <intent-filter>
+             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+                       
+            </activity>
     </application>
 
 </manifest>

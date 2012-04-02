@@ -39,7 +39,7 @@ public class Login extends Activity {
 			User user = new User(savedUser);
 			TheLuvExchange application = (TheLuvExchange)getApplication();
 			application.setUser(user);
-			startActivity(new Intent(activity, MainMenu.class));
+			startActivity(new Intent(activity, Splash.class));
 		}
 
 		setContentView(R.layout.main);
@@ -81,7 +81,7 @@ public class Login extends Activity {
 					user.save(editor);
 				}
 
-				startActivity(new Intent(activity, MainMenu.class));
+				startActivity(new Intent(activity, Splash.class));
 			} else {
 				Toast.makeText(activity, (String)result, Toast.LENGTH_LONG).show();
 				editor.putBoolean("remember", false);
