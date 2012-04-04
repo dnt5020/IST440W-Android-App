@@ -21,12 +21,21 @@ public class CityMenu extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.citymenu);
-        // Button just to give a way to get to the Cities activity for testing
+        // Button just to give a way to get to the Weather activity for testing
         ImageButton weatherButton = (ImageButton)findViewById(R.id.weatherImageButton); 
         
      // Listener waits for a click on cities button
         weatherButton.setOnClickListener(toWeather);
         
+        ImageButton cityGallerybutton = (ImageButton)findViewById(R.id.imageButtonCityGallery); 
+        
+        // Listener waits for a click on cities button
+        cityGallerybutton.setOnClickListener(toGallery);
+        
+   ImageButton thingsToDobutton = (ImageButton)findViewById(R.id.imageButtonThingsToDo); 
+        
+        // Listener waits for a click on cities button
+        thingsToDobutton.setOnClickListener(toThingsToDo);
     }
     // On click on cities button, opens Cities activity
     private View.OnClickListener toWeather = new View.OnClickListener() {
@@ -34,4 +43,19 @@ public class CityMenu extends Activity {
 			startActivity(new Intent(activity, Weather_Main.class));
 		}
     };
+    
+   // On click on cities button, opens Cities activity
+   private View.OnClickListener toGallery = new View.OnClickListener() {
+		public void onClick(View view) {
+			startActivity(new Intent(activity, IndivGallery.class));
+		}
+   };
+   
+   // On click on cities button, opens Cities activity
+   private View.OnClickListener toThingsToDo = new View.OnClickListener() {
+		public void onClick(View view) {
+			startActivity(new Intent(activity, ThingsToDo.class));
+		}
+   };
+   
 }

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
@@ -17,6 +19,8 @@ import android.widget.GridView;
  */
 public class IndivGallery extends Activity
 {
+	 private Activity activity = this;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,17 @@ public class IndivGallery extends Activity
 
 	    GridView gridview = (GridView) findViewById(R.id.gallery);
 	    gridview.setAdapter(new ImageAdapter(this));
+	    
+        Button addPhotoButton = (Button)findViewById(R.id.button1); 
+        
+        addPhotoButton.setOnClickListener(new View.OnClickListener() {
+    		public void onClick(View view) {
+    			startActivity(new Intent(activity, ImageUploader.class));
+    		}
+        });
+        
+     
+    		
 	    
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
@@ -36,6 +51,9 @@ public class IndivGallery extends Activity
                 i.putExtra("id", position);
                 startActivity(i);
 	        }
-	    });
+	    }
+	    
+	    		
+	    		);
 	}
 }

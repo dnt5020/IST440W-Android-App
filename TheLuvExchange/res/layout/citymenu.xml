@@ -105,7 +105,7 @@
                 android:padding="20dp" >
 
                 <ImageButton
-                    android:id="@+id/imageButtonGallery"
+                    android:id="@+id/imageButtonAirportEats"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_launcher" />
@@ -114,7 +114,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageButtonGallery"
+                    android:layout_below="@+id/imageButtonAirportEats"
                     android:layout_centerHorizontal="true"
                     android:text="@string/AirportEats"
                     android:textStyle="bold"
@@ -128,7 +128,7 @@
                 android:padding="20dp" >
 
                 <ImageButton
-                    android:id="@+id/imageButtonCities"
+                    android:id="@+id/imageButtonCityGallery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_launcher" />
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/imageButtonCities"
-                    android:layout_below="@+id/imageButtonCities"
+                    android:layout_below="@+id/imageButtonCityGallery"
                     android:text="@string/CityGallery"
                     android:textStyle="bold"
                     android:textColor="#372c24" />
