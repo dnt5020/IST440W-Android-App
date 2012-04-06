@@ -580,6 +580,8 @@ public class WebService {
 			reader.parse(input);
 
 			String result = handler.getResult();
+			
+			photos = null;
 
 			return result;
 
