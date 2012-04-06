@@ -22,19 +22,13 @@ public class CityHandler extends DefaultHandler {
 	private boolean inIsActive = false;
 	private boolean inIsBase = false;
 	private boolean inFormId = false;
-	private boolean inCityAblumId = false;
-	private boolean inIphoneAblumId = false;
+	private boolean inCityAlbumId = false;
+	private boolean inIphoneAlbumId = false;
 	private boolean inLat = false;
 	private boolean inLongitude = false;
 	private boolean inCreated = false;
 	private boolean inModified = false;
 
-	
-	
-
-	
-	
-	
 	// cityData holds the list of City objects to populate
 	private List<City> cityData;
 	
@@ -93,13 +87,13 @@ public class CityHandler extends DefaultHandler {
 			// Track if we're inside the state tag
 			inIsBase = true;
 		}
-		else if (localName.equals("city_ablum_id")) {
+		else if (localName.equals("city_album_id")) {
 			// Track if we're inside the state tag
-			inCityAblumId = true;
+			inCityAlbumId = true;
 		}
-		else if (localName.equals("iphone_ablum_id")) {
+		else if (localName.equals("iphone_album_id")) {
 			// Track if we're inside the state tag
-			inIphoneAblumId = true;
+			inIphoneAlbumId = true;
 		}
 		else if (localName.equals("lat")) {
 			// Track if we're inside the state tag
@@ -158,14 +152,14 @@ public class CityHandler extends DefaultHandler {
 			// If this text is inside a state tag, set the city state
 			city.setFormId(new String(ch, start, length));
 		}
-		else if (inCityAblumId) {
+		else if (inCityAlbumId) {
 			// If this text is inside a state tag, set the city state
-			city.setCityAblumId(new String(ch, start, length));
+			city.setCityAlbumId(new String(ch, start, length));
 		}
 		
-		else if (inIphoneAblumId) {
+		else if (inIphoneAlbumId) {
 			// If this text is inside a state tag, set the city state
-			city.setIphoneAblumId(new String(ch, start, length));
+			city.setIphoneAlbumId(new String(ch, start, length));
 		}
 		else if (inLat) {
 			// If this text is inside a state tag, set the city state
@@ -231,11 +225,11 @@ public class CityHandler extends DefaultHandler {
 		}
 		else if (localName.equals("city_album_id")) {
 			
-			inCityAblumId = false;
+			inCityAlbumId = false;
 		}
 		else if (localName.equals("iphone_album_id")) {
 			
-			inIphoneAblumId = false;
+			inIphoneAlbumId = false;
 		}
 		else if (localName.equals("lat")) {
 		

@@ -8,8 +8,8 @@ public class City {
 	private String isActive;
 	private String isBase;
 	private String formId;
-	private String cityAblumId;
-	private String iphoneAblumId;
+	private String cityAlbumId;
+	private String iphoneAlbumId;
 	private String lat;
 	private String longitude;
 	private String created;
@@ -64,28 +64,28 @@ public class City {
 		this.formId = formId;
 	}
 	/**
-	 * @return the cityAblumId
+	 * @return the cityAlbumId
 	 */
-	public String getCityAblumId() {
-		return cityAblumId;
+	public String getCityAlbumId() {
+		return cityAlbumId;
 	}
 	/**
-	 * @param cityAblumId the cityAblumId to set
+	 * @param cityAlbumId the cityAlbumId to set
 	 */
-	public void setCityAblumId(String cityAblumId) {
-		this.cityAblumId = cityAblumId;
+	public void setCityAlbumId(String cityAlbumId) {
+		this.cityAlbumId = cityAlbumId;
 	}
 	/**
-	 * @return the iphoneAblumId
+	 * @return the iphoneAlbumId
 	 */
-	public String getIphoneAblumId() {
-		return iphoneAblumId;
+	public String getIphoneAlbumId() {
+		return iphoneAlbumId;
 	}
 	/**
-	 * @param iphoneAblumId the iphoneAblumId to set
+	 * @param iphoneAlbumId the iphoneAlbumId to set
 	 */
-	public void setIphoneAblumId(String iphoneAblumId) {
-		this.iphoneAblumId = iphoneAblumId;
+	public void setIphoneAlbumId(String iphoneAlbumId) {
+		this.iphoneAlbumId = iphoneAlbumId;
 	}
 	/**
 	 * @return the lat
