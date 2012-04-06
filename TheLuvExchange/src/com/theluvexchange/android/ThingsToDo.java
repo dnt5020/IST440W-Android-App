@@ -17,49 +17,47 @@ import android.widget.TextView;
 /**
  * @author Niranjan Singh
  * 
- * Activity to set up the custom list view of Restaurants and Bars
+ * Activity to set up the custom list view of things and Bars
  * 
  * 
  */
-
+ 
 public class ThingsToDo extends Activity {
-	
+	 
 	private TheLuvExchange application = null;
-	private List<Pick> restaurantsList = null;
+	private List<Pick> thingToDoList = null;
 	private User user;
 	private City city;
-	
-	private int rowCount = 0;
-	
+		
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.things_to_do);
 	        
 	       application = (TheLuvExchange)this.getApplication();
-	       restaurantsList  = new ArrayList<Pick>();
+	       thingToDoList  = new ArrayList<Pick>();
 	        
 	        ListView listThings = (ListView)findViewById(R.id.thingsToDoList);
 	        
-	        Log.d("ThingsToDo.java", "just before user ");
+//	        Log.d("ThingsToDo.java", "testing");
 	        
 	        user = application.getUser();
 	        city = application.getCity();
 	        
-	     // Call the WebService.getRestaurants() method to populate the cities list.
-	     	restaurantsList.addAll(WebService.getRestaurants(user, city));
+	     // Call the WebService.getthings() method to populate the cities list.
+	        thingToDoList.addAll(WebService.getThings(user, city));
 	        
 	        
 	     
 	        
-	        listThings.setAdapter(new RestaurantAdapter());
+	        listThings.setAdapter(new ThingsToDoAdapter());
 	        listThings.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 	               
 	 }
 	 
-	 private class RestaurantAdapter extends ArrayAdapter<Pick> {
+	 private class ThingsToDoAdapter extends ArrayAdapter<Pick> {
 
-		 public RestaurantAdapter() {
-			super(ThingsToDo.this, R.layout.things_row, restaurantsList);
+		 public ThingsToDoAdapter() {
+			super(ThingsToDo.this, R.layout.things_row, thingToDoList);
 			
 		}
 
@@ -90,7 +88,7 @@ public class ThingsToDo extends Activity {
 			}
 			
 			
-			myViewHolder.populateFrom(restaurantsList.get(position));
+			myViewHolder.populateFrom(thingToDoList.get(position));
 			
 			
 			return row;
@@ -109,24 +107,21 @@ public class ThingsToDo extends Activity {
 			RatingBar rating = null;
 			
 			public ViewHolder (View row){
-				textViewNumber = (TextView) row.findViewById(R.id.textViewNumber);
-				textViewAddress = (TextView) row.findViewById(R.id.textViewAddress);
-				textViewName = (TextView) row.findViewById(R.id.textViewRestaurantName);
-				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewPhoneNumber);
-				rating = (RatingBar) row.findViewById(R.id.ratingBar1);
+				textViewNumber = (TextView) row.findViewById(R.id.textViewThingsToDoNumber);
+				textViewAddress = (TextView) row.findViewById(R.id.textViewThingsToDoAddress);
+				textViewName = (TextView) row.findViewById(R.id.textViewThingsToDoName);
+				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewThingsToDoPhoneNumber);
+				rating = (RatingBar) row.findViewById(R.id.ratingBarThingsToDo);
+
 				 
 			}
 			
-			public void populateFrom(Pick restaurant){
-				rowCount++;
-
-				textViewAddress.setText(restaurant.getAddress());
-				textViewName.setText(restaurant.getName());
-				textViewPhoneNumber.setText(restaurant.getPhone());
-				
-				// This is not the right method to display count, will need to change - Niranjan
-				textViewNumber.setText(rowCount + ".");
-				rating.setRating(Integer.parseInt(restaurant.getRatingAverage()));
+			public void populateFrom(Pick thing){
+				textViewAddress.setText(thing.getAddress());
+				textViewName.setText(thing.getName());
+				textViewPhoneNumber.setText(thing.getPhone());
+				textViewNumber.setText(Integer.toString(thing.getSerialNumber()));
+				rating.setRating(Integer.parseInt(thing.getRatingAverage()));
 			}
 			
 		}

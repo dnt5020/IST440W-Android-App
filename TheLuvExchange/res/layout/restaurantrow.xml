@@ -1,10 +1,81 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RestaurantName"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:ellipsize="end"
-    android:gravity="center_vertical"
-    android:maxLines="1"
-    android:padding="4dip"
-    android:textStyle="bold" />
+    android:layout_height="fill_parent"
+    android:orientation="vertical" android:padding="5dip">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:id="@+id/textViewRestaurantsNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="1"
+              android:textColor="#372c24"
+            
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textViewRestaurantName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textViewRestaurantsNumber"
+            android:layout_alignBottom="@+id/textViewRestaurantsNumber"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/textViewRestaurantsNumber"
+            android:text="Restaurant - Flintstones"
+            android:minLines="2"
+              android:textColor="#372c24"
+                  android:textStyle="bold"
+              
+            
+           
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textViewRestaurantAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewRestaurantName"
+            android:layout_below="@+id/textViewRestaurantName"
+            android:layout_marginTop="25dp"
+            android:text="Address"
+              android:textColor="#372c24"
+            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textViewRestaurantPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewRestaurantAddress"
+            android:layout_below="@+id/textViewRestaurantAddress"
+            android:layout_marginTop="15dp"
+            android:text="(771) 544-0987"
+              android:textColor="#372c24"
+            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RatingBar
+            android:id="@+id/ratingBarRestaurants"
+            style="@style/MyCustomRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewRestaurantPhoneNumber"
+            android:layout_below="@+id/textViewRestaurantPhoneNumber"
+            android:layout_marginTop="15dp" 
+            android:isIndicator="true"/>
+
+    </RelativeLayout>
+
+    <!-- android:padding="10dip"/> -->
+    <!-- android:paddingLeft="20dip"/> -->
+
+</LinearLayout>

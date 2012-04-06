@@ -65,7 +65,7 @@
                 android:paddingLeft="30sp" >
 
                 <ImageButton
-                    android:id="@+id/imageButtonForum"
+                    android:id="@+id/imageButtonRestaurants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_launcher" />
@@ -74,7 +74,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageButtonForum"
+                    android:layout_below="@+id/imageButtonRestaurants"
                     android:layout_centerHorizontal="true"
                     android:text="@string/restaurants"
                     android:textStyle="bold"
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView3"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/bars"
+                    android:text="@string/clubs"
                     android:textColor="#372c24"
                     android:textStyle="bold" />
 

@@ -29,6 +29,10 @@
             android:label="@string/Weather" >
         </activity>
         <activity
+            android:name=".Restaurants"
+            android:label="@string/restaurants" >
+        </activity>
+        <activity
             android:name=".MainMenu"
             android:label="@string/main_menu" >
         </activity>

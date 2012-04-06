@@ -10,7 +10,7 @@
         android:layout_height="fill_parent" >
 
         <TextView
-            android:id="@+id/textViewNumber"
+            android:id="@+id/textViewThingsToDoNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -23,13 +23,13 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/textViewRestaurantName"
+            android:id="@+id/textViewThingsToDoName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textViewNumber"
-            android:layout_alignBottom="@+id/textViewNumber"
+            android:layout_alignBaseline="@+id/textViewThingsToDoNumber"
+            android:layout_alignBottom="@+id/textViewThingsToDoNumber"
             android:layout_marginLeft="25dp"
-            android:layout_toRightOf="@+id/textViewNumber"
+            android:layout_toRightOf="@+id/textViewThingsToDoNumber"
             android:text="Restaurant - Flintstones"
             android:minLines="2"
               android:textColor="#372c24"
@@ -40,11 +40,11 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/textViewAddress"
+            android:id="@+id/textViewThingsToDoAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textViewRestaurantName"
-            android:layout_below="@+id/textViewRestaurantName"
+            android:layout_alignLeft="@+id/textViewThingsToDoName"
+            android:layout_below="@+id/textViewThingsToDoName"
             android:layout_marginTop="25dp"
             android:text="Address"
               android:textColor="#372c24"
@@ -52,11 +52,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/textViewPhoneNumber"
+            android:id="@+id/textViewThingsToDoPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textViewAddress"
-            android:layout_below="@+id/textViewAddress"
+            android:layout_alignLeft="@+id/textViewThingsToDoAddress"
+            android:layout_below="@+id/textViewThingsToDoAddress"
             android:layout_marginTop="15dp"
             android:text="(771) 544-0987"
               android:textColor="#372c24"
@@ -64,12 +64,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RatingBar
-            android:id="@+id/ratingBar1"
+            android:id="@+id/ratingBarThingsToDo"
             style="@style/MyCustomRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textViewPhoneNumber"
-            android:layout_below="@+id/textViewPhoneNumber"
+            android:layout_alignLeft="@+id/textViewThingsToDoPhoneNumber"
+            android:layout_below="@+id/textViewThingsToDoPhoneNumber"
             android:layout_marginTop="15dp" 
             android:isIndicator="true"/>
 

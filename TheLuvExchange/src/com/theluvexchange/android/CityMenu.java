@@ -23,20 +23,28 @@ public class CityMenu extends Activity {
         setContentView(R.layout.citymenu);
         // Button just to give a way to get to the Weather activity for testing
         ImageButton weatherButton = (ImageButton)findViewById(R.id.weatherImageButton); 
-        
      // Listener waits for a click on cities button
         weatherButton.setOnClickListener(toWeather);
         
         ImageButton cityGallerybutton = (ImageButton)findViewById(R.id.imageButtonCityGallery); 
-        
         // Listener waits for a click on cities button
         cityGallerybutton.setOnClickListener(toGallery);
         
-   ImageButton thingsToDobutton = (ImageButton)findViewById(R.id.imageButtonThingsToDo); 
-        
-        // Listener waits for a click on cities button
+        ImageButton thingsToDobutton = (ImageButton)findViewById(R.id.imageButtonThingsToDo); 
+        // Listener waits for a click on ThingsToDo button
         thingsToDobutton.setOnClickListener(toThingsToDo);
+        
+        ImageButton restaurantsButton = (ImageButton)findViewById(R.id.imageButtonRestaurants); 
+        // Listener waits for a click on ThingsToDo button
+        restaurantsButton.setOnClickListener(toRestaurants);
     }
+ // On click on cities button, opens Cities activity
+    private View.OnClickListener toRestaurants = new View.OnClickListener() {
+		public void onClick(View view) {
+			startActivity(new Intent(activity, Restaurants.class));
+		}
+    };
+    
     // On click on cities button, opens Cities activity
     private View.OnClickListener toWeather = new View.OnClickListener() {
 		public void onClick(View view) {

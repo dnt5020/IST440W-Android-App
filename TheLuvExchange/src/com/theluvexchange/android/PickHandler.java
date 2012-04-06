@@ -29,6 +29,7 @@ public class PickHandler extends DefaultHandler {
 	
 	// city is used for creating City objects and setting fields
 	private Pick pick;
+	private int serialNumber=0;
 	
 	/**
 	 * startDocument is called automatically when the parsing begins.
@@ -50,6 +51,8 @@ public class PickHandler extends DefaultHandler {
 		if (localName.equals("restaurant") || localName.equals("thing") || localName.equals("airport")) {
 			
 			pick = new Pick();
+			serialNumber++;
+			pick.setSerialNumber(serialNumber);
 			pickData.add(pick);
 			
 		} else if (localName.equals("id")) {

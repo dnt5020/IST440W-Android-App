@@ -1,5 +1,7 @@
 package com.theluvexchange.android;
 
+import android.util.Log;
+
 public class Pick {
 
 	private String id;
@@ -16,7 +18,17 @@ public class Pick {
 	private String ratingAverage;
 	private String location;
 	private String viewerRating;
+	private int serialNumber;
 
+	public int getSerialNumber() {
+		return serialNumber;
+	}
+	public void setSerialNumber(int serialNumber) {
+		
+		Log.d("Pick class", "inside setSerialNumberWith number = " + serialNumber);
+		
+		this.serialNumber = serialNumber;
+	}
 	public String getId() {
 		return id;
 	}
@@ -101,4 +113,6 @@ public class Pick {
 	public void setViewerRating(String viewerRating) {
 		this.viewerRating = viewerRating;
 	}
+	
+	
 }

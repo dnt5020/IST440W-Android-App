@@ -11,127 +11,127 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
-
+/**
+ * @author Niranjan Singh
+ * 
+ * Activity to set up the custom list view of Restaurants and Clubs
+ * 
+ * 
+ */
+ 
+public class Restaurants extends Activity {
 	
-	public class Restaurants extends Activity {
-		// cities tracks the list of cities
-		List<Pick> restaurants = new ArrayList<Pick>();
+	private TheLuvExchange application = null;
+	private List<Pick> restaurantsList = null;
+	private User user;
+	private City city;
 		
-		// city holds a current city
-		Pick restaurant = null;
-		
-		// adapter is used to populate the ListView with the city names
-		RestaurantAdapter adapter = null;
-		
-		/**
-		 * onCreate is called when the Activity is launched.
-		 * This creates the list and calls the WebService.getCities() method to populate it.
-		 */
-		@Override
-		public void onCreate(Bundle savedInstanceState) {
-			try {
-				// Need to call the superclass constructor first
-				super.onCreate(savedInstanceState);
+	 public void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.restaurants);
+	        
+	       
+	        
+	       application = (TheLuvExchange)this.getApplication();
+	       restaurantsList  = new ArrayList<Pick>();
+	        
+	        ListView listThings = (ListView)findViewById(R.id.restaurantsList);
+	        
+	        Log.d("ThingsToDo.java", "just before user ");
+	        
+	        user = application.getUser();
+	        city = application.getCity();
+	        
+	     // Call the WebService.getRestaurants() method to populate the cities list.
+	     	restaurantsList.addAll(WebService.getRestaurants(user, city));
+	        
+	        
+	     
+	        
+	        listThings.setAdapter(new RestaurantAdapter());
+	        listThings.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+	               
+	 } 
+	 
+	 private class RestaurantAdapter extends ArrayAdapter<Pick> {
+
+		 public RestaurantAdapter() {
+			super(Restaurants.this, R.layout.things_row, restaurantsList);
+			
+		}
+
+		 private LayoutInflater layoutInflater = getLayoutInflater();
+
+		public View getView(int position, View convertView, ViewGroup parent) {
+			
+			// If the row was already created before, we'll receive it here
+			View row = convertView;
+			
+			// a ViewHolder keeps references to children views to avoid unnecessary calls 
+			// to findById() on each row
+			ViewHolder myViewHolder = null;
+			
+			// If this row wasn't created before, we'll create it here
+			if(row == null){
+
 				
-				// Use the cities XML layout for this Activity
-				setContentView(R.layout.restaurants);
+				// inflater will be used to create Views from the things_row layout
+				row = layoutInflater.inflate(R.layout.restaurantrow, null);
 				
-				// Get the ListView from the cities layout
-				ListView list = (ListView)findViewById(R.id.restaurants);
+				myViewHolder = new ViewHolder(row);
 				
-				// Instantiate the adapter for populating the ListView
-				adapter = new RestaurantAdapter();
+				row.setTag(myViewHolder);
 				
-				// Set the ListView to use the adapter
-				list.setAdapter(adapter);
-				
-				City testCity = new City();
-				testCity.setId("4");
-				// Call the WebService.getCities() method to populate the cities list.
-				User testUser = new User();
-				testUser.setUserId("152");
-				restaurants.addAll(WebService.getRestaurants(testUser,testCity));
-				
-			} catch (Exception e) {
-				// Catch any errors and display them on LogCat
-				Log.e("TheLuvExchange", "RestaurantsError", e);
+			} else {
+				myViewHolder = (ViewHolder) row.getTag();
 			}
+			
+			
+			myViewHolder.populateFrom(restaurantsList.get(position));
+			
+			
+			return row;
+
+
+
+			
+			
 		}
 		
-		/**
-		 * This class is used to create the adapter for populating the ListView
-		 */
-		class RestaurantAdapter extends ArrayAdapter<Pick> {
+		class ViewHolder {
+			TextView textViewNumber = null;
+			TextView textViewName = null;
+			TextView textViewAddress = null;
+			TextView textViewPhoneNumber = null;
+			RatingBar rating = null;
 			
-			/**
-			 * Constructor calls the supertype constructor.
-			 * Pass the cityrow layout to use for displaying each city in the list.
-			 */
-			RestaurantAdapter() {
-				super(Restaurants.this, R.layout.restaurantrow, restaurants);
+			public ViewHolder (View row){
+				textViewNumber = (TextView) row.findViewById(R.id.textViewRestaurantsNumber);
+				textViewAddress = (TextView) row.findViewById(R.id.textViewRestaurantAddress);
+				textViewName = (TextView) row.findViewById(R.id.textViewRestaurantName);
+				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewRestaurantPhoneNumber);
+				rating = (RatingBar) row.findViewById(R.id.ratingBarRestaurants);
+
+				 
 			}
 			
-			/**
-			 * getView is called when the row views are added to the ListView
-			 */
-			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
-				
-				// If the row was already created before, we'll receive it here
-				View row = convertView;
-				
-				// CityHolder is used to have an object that holds information to show in the row view
-				RestaurantHolder holder = null;
-				
-				// If this row wasn't created before, we'll create it here
-				if (row == null) {
-					
-					// inflater will be used to create Views from the cityrow layout
-					LayoutInflater inflater = getLayoutInflater();
-					
-					// Create a View object from the cityrow layout
-					row = inflater.inflate(R.layout.restaurantrow, parent, false);
-					
-					// Create a CityHolder object which will set the name to show in the view
-					holder = new RestaurantHolder(row);
-					
-					// Tag the view to access again later if need be
-					row.setTag(holder);
-					
-				} else {
-					// If this row was previously created, get it back by its tag
-					holder = (RestaurantHolder)row.getTag();
-				}
-				
-				// Populate the holder with a city
-				holder.populateFrom(restaurants.get(position));
-				
-				// Return the row view
-				return row;
+			public void populateFrom(Pick restaurant){
+				textViewAddress.setText(restaurant.getAddress());
+				textViewName.setText(restaurant.getName());
+				textViewPhoneNumber.setText(restaurant.getPhone());
+				textViewNumber.setText(Integer.toString(restaurant.getSerialNumber()));
+				rating.setRating(Integer.parseInt(restaurant.getRatingAverage()));
 			}
+			
 		}
-		
-		/**
-		 * CityHolder is a simple class that just holds the information used to populate a row.
-		 * As of 3/6/12, it's just holding a name and isn't well utilized.
-		 */
-		static class RestaurantHolder {
-			
-			// name TextView
-			private TextView name = null;
-			
-			// When the CityHolder is created, identify its associated name TextView
-			RestaurantHolder(View row) {
-				name = (TextView)row.findViewById(R.id.RestaurantName);
-			}
-			
-			// Populate the TextView with the city name
-			void populateFrom(Pick restaurant) {
-				name.setText(restaurant.getName());
-			}
-		}
-	}
+		 
+		 
+		 
+	 }
+
+}
 
 

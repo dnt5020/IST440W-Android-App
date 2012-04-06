@@ -23,7 +23,7 @@
     <string name="CityGallery">City Gallery</string>
     <string name="Weather">Get Weather</string>
     <string name="restaurants">Restaurants</string>
-    <string name="bars">&amp; Bars</string>
+    <string name="clubs">&amp; Clubs</string>
     <string name="today_humidity">--</string>
     <string name="Humidity_Label">Humidity:</string>
     <string name="Vis_Label">Visibility:</string>
