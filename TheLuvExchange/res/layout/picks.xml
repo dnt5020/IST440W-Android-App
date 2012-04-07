@@ -19,9 +19,9 @@
     
     
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/thingsToDoList"
+    android:id="@+id/picksList"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="fill_parent" 
     
         android:background="#ffffff" 
     android:textColor="#372c24"

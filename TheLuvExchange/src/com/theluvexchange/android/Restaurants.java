@@ -25,20 +25,20 @@ import android.widget.TextView;
 public class Restaurants extends Activity {
 	
 	private TheLuvExchange application = null;
-	private List<Pick> restaurantsList = null;
+	private List<Pick> picksList = null;
 	private User user;
 	private City city;
 		
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.restaurants);
+	        setContentView(R.layout.picks);
 	        
 	       
 	        
 	       application = (TheLuvExchange)this.getApplication();
-	       restaurantsList  = new ArrayList<Pick>();
+	       picksList  = new ArrayList<Pick>();
 	        
-	        ListView listThings = (ListView)findViewById(R.id.restaurantsList);
+	        ListView listThings = (ListView)findViewById(R.id.picksList);
 	        
 	        Log.d("ThingsToDo.java", "just before user ");
 	        
@@ -46,7 +46,7 @@ public class Restaurants extends Activity {
 	        city = application.getCity();
 	        
 	     // Call the WebService.getRestaurants() method to populate the cities list.
-	     	restaurantsList.addAll(WebService.getRestaurants(user, city));
+	     	picksList.addAll(WebService.getRestaurants(user, city));
 	        
 	        
 	     
@@ -59,7 +59,7 @@ public class Restaurants extends Activity {
 	 private class RestaurantAdapter extends ArrayAdapter<Pick> {
 
 		 public RestaurantAdapter() {
-			super(Restaurants.this, R.layout.things_row, restaurantsList);
+			super(Restaurants.this, R.layout.pickrow, picksList);
 			
 		}
 
@@ -79,7 +79,7 @@ public class Restaurants extends Activity {
 
 				
 				// inflater will be used to create Views from the things_row layout
-				row = layoutInflater.inflate(R.layout.restaurantrow, null);
+				row = layoutInflater.inflate(R.layout.pickrow, null);
 				
 				myViewHolder = new ViewHolder(row);
 				
@@ -90,7 +90,7 @@ public class Restaurants extends Activity {
 			}
 			
 			
-			myViewHolder.populateFrom(restaurantsList.get(position));
+			myViewHolder.populateFrom(picksList.get(position));
 			
 			
 			return row;
@@ -109,13 +109,13 @@ public class Restaurants extends Activity {
 			RatingBar rating = null;
 			
 			public ViewHolder (View row){
-				textViewNumber = (TextView) row.findViewById(R.id.textViewRestaurantsNumber);
-				textViewAddress = (TextView) row.findViewById(R.id.textViewRestaurantAddress);
-				textViewName = (TextView) row.findViewById(R.id.textViewRestaurantName);
-				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewRestaurantPhoneNumber);
-				rating = (RatingBar) row.findViewById(R.id.ratingBarRestaurants);
+				textViewNumber = (TextView) row.findViewById(R.id.textViewPickSerialNumber);
+				textViewAddress = (TextView) row.findViewById(R.id.textViewPickAddress);
+				textViewName = (TextView) row.findViewById(R.id.textViewPickName);
+				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewPickPhoneNumber);
+				rating = (RatingBar) row.findViewById(R.id.ratingBarPicks);
 
-				 
+				  
 			}
 			
 			public void populateFrom(Pick restaurant){

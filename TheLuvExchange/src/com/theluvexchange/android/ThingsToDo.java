@@ -31,12 +31,12 @@ public class ThingsToDo extends Activity {
 		
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.things_to_do);
+	        setContentView(R.layout.picks);
 	        
 	       application = (TheLuvExchange)this.getApplication();
 	       thingToDoList  = new ArrayList<Pick>();
 	        
-	        ListView listThings = (ListView)findViewById(R.id.thingsToDoList);
+	        ListView listThings = (ListView)findViewById(R.id.picksList);
 	        
 //	        Log.d("ThingsToDo.java", "testing");
 	        
@@ -57,7 +57,7 @@ public class ThingsToDo extends Activity {
 	 private class ThingsToDoAdapter extends ArrayAdapter<Pick> {
 
 		 public ThingsToDoAdapter() {
-			super(ThingsToDo.this, R.layout.things_row, thingToDoList);
+			super(ThingsToDo.this, R.layout.pickrow, thingToDoList);
 			
 		}
 
@@ -77,7 +77,7 @@ public class ThingsToDo extends Activity {
 
 				
 				// inflater will be used to create Views from the things_row layout
-				row = layoutInflater.inflate(R.layout.things_row, null);
+				row = layoutInflater.inflate(R.layout.pickrow, null);
 				
 				myViewHolder = new ViewHolder(row);
 				
@@ -107,11 +107,11 @@ public class ThingsToDo extends Activity {
 			RatingBar rating = null;
 			
 			public ViewHolder (View row){
-				textViewNumber = (TextView) row.findViewById(R.id.textViewThingsToDoNumber);
-				textViewAddress = (TextView) row.findViewById(R.id.textViewThingsToDoAddress);
-				textViewName = (TextView) row.findViewById(R.id.textViewThingsToDoName);
-				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewThingsToDoPhoneNumber);
-				rating = (RatingBar) row.findViewById(R.id.ratingBarThingsToDo);
+				textViewNumber = (TextView) row.findViewById(R.id.textViewPickSerialNumber);
+				textViewAddress = (TextView) row.findViewById(R.id.textViewPickAddress);
+				textViewName = (TextView) row.findViewById(R.id.textViewPickName);
+				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewPickPhoneNumber);
+				rating = (RatingBar) row.findViewById(R.id.ratingBarPicks);
 
 				 
 			}
