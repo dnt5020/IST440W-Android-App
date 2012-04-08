@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * @author Niranjan Singh
@@ -28,6 +31,9 @@ public class Restaurants extends Activity {
 	private List<Pick> picksList = null;
 	private User user;
 	private City city;
+	
+	private Activity activity = this;
+
 		
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -38,7 +44,7 @@ public class Restaurants extends Activity {
 	       application = (TheLuvExchange)this.getApplication();
 	       picksList  = new ArrayList<Pick>();
 	        
-	        ListView listThings = (ListView)findViewById(R.id.picksList);
+	        ListView listViewRestaurants = (ListView)findViewById(R.id.picksList);
 	        
 	        Log.d("ThingsToDo.java", "just before user ");
 	        
@@ -51,8 +57,25 @@ public class Restaurants extends Activity {
 	        
 	     
 	        
-	        listThings.setAdapter(new RestaurantAdapter());
-	        listThings.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+	        listViewRestaurants.setAdapter(new RestaurantAdapter());
+	        listViewRestaurants.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+	        
+	        // Listener to handle click of an Item in the List
+	        listViewRestaurants.setOnItemClickListener(new OnItemClickListener(){
+	        	 public void onItemClick(AdapterView<?> parent, View view,
+	        	          int position, long id) {
+	        		 
+	        		 // Intent to start RestaurantComments activity
+	        		 Intent intent = new Intent(activity, RestaurantComments.class);
+
+	        		 
+	        		// Pass Pick to the RestaurantComments activity
+	        		 intent.putExtra("Pick", picksList.get(position));
+	        		 
+	        		 startActivity(intent);
+	        	        
+	        	 }
+	        });
 	               
 	 } 
 	 
@@ -117,7 +140,7 @@ public class Restaurants extends Activity {
 
 				  
 			}
-			
+			 
 			public void populateFrom(Pick restaurant){
 				textViewAddress.setText(restaurant.getAddress());
 				textViewName.setText(restaurant.getName());

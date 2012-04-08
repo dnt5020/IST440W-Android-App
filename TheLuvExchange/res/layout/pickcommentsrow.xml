@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:id="@+id/textViewUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#372c24"
+            android:textStyle="bold" />
+
+        <RatingBar
+            android:id="@+id/ratingBarViewCommentPick"
+            style="@style/MyCustomRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/textViewUserName"
+            android:layout_marginRight="15dp"
+            android:isIndicator="true" />
+
+        <TextView
+            android:id="@+id/textViewUserCommentBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewUserName"
+            android:layout_below="@+id/textViewUserName"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            android:textColor="#003684" android:paddingBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/textViewCommentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewUserCommentBody"
+            android:layout_centerHorizontal="true"
+            android:text="Jan 1"
+            android:textColor="#BDB5B5" />
+
+    </RelativeLayout>
+
+</LinearLayout>

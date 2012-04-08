@@ -1,8 +1,10 @@
 package com.theluvexchange.android;
 
+import java.io.Serializable;
+
 import android.util.Log;
 
-public class Pick {
+public class Pick implements Serializable {
 
 	private String id;
 	private String name;

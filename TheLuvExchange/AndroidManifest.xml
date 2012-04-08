@@ -24,6 +24,10 @@
             android:name=".IndivGallery"
             android:label="@string/gallery" >
         </activity>
+         <activity
+            android:name=".RestaurantComments"
+            android:label="@string/restaurants" >
+        </activity>
         <activity
             android:name=".Weather_Main"
             android:label="@string/Weather" >
