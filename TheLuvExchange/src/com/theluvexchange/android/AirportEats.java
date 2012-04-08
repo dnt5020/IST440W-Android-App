@@ -17,7 +17,7 @@ import android.widget.TextView;
 /**
  * @author Pranav Shirodkar
  * 
- * Activity to set up the custom list view of Restaurants and Bars
+ * Activity to set up the custom list view of Airport Eats
  * 
  * 
  */
