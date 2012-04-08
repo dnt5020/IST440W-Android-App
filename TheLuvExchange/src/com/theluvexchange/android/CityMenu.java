@@ -21,6 +21,13 @@ public class CityMenu extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.citymenu);
+        
+        // Button to click to AirportEats activity for testing
+        ImageButton airportEatsButton = (ImageButton)findViewById(R.id.imageButtonAirportEats);
+        
+        // Listener waits for a click on AirportEats button        
+        airportEatsButton.setOnClickListener(toAirportEats);
+        
         // Button just to give a way to get to the Weather activity for testing
         ImageButton weatherButton = (ImageButton)findViewById(R.id.weatherImageButton); 
      // Listener waits for a click on cities button
@@ -37,13 +44,23 @@ public class CityMenu extends Activity {
         ImageButton restaurantsButton = (ImageButton)findViewById(R.id.imageButtonRestaurants); 
         // Listener waits for a click on ThingsToDo button
         restaurantsButton.setOnClickListener(toRestaurants);
+        
+
     }
+    
+    private View.OnClickListener toAirportEats = new View.OnClickListener(){
+ 	   public void onClick(View view){
+ 		   startActivity(new Intent(activity, AirportEats.class));
+ 	   }
+    };
+    
  // On click on cities button, opens Cities activity
     private View.OnClickListener toRestaurants = new View.OnClickListener() {
 		public void onClick(View view) {
 			startActivity(new Intent(activity, Restaurants.class));
 		}
     };
+    
     
     // On click on cities button, opens Cities activity
     private View.OnClickListener toWeather = new View.OnClickListener() {
@@ -52,12 +69,15 @@ public class CityMenu extends Activity {
 		}
     };
     
+    
+    
    // On click on cities button, opens Cities activity
    private View.OnClickListener toGallery = new View.OnClickListener() {
 		public void onClick(View view) {
 			startActivity(new Intent(activity, IndivGallery.class));
 		}
    };
+   
    
    // On click on cities button, opens Cities activity
    private View.OnClickListener toThingsToDo = new View.OnClickListener() {
