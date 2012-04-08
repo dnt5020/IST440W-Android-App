@@ -38,6 +38,10 @@
         </activity>
         <activity android:name=".ThingsToDo" >
         </activity>
+        <activity 
+            android:name=".AirportEats" 
+            android:label="@string/AirportEats">
+        </activity>
         <activity android:name=".Splash" >
            
         </activity>
