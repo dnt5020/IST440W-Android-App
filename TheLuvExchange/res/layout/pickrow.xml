@@ -29,11 +29,12 @@
             android:layout_alignBottom="@+id/textViewPickSerialNumber"
             android:layout_marginLeft="25dp"
             android:layout_toRightOf="@+id/textViewPickSerialNumber"
-            android:minLines="2"
+         
             android:text="Restaurant - Flintstones"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#003684"
-            android:textStyle="bold" />
+            android:textStyle="bold" 
+            android:maxWidth="200dp"/>
 
         <TextView
             android:id="@+id/textViewPickAddress"
@@ -44,7 +45,7 @@
             android:layout_marginTop="25dp"
             android:text="Address"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#372c24" />
+            android:textColor="#372c24" android:maxWidth="200dp"/>
 
         <TextView
             android:id="@+id/textViewPickPhoneNumber"
@@ -87,7 +88,7 @@
             android:layout_toRightOf="@+id/textView1"
             android:text="5"
             android:textAppearance="?android:attr/textAppearanceMedium"
-             android:textColor="#372c24" android:layout_marginLeft="10dp"/>
+             android:textColor="#372c24" android:layout_marginLeft="10dp" android:textStyle="bold"/>
 
 <!--         <Button -->
 <!--             android:id="@+id/button1" -->
@@ -97,6 +98,15 @@
 <!--             android:layout_centerHorizontal="true" -->
 <!--             android:layout_marginTop="29dp" -->
 <!--             android:text="Button" /> -->
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textViewPickAddress"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/forward" />
 
     </RelativeLayout>
 

@@ -12,7 +12,7 @@ public class Pick implements Serializable {
 	private String body;
 	private String latitude;
 	private String longitude;
-	private String discounts;
+	private String discounts; 
 	private String ratingTotal;
 	private String address;
 	private String phone;

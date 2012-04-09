@@ -51,7 +51,7 @@ public class CityHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
-		
+		 
 		if (localName.equals("city")) {
 			// If it's a new city, create a new city object and add it to the list
 			city = new City();
@@ -65,7 +65,7 @@ public class CityHandler extends DefaultHandler {
 			inName = true;
 		} else if (localName.equals("state")) {
 			// Track if we're inside the state tag
-			inState = true;
+			inState = true; 
 		}
 		else if (localName.equals("airport")) {
 			// Track if we're inside the state tag
