@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ import android.widget.TextView;
 public class Cities extends Activity {
 	Dialog listDialog;
 	private Activity activity = this;
+//	private View yourView;
+	
 	// cities tracks the list of cities
 	List<City> cities = new ArrayList<City>();
 	
@@ -46,11 +49,11 @@ public class Cities extends Activity {
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
 		try {
 			// Need to call the superclass constructor first
 			super.onCreate(savedInstanceState);
-			
-			
+		//yourView.setFocusable(true);
 			// Use the cities XML layout for this Activity
 			//setContentView(R.layout.cities);
 			listDialog = new Dialog(this);
@@ -98,6 +101,19 @@ public class Cities extends Activity {
 			Log.e("TheLuvExchange", "CitiesError", e);
 		}
 	}
+	@Override  
+	public void onBackPressed()  
+	{  
+		super.onBackPressed();
+	    //do whatever you want the 'Back' button to do  
+	    //as an example the 'Back' button is set to start a new Activity named 'NewActivity'
+	
+	   this.finish();
+		// this.startActivity(new Intent(Cities.this,Login.class));  
+	   
+	    return;  
+	}  
+	         
 	/*public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
     {
  

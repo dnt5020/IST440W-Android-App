@@ -26,8 +26,7 @@ public class Splash extends Activity {
 		                // do nothing
 		            } finally {
 		                finish();
-		                startActivity(new Intent(Splash.this,Cities.class));
-		                stop();
+		                startActivity(new Intent(Splash.this,Login.class));
 		            }
 		        }
 		    };
