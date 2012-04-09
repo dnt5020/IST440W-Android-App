@@ -78,7 +78,7 @@ public class Restaurants extends Activity {
 	        });
 	               
 	 } 
-	 
+	  
 	 private class RestaurantAdapter extends ArrayAdapter<Pick> {
 
 		 public RestaurantAdapter() {
@@ -145,7 +145,7 @@ public class Restaurants extends Activity {
 				textViewAddress.setText(restaurant.getAddress());
 				textViewName.setText(restaurant.getName());
 				textViewPhoneNumber.setText(restaurant.getPhone());
-				textViewNumber.setText(Integer.toString(restaurant.getSerialNumber()));
+				textViewNumber.setText(Integer.toString(restaurant.getSerialNumber()) + ".");
 				rating.setRating(Integer.parseInt(restaurant.getRatingAverage()));
 			}
 			

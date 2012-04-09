@@ -21,7 +21,7 @@ import android.widget.TextView;
  * 
  * 
  */
- 
+  
 public class ThingsToDo extends Activity {
 	 
 	private TheLuvExchange application = null;
@@ -120,7 +120,7 @@ public class ThingsToDo extends Activity {
 				textViewAddress.setText(thing.getAddress());
 				textViewName.setText(thing.getName());
 				textViewPhoneNumber.setText(thing.getPhone());
-				textViewNumber.setText(Integer.toString(thing.getSerialNumber()));
+				textViewNumber.setText(Integer.toString(thing.getSerialNumber()) + ".");
 				rating.setRating(Integer.parseInt(thing.getRatingAverage()));
 			}
 			
