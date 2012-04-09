@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#ffffff" >
     
     <TextView
             android:id="@+id/header"
@@ -16,6 +17,15 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:gravity="center" />
+    
+    <TextView
+        android:id="@+id/textViewPickTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:textColor="#372c24"
+        
+        android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center" android:padding="5dp" android:textStyle="bold"/>
     
     
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"

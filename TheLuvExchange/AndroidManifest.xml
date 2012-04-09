@@ -25,7 +25,7 @@
             android:label="@string/gallery" >
         </activity>
          <activity
-            android:name=".RestaurantComments"
+            android:name=".PickComments"
             android:label="@string/restaurants" >
         </activity>
         <activity

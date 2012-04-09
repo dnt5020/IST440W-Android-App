@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-public class RestaurantComments extends Activity {
+public class PickComments extends Activity {
 	
 	private List<Rating> ratingsList = null;
 	private Pick pickSelected = null;

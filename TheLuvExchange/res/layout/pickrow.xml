@@ -18,9 +18,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:text="1"
-              android:textColor="#372c24"
-            
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#003684" />
 
         <TextView
             android:id="@+id/textViewPickName"
@@ -30,14 +29,11 @@
             android:layout_alignBottom="@+id/textViewPickSerialNumber"
             android:layout_marginLeft="25dp"
             android:layout_toRightOf="@+id/textViewPickSerialNumber"
-            android:text="Restaurant - Flintstones"
             android:minLines="2"
-              android:textColor="#372c24"
-                  android:textStyle="bold"
-              
-            
-           
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:text="Restaurant - Flintstones"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#003684"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewPickAddress"
@@ -47,9 +43,8 @@
             android:layout_below="@+id/textViewPickName"
             android:layout_marginTop="25dp"
             android:text="Address"
-              android:textColor="#372c24"
-            
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#372c24" />
 
         <TextView
             android:id="@+id/textViewPickPhoneNumber"
@@ -59,9 +54,8 @@
             android:layout_below="@+id/textViewPickAddress"
             android:layout_marginTop="15dp"
             android:text="(771) 544-0987"
-              android:textColor="#372c24"
-            
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#372c24" />
 
         <RatingBar
             android:id="@+id/ratingBarPicks"
@@ -70,8 +64,39 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textViewPickPhoneNumber"
             android:layout_below="@+id/textViewPickPhoneNumber"
-            android:layout_marginTop="15dp" 
-            android:isIndicator="true"/>
+            android:layout_marginTop="15dp"
+            android:isIndicator="true" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ratingBarPicks"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/ratingBarPicks"
+            android:text="@string/votes"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#372c24" />
+
+        <TextView
+            android:id="@+id/textViewVoteCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView1"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_toRightOf="@+id/textView1"
+            android:text="5"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+             android:textColor="#372c24" android:layout_marginLeft="10dp"/>
+
+<!--         <Button -->
+<!--             android:id="@+id/button1" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_below="@+id/textView1" -->
+<!--             android:layout_centerHorizontal="true" -->
+<!--             android:layout_marginTop="29dp" -->
+<!--             android:text="Button" /> -->
 
     </RelativeLayout>
 

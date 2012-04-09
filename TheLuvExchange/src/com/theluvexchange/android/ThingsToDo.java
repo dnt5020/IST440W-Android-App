@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * @author Niranjan Singh
@@ -29,14 +32,21 @@ public class ThingsToDo extends Activity {
 	private User user;
 	private City city;
 		
+	private Activity activity = this;
+
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.picks);
 	        
+	        
+		     // Set the title 
+		        TextView textViewPickTitle= (TextView) findViewById(R.id.textViewPickTitle);
+		        textViewPickTitle.setText("Things To Do");
+	        
 	       application = (TheLuvExchange)this.getApplication();
 	       thingToDoList  = new ArrayList<Pick>();
 	        
-	        ListView listThings = (ListView)findViewById(R.id.picksList);
+	        ListView listViewThings = (ListView)findViewById(R.id.picksList);
 	        
 //	        Log.d("ThingsToDo.java", "testing");
 	        
@@ -49,8 +59,25 @@ public class ThingsToDo extends Activity {
 	        
 	     
 	        
-	        listThings.setAdapter(new ThingsToDoAdapter());
-	        listThings.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+	        listViewThings.setAdapter(new ThingsToDoAdapter());
+	        listViewThings.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+	        
+	        // Listener to handle click of an Item in the List
+	        listViewThings.setOnItemClickListener(new OnItemClickListener(){
+	        	 public void onItemClick(AdapterView<?> parent, View view,
+	        	          int position, long id) {
+	        		 
+	        		 // Intent to start PickComments activity
+	        		 Intent intent = new Intent(activity, PickComments.class);
+
+	        		 
+	        		// Pass Pick to the PickComments activity
+	        		 intent.putExtra("Pick", thingToDoList.get(position));
+	        		 
+	        		 startActivity(intent);
+	        	        
+	        	 }
+	        });
 	               
 	 }
 	 
@@ -104,6 +131,8 @@ public class ThingsToDo extends Activity {
 			TextView textViewName = null;
 			TextView textViewAddress = null;
 			TextView textViewPhoneNumber = null;
+			TextView textViewVoteCount = null;
+
 			RatingBar rating = null;
 			
 			public ViewHolder (View row){
@@ -111,6 +140,7 @@ public class ThingsToDo extends Activity {
 				textViewAddress = (TextView) row.findViewById(R.id.textViewPickAddress);
 				textViewName = (TextView) row.findViewById(R.id.textViewPickName);
 				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewPickPhoneNumber);
+				textViewVoteCount = (TextView) row.findViewById(R.id.textViewVoteCount);
 				rating = (RatingBar) row.findViewById(R.id.ratingBarPicks);
 
 				 
@@ -121,6 +151,7 @@ public class ThingsToDo extends Activity {
 				textViewName.setText(thing.getName());
 				textViewPhoneNumber.setText(thing.getPhone());
 				textViewNumber.setText(Integer.toString(thing.getSerialNumber()) + ".");
+				textViewVoteCount.setText(thing.getRatingCount());
 				rating.setRating(Integer.parseInt(thing.getRatingAverage()));
 			}
 			

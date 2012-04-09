@@ -47,5 +47,6 @@
    <string name="comments">"Comments: "</string>
    <string name="disc">"Disc: "</string>
    <string name="near">"Near: "</string>
+   <string name="votes">"Votes: "</string>
   
 </resources>

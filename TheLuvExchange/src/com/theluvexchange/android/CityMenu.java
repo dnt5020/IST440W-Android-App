@@ -55,18 +55,19 @@ public class CityMenu extends Activity {
         menuList = new ArrayList<HashMap<String,Object>>();
         HashMap<String, Object> hashMap;
         
+        
+        // HashMap and key Values of list
+        hashMap = new HashMap<String, Object>();
+        hashMap.put(MENUITEM, "Restaurants");
+        hashMap.put(RESOURCE_ID, R.drawable.restaurants_clubs);
+        menuList.add(hashMap);
+        
         // HashMap and key Values of list
         hashMap = new HashMap<String, Object>();
         hashMap.put(MENUITEM, "Things To Do");
         hashMap.put(RESOURCE_ID, R.drawable.things_to_do);
         menuList.add(hashMap);
         
-        
-        // HashMap and key Values of list
-        hashMap = new HashMap<String, Object>();
-        hashMap.put(MENUITEM, "Restaurants & Clubs");
-        hashMap.put(RESOURCE_ID, R.drawable.restaurants_clubs);
-        menuList.add(hashMap);
         
         // HashMap and key Values of list 
         hashMap = new HashMap<String, Object>();
@@ -99,7 +100,7 @@ public class CityMenu extends Activity {
         		 if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Things To Do")){
             		 startActivity(new Intent(activity, ThingsToDo.class));
 
-        		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Restaurants & Clubs")){
+        		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Restaurants")){
             		 startActivity(new Intent(activity, Restaurants.class));
 
         		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Airport Eats")){

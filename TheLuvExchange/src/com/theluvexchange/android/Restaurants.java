@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 /**
  * @author Niranjan Singh
@@ -39,6 +41,9 @@ public class Restaurants extends Activity {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.picks);
 	        
+	     // Set the title 
+	        TextView textViewPickTitle= (TextView) findViewById(R.id.textViewPickTitle);
+	        textViewPickTitle.setText("Restaurants");
 	       
 	        
 	       application = (TheLuvExchange)this.getApplication();
@@ -65,11 +70,11 @@ public class Restaurants extends Activity {
 	        	 public void onItemClick(AdapterView<?> parent, View view,
 	        	          int position, long id) {
 	        		 
-	        		 // Intent to start RestaurantComments activity
-	        		 Intent intent = new Intent(activity, RestaurantComments.class);
+	        		 // Intent to start PickComments activity
+	        		 Intent intent = new Intent(activity, PickComments.class);
 
 	        		 
-	        		// Pass Pick to the RestaurantComments activity
+	        		// Pass Pick to the PickComments activity
 	        		 intent.putExtra("Pick", picksList.get(position));
 	        		 
 	        		 startActivity(intent);
@@ -129,15 +134,29 @@ public class Restaurants extends Activity {
 			TextView textViewName = null;
 			TextView textViewAddress = null;
 			TextView textViewPhoneNumber = null;
+			TextView textViewVoteCount = null;
 			RatingBar rating = null;
+//			Button button = null;
 			
 			public ViewHolder (View row){
 				textViewNumber = (TextView) row.findViewById(R.id.textViewPickSerialNumber);
 				textViewAddress = (TextView) row.findViewById(R.id.textViewPickAddress);
 				textViewName = (TextView) row.findViewById(R.id.textViewPickName);
 				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewPickPhoneNumber);
-				rating = (RatingBar) row.findViewById(R.id.ratingBarPicks);
+				textViewVoteCount = (TextView) row.findViewById(R.id.textViewVoteCount);
 
+				rating = (RatingBar) row.findViewById(R.id.ratingBarPicks);
+//				button = (Button) row.findViewById(R.id.button1);
+//				
+//				button.setOnClickListener(new Button.OnClickListener() {
+//                    public void onClick(View v) {
+//                    	
+//                    	
+//                    	// For testing 
+//                    	Toast.makeText(activity, "Button with position - ", Toast.LENGTH_LONG);
+//                    }
+//                }
+//            ); 
 				  
 			}
 			 
@@ -146,8 +165,17 @@ public class Restaurants extends Activity {
 				textViewName.setText(restaurant.getName());
 				textViewPhoneNumber.setText(restaurant.getPhone());
 				textViewNumber.setText(Integer.toString(restaurant.getSerialNumber()) + ".");
+				textViewVoteCount.setText(restaurant.getRatingCount());
 				rating.setRating(Integer.parseInt(restaurant.getRatingAverage()));
+				
+			
+
+				
+			
+				 
 			}
+			
+			
 			
 		}
 		 
