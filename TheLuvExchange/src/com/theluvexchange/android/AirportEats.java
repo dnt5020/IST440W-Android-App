@@ -2,58 +2,92 @@ package com.theluvexchange.android;
 
 import java.util.ArrayList;
 import java.util.List;
-
+	
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 /**
  * @author Pranav Shirodkar
  * 
- * Activity to set up the custom list view of Airport Eats
+ * Activity to set up the custom list view of Restaurants and Clubs
  * 
  * 
  */
-
+ 
 public class AirportEats extends Activity {
 	
 	private TheLuvExchange application = null;
-	private List<Pick> airportEatsList = null;
+	private List<Pick> picksList = null;
 	private User user;
 	private City city;
 	
+	private Activity activity = this;
+
+		
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.airporteats);
+	        setContentView(R.layout.picks);
+	        
+	     // Set the title 
+	        TextView textViewPickTitle= (TextView) findViewById(R.id.textViewPickTitle);
+	        textViewPickTitle.setText("Airport Eats");
+	       
 	        
 	       application = (TheLuvExchange)this.getApplication();
-	       airportEatsList  = new ArrayList<Pick>();
+	       picksList  = new ArrayList<Pick>();
 	        
-	        ListView listAirportEats = (ListView)findViewById(R.id.airportEatsList);
+	        ListView listViewAirportEats = (ListView)findViewById(R.id.picksList);
 	        
-	        Log.d("AirportEats.java", "just before user ");
+	        Log.d("AirportEats.java", "User Log");
 	        
 	        user = application.getUser();
 	        city = application.getCity();
 	        
 	     // Call the WebService.getAirportEats() method to populate the cities list.
-	     	airportEatsList.addAll(WebService.getAirportEats(user, city));
-	        listAirportEats.setAdapter(new AirportEatsAdapter());
-	        listAirportEats.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-	               
-	 }
-	 
-	 private class AirportEatsAdapter extends ArrayAdapter<Pick> {
+	     	picksList.addAll(WebService.getAirportEats(user, city));
+	        
+	        
+	     
+	        
+	        listViewAirportEats.setAdapter(new RestaurantAdapter());
+	        listViewAirportEats.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+	        
+	        // Listener to handle click of an Item in the List
+	        listViewAirportEats.setOnItemClickListener(new OnItemClickListener(){
+	        	 public void onItemClick(AdapterView<?> parent, View view,
+	        	          int position, long id) {
+	        		 
+	        		 // Intent to start PickComments activity
+	        		 Intent intent = new Intent(activity, PickComments.class);
 
-		 public AirportEatsAdapter() {
-			super(AirportEats.this, R.layout.airporteatsrow, airportEatsList);
+	        		 
+	        		// Pass Pick to the PickComments activity
+	        		 intent.putExtra("Pick", picksList.get(position));
+	        		 
+	        		 startActivity(intent);
+	        	        
+	        	 }
+	        });
+	               
+	 } 
+	  
+	 private class RestaurantAdapter extends ArrayAdapter<Pick> {
+
+		 public RestaurantAdapter() {
+			super(AirportEats.this, R.layout.pickrow, picksList);
 			
 		}
 
@@ -73,7 +107,7 @@ public class AirportEats extends Activity {
 
 				
 				// inflater will be used to create Views from the things_row layout
-				row = layoutInflater.inflate(R.layout.airporteatsrow, null);
+				row = layoutInflater.inflate(R.layout.pickrow, null);
 				
 				myViewHolder = new ViewHolder(row);
 				
@@ -84,7 +118,7 @@ public class AirportEats extends Activity {
 			}
 			
 			
-			myViewHolder.populateFrom(airportEatsList.get(position));
+			myViewHolder.populateFrom(picksList.get(position));
 			
 			
 			return row;
@@ -100,23 +134,34 @@ public class AirportEats extends Activity {
 			TextView textViewName = null;
 			TextView textViewAddress = null;
 			TextView textViewPhoneNumber = null;
+			TextView textViewVoteCount = null;
 			RatingBar rating = null;
+//			Button button = null;
 			
 			public ViewHolder (View row){
-				textViewNumber = (TextView) row.findViewById(R.id.textViewAirportEatsSerialNumber);
-				//Log.d("AirportEats.java", textViewNumber.toString());
-				textViewAddress = (TextView) row.findViewById(R.id.textViewAirportEatsAddress);
-				//Log.d("AirportEats.java", textViewAddress.toString());
-				textViewName = (TextView) row.findViewById(R.id.textViewAirportEatsName);
-				//Log.d("AirportEats.java", textViewName.toString());
-				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewAirportEatsPhoneNumber);
-				//Log.d("AirportEats.java", textViewPhoneNumber.toString());
-				rating = (RatingBar) row.findViewById(R.id.airportEatsRating);
-				//Log.d("AirportEats.java", rating.toString());
-				 
-			}	
-			
-			public void populateFrom(Pick airportEats){
+				textViewNumber = (TextView) row.findViewById(R.id.textViewPickSerialNumber);
+				textViewAddress = (TextView) row.findViewById(R.id.textViewPickAddress);
+				textViewName = (TextView) row.findViewById(R.id.textViewPickName);
+				textViewPhoneNumber = (TextView) row.findViewById(R.id.textViewPickPhoneNumber);
+				textViewVoteCount = (TextView) row.findViewById(R.id.textViewVoteCount);
+
+				rating = (RatingBar) row.findViewById(R.id.ratingBarPicks);
+//				button = (Button) row.findViewById(R.id.button1);
+//				
+//				button.setOnClickListener(new Button.OnClickListener() {
+//                    public void onClick(View v) {
+//                    	
+//                    	
+//                    	// For testing 
+//                    	Toast.makeText(activity, "Button with position - ", Toast.LENGTH_LONG);
+//                    }
+//                }
+//            ); 
+				  
+			}
+			 
+			public void populateFrom(Pick restaurant){
+				
 				//textViewAddress.setText(airportEats.getAddress());
 				/*
 				 * Author: Pranav Shirodkar
@@ -125,12 +170,22 @@ public class AirportEats extends Activity {
 				 * restaurant is on the airport itself. The database doesn't seem to have any records
 				 * for it's address or telephone number. Although it does have ratings.
 				 */
+				
 				textViewAddress.setText(city.getAirport().toString());
-				textViewName.setText(airportEats.getName());
-				textViewPhoneNumber.setText(airportEats.getPhone());
-				textViewNumber.setText(Integer.toString(airportEats.getSerialNumber()));
-				rating.setRating(Integer.parseInt(airportEats.getRatingAverage()));
+				textViewName.setText(restaurant.getName());
+				textViewPhoneNumber.setText(restaurant.getPhone());
+				textViewNumber.setText(Integer.toString(restaurant.getSerialNumber()) + ".");
+				textViewVoteCount.setText(restaurant.getRatingCount());
+				rating.setRating(Integer.parseInt(restaurant.getRatingAverage()));
+				
+			
+
+				
+			
+				 
 			}
+			
+			
 			
 		}
 		 
