@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +29,11 @@ public class PickComments extends Activity {
 	  
 	        	// get the selected Pick passed through the intent 
 	        	pickSelected = (Pick) getIntent().getSerializableExtra("Pick");
+	        	
+	        	String url = "geo:0,0?q=" + pickSelected.getAddress();
+	            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
+	            startActivity(intent);
+	            
 	        
 	        	// List containing all the ratings
 	        	ratingsList  = new ArrayList<Rating>();

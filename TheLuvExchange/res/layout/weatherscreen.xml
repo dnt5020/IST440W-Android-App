@@ -3,7 +3,7 @@
     android:id="@+id/widget69"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffff" >
+    android:background="@drawable/weather1">
 
     <ImageButton
         android:id="@+id/ImageButton01"
@@ -274,31 +274,6 @@
         android:text="@string/curF"
         android:textColor="#372c24"
         android:textSize="25sp" />
-
-    <ImageButton
-        android:id="@+id/currentImage"
-        android:layout_width="71dp"
-        android:layout_height="63dp"
-        android:layout_x="9dp"
-        android:layout_y="91dp" />
-
-    <TextView
-        android:id="@+id/at"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="191dp"
-        android:layout_y="127dp"
-        android:text="@string/at"
-        android:textColor="#372c24" />
-
-    <TextView
-        android:id="@+id/windS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="210dp"
-        android:layout_y="126dp"
-        android:text="@string/WindS"
-        android:textColor="#372c24" />
 
     <TextView
         android:id="@+id/tempMin"
@@ -319,12 +294,37 @@
         android:textColor="#372c24" />
 
     <TextView
+        android:id="@+id/at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="192dp"
+        android:layout_y="122dp"
+        android:text="@string/at"
+        android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/windS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="221dp"
+        android:layout_y="125dp"
+        android:text="@string/WindS"
+        android:textColor="#372c24" />
+
+    <TextView
         android:id="@+id/desc"
         android:layout_width="75dp"
         android:layout_height="-41px"
-        android:layout_x="9dp"
-        android:layout_y="164dp"
+        android:layout_x="23dp"
+        android:layout_y="204dp"
         android:text="TextView"
         android:textColor="#372c24" />
+
+    <ImageButton
+        android:id="@+id/currentImage"
+        android:layout_width="71dp"
+        android:layout_height="63dp"
+        android:layout_x="20dp"
+        android:layout_y="125dp" />
 
 </AbsoluteLayout>
