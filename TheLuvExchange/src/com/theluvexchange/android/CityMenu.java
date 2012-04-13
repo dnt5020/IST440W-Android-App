@@ -87,6 +87,13 @@ public class CityMenu extends Activity {
         hashMap.put(RESOURCE_ID, R.drawable.weather);
         menuList.add(hashMap);
         
+     // HashMap and key Values of list
+        hashMap = new HashMap<String, Object>();
+        hashMap.put(MENUITEM, "Whos in town");
+        hashMap.put(RESOURCE_ID, R.drawable.whos_in_town);
+        menuList.add(hashMap);
+        
+        
         ListView listViewMenuList = (ListView) findViewById(R.id.menuList);
         
         listViewMenuList.setAdapter(new MenuAdapter(menuList, this));
@@ -111,6 +118,11 @@ public class CityMenu extends Activity {
 
         		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Weather")){
             		 startActivity(new Intent(activity, Weather_Main.class));
+
+        		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Whos in town")){
+        			 
+        			 // Add activity here
+//            		 startActivity(new Intent(activity, Whos_in_town.class));
 
         		 }
         	        
