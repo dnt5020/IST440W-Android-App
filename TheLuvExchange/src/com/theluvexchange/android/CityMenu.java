@@ -91,8 +91,19 @@ public class CityMenu extends Activity {
         hashMap = new HashMap<String, Object>();
         hashMap.put(MENUITEM, "Whos in town");
         hashMap.put(RESOURCE_ID, R.drawable.whos_in_town);
+        menuList.add(hashMap);    
+        
+        // HashMap and key Valuesof list
+        hashMap = new HashMap<String, Object>();
+        hashMap.put(MENUITEM, "Change City");
+        hashMap.put(RESOURCE_ID, R.drawable.change_city);
         menuList.add(hashMap);
         
+        // HashMap and key Valuesof list
+        hashMap = new HashMap<String, Object>();
+        hashMap.put(MENUITEM, "About App");
+        hashMap.put(RESOURCE_ID, R.drawable.about_app);
+        menuList.add(hashMap);
         
         ListView listViewMenuList = (ListView) findViewById(R.id.menuList);
         
@@ -124,8 +135,13 @@ public class CityMenu extends Activity {
         			 // Add activity here
 //            		 startActivity(new Intent(activity, Whos_in_town.class));
 
+        		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("About App")){
+        			 //startActivity(new Intent(activity, AboutApp.class));
+        		 
+        		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Change City")){
+        			 startActivity(new Intent(activity, Cities.class));
         		 }
-        	        
+        		    
         	 }
         });
         

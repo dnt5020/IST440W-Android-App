@@ -23,10 +23,10 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imageViewMenuItem"
             android:layout_centerHorizontal="true"
-            android:text="Restaurants &amp; Clubs"
+            android:text="Restaurants"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#003684"
-            android:textStyle="bold" android:maxWidth="200dp" />
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView1"
