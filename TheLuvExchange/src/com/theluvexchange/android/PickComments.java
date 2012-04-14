@@ -10,11 +10,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class PickComments extends Activity {
 	
@@ -30,9 +34,9 @@ public class PickComments extends Activity {
 	        	// get the selected Pick passed through the intent 
 	        	pickSelected = (Pick) getIntent().getSerializableExtra("Pick");
 	        	
-	        	String url = "geo:0,0?q=" + pickSelected.getAddress();
-	            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
-	            startActivity(intent);
+//	        	String url = "geo:0,0?q=" + pickSelected.getAddress();
+//	            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
+//	            startActivity(intent);
 	            
 	        
 	        	// List containing all the ratings
@@ -45,6 +49,21 @@ public class PickComments extends Activity {
 		        // Set the title to the restaurant name
 		        TextView textViewPickCommentTitle = (TextView) findViewById(R.id.textViewPickCommentTitle);
 		        textViewPickCommentTitle.setText(pickSelected.getName());
+		        
+		        Button addVote = (Button)findViewById(R.id.AddVoteButton);
+		        Button map = (Button)findViewById(R.id.MapButton);
+		        
+		        
+		        map.setOnClickListener(new OnClickListener(){
+	        	 public void onClick(View view) {
+	 	        	String url = "geo:0,0?q=" + pickSelected.getAddress();
+	 	            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
+	 	            startActivity(intent);
+	        	        
+	        	 }
+
+	        });
+		        		        
 		        
 		        // Set the discount available text view
 		        TextView textViewPickDiscount = (TextView) findViewById(R.id.textViewDiscountBool);

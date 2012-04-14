@@ -30,7 +30,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="63dp"
+        android:layout_height="122dp"
         android:paddingBottom="5dp" >
 
         <TextView
@@ -73,7 +73,7 @@
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/textViewDiscountBool"
             android:text="@string/near"
-              android:textColor="#372c24" />
+            android:textColor="#372c24" />
 
         <TextView
             android:id="@+id/textViewPickLocation"
@@ -84,7 +84,24 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/textView3"
             android:text="TextView"
-              android:textColor="#372c24" />
+            android:textColor="#372c24" />
+
+        <Button
+            android:id="@+id/AddVoteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="Add Vote" android:background="@drawable/bg_vote" android:textColor="#ffffff"/>
+
+        <Button
+            android:id="@+id/MapButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewPickLocation"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/map" />
 
     </RelativeLayout>
     
