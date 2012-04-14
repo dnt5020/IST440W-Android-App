@@ -46,6 +46,9 @@ import com.theluvexchange.weather.WeatherSet;
 public class WebService {
 	// Base URL is usually going to start with this
 	private static final String ADDRESS = "http://www.theluvexchange.com/iphone/";
+	public static final int RESTAURANTS = 1;
+	public static final int THINGS_TO_DO = 2;
+	public static final int AIRPORT_EATS = 3;
 	private static SAXParser parser = null; // Singleton SAXParser object
 	private static List<AlbumPhoto> photos = null;
 	// private static List<Drawable> images = null;
@@ -185,11 +188,25 @@ public class WebService {
 	 *  or null if there was an error
 	 */
 	public static List<Pick> getRestaurants(User user, City city) {
+		return getRestaurants(user, city, "rating_count", "desc");
+	}
+	/**
+	 * @param user object
+	 * @param city object
+	 * @param sort: must be either id, name, category, address, phone, body,
+	 * latitude, longitude, discounts, rating_total, rating_count, rating_avg,
+	 * location, or viewer_rating
+	 * @param direction: must be either asc or desc
+	 * @return list of Picks that represent airport eats given a user and city
+	 *  or null if there was an error
+	 */
+	public static List<Pick> getRestaurants(User user, City city, String sort, String direction) {
 		URL url = null;
 		try {
 			// URL object used to create a connection to the cities XML page
 			url = new URL(ADDRESS + "restaurants/" + city.getId() 
-					+ "/sort:Pick.rating_count/direction:desc/viewer_id:" + user.getUserId());
+					+ "/sort:Pick." + sort + "/direction:" + direction
+					+ "/viewer_id:" + user.getUserId());
 		} catch (Exception e) {
 			// Log error to be able to debug using LogCat
 			Log.e("TheLuvExchange", "WebServiceError", e);
@@ -204,11 +221,25 @@ public class WebService {
 	 *  or null if there was an error
 	 */
 	public static List<Pick> getThings(User user, City city) {
+		return getThings(user, city, "rating_count", "desc");
+	}
+	/**
+	 * @param user object
+	 * @param city object
+	 * @param sort: must be either id, name, category, address, phone, body,
+	 * latitude, longitude, discounts, rating_total, rating_count, rating_avg,
+	 * location, or viewer_rating
+	 * @param direction: must be either asc or desc
+	 * @return list of Picks that represent airport eats given a user and city
+	 *  or null if there was an error
+	 */
+	public static List<Pick> getThings(User user, City city, String sort, String direction) {
 		URL url = null;
 		try {
 			// URL object used to create a connection to the cities XML page
 			url = new URL(ADDRESS + "things/" + city.getId() 
-					+ "/sort:Pick.rating_count/direction:desc/viewer_id:" + user.getUserId());
+					+ "/sort:Pick." + sort + "/direction:" + direction
+					+ "/viewer_id:" + user.getUserId());
 		} catch (Exception e) {
 			// Log error to be able to debug using LogCat
 			Log.e("TheLuvExchange", "WebServiceError", e);
@@ -217,17 +248,31 @@ public class WebService {
 	}
 
 	/**
-	 * @param user
-	 * @param city
+	 * @param user object
+	 * @param city object
 	 * @return list of Picks that represent airport eats given a user and city
 	 *  or null if there was an error
 	 */
 	public static List<Pick> getAirportEats(User user, City city) {
+		return getAirportEats(user, city, "rating_count", "desc");
+	}
+	/**
+	 * @param user object
+	 * @param city object
+	 * @param sort: must be either id, name, category, address, phone, body,
+	 * latitude, longitude, discounts, rating_total, rating_count, rating_avg,
+	 * location, or viewer_rating
+	 * @param direction: must be either asc or desc
+	 * @return list of Picks that represent airport eats given a user and city
+	 *  or null if there was an error
+	 */
+	public static List<Pick> getAirportEats(User user, City city, String sort, String direction) {
 		URL url = null;
 		try {
 			// URL object used to create a connection to the cities XML page
 			url = new URL(ADDRESS + "airports/" + city.getId() 
-					+ "/sort:Pick.rating_count/direction:desc/viewer_id:" + user.getUserId());
+					+ "/sort:Pick." + sort + "/direction:" + direction
+					+ "/viewer_id:" + user.getUserId());
 		} catch (Exception e) {
 			// Log error to be able to debug using LogCat
 			Log.e("TheLuvExchange", "WebServiceError", e);
@@ -266,16 +311,27 @@ public class WebService {
 	}
 
 	/**
-	 * @param pick
+	 * @param pick object to get ratings for
 	 * @return list of ratings for the pick, will be null if there was an error
 	 */
 	public static List<Rating> getRatings(Pick pick) {
+		return getRatings(pick, "rating_count", "desc");
+	}
+	/**
+	 * @param pick object to get ratings for
+	 * @param sort: must be either id, name, category, address, phone, body,
+	 * latitude, longitude, discounts, rating_total, rating_count, rating_avg,
+	 * location, viewer_rating, created, username, or userid
+	 * @param direction: must be either asc or desc
+	 * @return list of ratings for the pick, will be null if there was an error
+	 */
+	public static List<Rating> getRatings(Pick pick, String sort, String direction) {
 		List<Rating> ratings = null;
 
 		try {
 			// URL object used to create a connection to the cities XML page
 			URL url = new URL(ADDRESS + "pick/" + pick.getId() 
-					+ "/sort:Pick.rating_count/direction:desc");
+					+ "/sort:Pick." + sort + "/direction:" + direction);
 
 			// SAX XMLReader object used for parsing the XML file
 			XMLReader reader = getParser().getXMLReader();
@@ -301,12 +357,12 @@ public class WebService {
 	}
 
 	/**
-	 * @param user
-	 * @param city
-	 * @param pick
+	 * @param user object
+	 * @param city object
+	 * @param pick to post rating for
 	 * @param comment
-	 * @param rating
-	 * @param discount
+	 * @param rating as a number between 1 and 5
+	 * @param discount is true if there are discounts for SW employees, else false
 	 * @return an Object which is either an instanceof Rating or String.
 	 * If a Rating is returned, then the post was successful.
 	 * If the result is a String, then its an error message describing why it failed.
@@ -331,18 +387,18 @@ public class WebService {
 		try {
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>(2);
 			pairs.add(new BasicNameValuePair("data[Pick][name]", vote.getName()));
-			pairs.add(new BasicNameValuePair("data[Pick][body]", vote.getBody()));
+			pairs.add(new BasicNameValuePair("data[Pick][body]", comment));
 			pairs.add(new BasicNameValuePair("data[Pick][location]", vote.getLocation()));
 			pairs.add(new BasicNameValuePair("data[Pick][near]", null)); // ?
 			pairs.add(new BasicNameValuePair("data[Pick][address]", vote.getAddress()));
 			pairs.add(new BasicNameValuePair("data[Pick][phone]", vote.getPhone()));
 			pairs.add(new BasicNameValuePair("data[Pick][latitude]", vote.getLatitude()));
 			pairs.add(new BasicNameValuePair("data[Pick][longitude]", vote.getLongitude()));
-			pairs.add(new BasicNameValuePair("data[Pick][discounts]", vote.getDiscounts()));
+			pairs.add(new BasicNameValuePair("data[Pick][discounts]", discount ? "1" : "0"));
 			pairs.add(new BasicNameValuePair("data[Pick][category]", vote.getCategory()));
 			pairs.add(new BasicNameValuePair("data[Pick][parent_id]", vote.getId()));
 			pairs.add(new BasicNameValuePair("data[Pick][city_id]", city.getId()));
-			pairs.add(new BasicNameValuePair("data[Pick][rating]", vote.getViewerRating()));
+			pairs.add(new BasicNameValuePair("data[Pick][rating]", Integer.toString(rating)));
 
 			httpPost.setEntity(new UrlEncodedFormEntity(pairs));
 
@@ -367,9 +423,163 @@ public class WebService {
 	}
 
 	/**
+	 * To post a new Restaurant
+	 * @param user object
+	 * @param city object
+	 * @param name of the place
+	 * @param comment for the rating
+	 * @param near is a string that should match exactly to a local hotel name for the website to process it meaningfully
+	 * @param rating as a number between 1 and 5
+	 * @param discount is true if there are discounts for SW employees, else false
+	 * @param location is a string that represents what this place is
+	 * @param address is the actual street address
+	 * @param phone is the phone number
+	 * @param latitude is the measurement from Google Maps API
+	 * @param longitude is the measurement from Google Maps API
+	 * @return an Object which is either an instanceof Pick or String.
+	 * If a Pick is returned, then the post was successful.
+	 * If the result is a String, then its an error message describing why it failed.
+	 */
+	public static Object postRestaurant(User user, City city, String name, String comment,
+			String near, int rating, boolean discount, String location, String address,
+			String phone, int latitude, int longitude) {
+		return postPick(user, city, name, comment, near, rating, discount, location, address,
+				phone, latitude, longitude, RESTAURANTS);
+	}
+	/**
+	 * To post a new Thing to Do
+	 * @param user object
+	 * @param city object
+	 * @param name of the place
+	 * @param comment for the rating
+	 * @param near is a string that should match exactly to a local hotel name for the website to process it meaningfully
+	 * @param rating as a number between 1 and 5
+	 * @param discount is true if there are discounts for SW employees, else false
+	 * @param location is a string that represents what this place is
+	 * @param address is the actual street address
+	 * @param phone is the phone number
+	 * @param latitude is the measurement from Google Maps API
+	 * @param longitude is the measurement from Google Maps API
+	 * @return an Object which is either an instanceof Pick or String.
+	 * If a Pick is returned, then the post was successful.
+	 * If the result is a String, then its an error message describing why it failed.
+	 */
+	public static Object postThing(User user, City city, String name, String comment,
+			String near, int rating, boolean discount, String location, String address,
+			String phone, int latitude, int longitude) {
+		return postPick(user, city, name, comment, near, rating, discount, location, address,
+				phone, latitude, longitude, THINGS_TO_DO);
+	}
+	/**
+	 * To post a new airport eat
+	 * @param user object
+	 * @param city object
+	 * @param name of the place
+	 * @param comment for the rating
+	 * @param near is a string that should match exactly to a local hotel name for the website to process it meaningfully
+	 * @param rating as a number between 1 and 5
+	 * @param discount is true if there are discounts for SW employees, else false
+	 * @param location is a string that represents what this place is
+	 * @param address is the actual street address
+	 * @param phone is the phone number
+	 * @param latitude is the measurement from Google Maps API
+	 * @param longitude is the measurement from Google Maps API
+	 * @return an Object which is either an instanceof Pick or String.
+	 * If a Pick is returned, then the post was successful.
+	 * If the result is a String, then its an error message describing why it failed.
+	 */
+	public static Object postAirportEat(User user, City city, String name, String comment,
+			String near, int rating, boolean discount, String location, String address,
+			String phone, int latitude, int longitude) {
+		return postPick(user, city, name, comment, near, rating, discount, location, address,
+				phone, latitude, longitude, AIRPORT_EATS);
+	}
+	/**
+	 * Used by other classes to post picks
+	 * @param user object
+	 * @param city object
+	 * @param name of the place
+	 * @param comment for the rating
+	 * @param near is a string that should match exactly to a local hotel name for the website to process it meaningfully
+	 * @param rating as a number between 1 and 5
+	 * @param discount is true if there are discounts for SW employees, else false
+	 * @param location is a string that represents what this place is
+	 * @param address is the actual street address
+	 * @param phone is the phone number
+	 * @param latitude is the measurement from Google Maps API
+	 * @param longitude is the measurement from Google Maps API
+	 * @param category is an integer
+	 * @return an Object which is either an instanceof Pick or String.
+	 * If a Pick is returned, then the post was successful.
+	 * If the result is a String, then its an error message describing why it failed.
+	 */
+	private static Object postPick(User user, City city, String name, String comment,
+			String near, int rating, boolean discount, String location, String address,
+			String phone, int latitude, int longitude, int category) {
+
+		Pick pick = new Pick();
+		pick.setName(name);
+		pick.setBody(comment);
+		pick.setNear(near);
+		pick.setViewerRating(Integer.toString(rating));
+		pick.setDiscounts(discount ? "1" : "0");
+		pick.setLocation(location);
+		pick.setAddress(address);
+		pick.setPhone(phone);
+		pick.setLatitude(Integer.toString(latitude));
+		pick.setLongitude(Integer.toString(longitude));
+
+		HttpClient httpClient = new DefaultHttpClient();
+
+		StringBuilder url = new StringBuilder(ADDRESS);
+		url.append("picks_add?user_id=");
+		url.append(user.getUserId());
+		url.append("&code=");
+		url.append(user.getCode());
+
+		HttpPost httpPost = new HttpPost(url.toString());
+		try {
+			List<NameValuePair> pairs = new ArrayList<NameValuePair>(2);
+			pairs.add(new BasicNameValuePair("data[Pick][name]", name));
+			pairs.add(new BasicNameValuePair("data[Pick][body]", comment));
+			pairs.add(new BasicNameValuePair("data[Pick][location]", location));
+			pairs.add(new BasicNameValuePair("data[Pick][near]", near)); // ?
+			pairs.add(new BasicNameValuePair("data[Pick][address]", address));
+			pairs.add(new BasicNameValuePair("data[Pick][phone]", phone));
+			pairs.add(new BasicNameValuePair("data[Pick][latitude]", Integer.toString(latitude)));
+			pairs.add(new BasicNameValuePair("data[Pick][longitude]", Integer.toString(longitude)));
+			pairs.add(new BasicNameValuePair("data[Pick][discounts]", discount ? "1" : "0"));
+			pairs.add(new BasicNameValuePair("data[Pick][category]", Integer.toString(category)));
+			pairs.add(new BasicNameValuePair("data[Pick][parent_id]", null));
+			pairs.add(new BasicNameValuePair("data[Pick][city_id]", city.getId()));
+			pairs.add(new BasicNameValuePair("data[Pick][rating]", Integer.toString(rating)));
+
+			httpPost.setEntity(new UrlEncodedFormEntity(pairs));
+
+			XMLReader reader = getParser().getXMLReader();
+
+			PostHandler handler = new PostHandler();
+			reader.setContentHandler(handler);
+
+			String response = httpClient.execute(httpPost, new BasicResponseHandler());
+			InputSource input = new InputSource();
+			input.setCharacterStream(new StringReader(response));
+			reader.parse(input);
+
+			String result = handler.getResult();
+
+			return result.equals("success") ? pick : result;
+
+		} catch (Exception e) {
+			Log.e("TheLuvExchange", "WebServiceError", e);
+			return "Error: " + e;
+		}
+	}
+
+	/**
 	 * For posting a rating to a photo.
-	 * @param user
-	 * @param photo object to post rating to
+	 * @param user object
+	 * @param photo AlbumPhoto object to post rating to
 	 * @param rating as a number between 1 and 5
 	 * @return string that will be the word success or an error message
 	 */
@@ -466,9 +676,25 @@ public class WebService {
 		}
 		return cityPhoto;
 	}
-
+	
+	/**
+	 * For getting photos for a city album
+	 * @param user object
+	 * @param city object
+	 * @return List of AlbumPhoto objects or null if error
+	 */
 	public static List<AlbumPhoto> getPhotos(User user, City city) {
-
+		return getPhotos(user, city, "created", "desc");
+	}
+	/**
+	 * For getting photos for a city album
+	 * @param user object
+	 * @param city object
+	 * @param sort: must be either id, filename, caption, rating_avg, rating_total, rating_count, or viewer_rating
+	 * @param direction: must be either asc or desc
+	 * @return List of AlbumPhoto objects or null if error
+	 */
+	public static List<AlbumPhoto> getPhotos(User user, City city, String sort, String direction) {
 		if (photos != null && city.getId().equals(cityId)) {
 			return photos;
 		}
@@ -478,8 +704,8 @@ public class WebService {
 
 		try {
 			URL url = new URL(ADDRESS + "photos/" + city.getId() 
-					+ "/sort:Photo.created/direction:desc/viewer_id:"
-					+ user.getUserId());
+					+ "/sort:Photo." + sort + "/direction:" + direction
+					+ "/viewer_id:" + user.getUserId());
 
 			// SAX XMLReader object used for parsing the XML file
 			XMLReader reader = getParser().getXMLReader();
@@ -531,12 +757,12 @@ public class WebService {
 
 		return image;
 	}
-	
+
 	/**
 	 * to post photos to city album
-	 * @param user
-	 * @param city
-	 * @param filepath
+	 * @param user object
+	 * @param city object
+	 * @param filepath local of photo on device
 	 * @param caption
 	 * @return String "success" or error message
 	 */
@@ -573,14 +799,14 @@ public class WebService {
 
 			// SAX XMLReader object used for parsing the XML file
 			XMLReader reader = getParser().getXMLReader();
-			
+
 			PostHandler handler = new PostHandler();
 			reader.setContentHandler(handler);
-			
+
 			reader.parse(input);
 
 			String result = handler.getResult();
-			
+
 			photos = null;
 
 			return result;
@@ -589,6 +815,49 @@ public class WebService {
 			Log.e("TheLuvExchange", "WebServiceError", e);
 			return "Error: " + e;
 		}
+	}
 
+	/**
+	 * Get messages for Who's In Town
+	 * Sorted descending by created
+	 * @param city object
+	 * @return List of CityMessage objects or null if error
+	 */
+	public static List<Message> getInTown(City city) {
+		return getInTown(city, "CityMessage.created", "desc");
+	}
+	/**
+	 * Get messages for Who's In Town
+	 * @param city object
+	 * @param sort: must be either id, body, created, or username
+	 * @param direction: must be either asc or desc
+	 * @return
+	 */
+	public static List<Message> getInTown(City city, String sort, String direction) {
+		List<Message> messages = null;
+
+		try {
+			URL url = new URL(ADDRESS + "intown/" + city.getId() + "/sort:CityMessage." + sort + "/direction:" + direction);
+
+			// SAX XMLReader object used for parsing the XML file
+			XMLReader reader = getParser().getXMLReader();
+
+			// SAXHandler class used for parsing the XML
+			MessageHandler handler = new MessageHandler();
+
+			// Set the XMLReader to use the SAXHandler for parsing rules
+			reader.setContentHandler(handler);
+
+			// Run the parsing
+			reader.parse(new InputSource(url.openStream()));
+
+			messages = handler.getMessageData();
+
+		} catch (Exception e) {
+			// Log error to be able to debug using LogCat
+			Log.e("TheLuvExchange", "WebServiceError", e);
+		}
+
+		return messages;
 	}
 }

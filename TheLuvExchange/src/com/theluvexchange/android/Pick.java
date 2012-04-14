@@ -21,6 +21,7 @@ public class Pick implements Serializable {
 	private String location;
 	private String viewerRating;
 	private int serialNumber;
+	private String near;
 
 	public int getSerialNumber() {
 		return serialNumber;
@@ -114,6 +115,18 @@ public class Pick implements Serializable {
 	}
 	public void setViewerRating(String viewerRating) {
 		this.viewerRating = viewerRating;
+	}
+	/**
+	 * @return the near
+	 */
+	public String getNear() {
+		return near;
+	}
+	/**
+	 * @param near the near to set
+	 */
+	public void setNear(String near) {
+		this.near = near;
 	}
 	
 	
