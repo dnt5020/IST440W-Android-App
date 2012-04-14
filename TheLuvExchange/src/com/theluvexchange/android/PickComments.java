@@ -33,11 +33,6 @@ public class PickComments extends Activity {
 	  
 	        	// get the selected Pick passed through the intent 
 	        	pickSelected = (Pick) getIntent().getSerializableExtra("Pick");
-	        	
-//	        	String url = "geo:0,0?q=" + pickSelected.getAddress();
-//	            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
-//	            startActivity(intent);
-	            
 	        
 	        	// List containing all the ratings
 	        	ratingsList  = new ArrayList<Rating>();
@@ -63,6 +58,15 @@ public class PickComments extends Activity {
 	        	 }
 
 	        });
+		        
+//		        addVote.setOnClickListener(new OnClickListener(){
+//		        	 public void onClick(View view) {
+//		        		 Intent intent = new Intent(activity, PickVote.class);
+//		 	            startActivity(intent);
+//		        	        
+//		        	 }
+//
+//		        });
 		        		        
 		        
 		        // Set the discount available text view
