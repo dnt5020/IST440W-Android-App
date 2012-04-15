@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
@@ -20,12 +21,22 @@ import android.widget.GridView;
 public class IndivGallery extends Activity
 {
 	 private Activity activity = this;
+	 private TheLuvExchange application = null;
+	 private City city;
 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.gallery);
+	    
+	    application = (TheLuvExchange)this.getApplication();
+        city = application.getCity();
+	    
+	    // Set Header to selected city name
+        TextView cityName = (TextView)findViewById(R.id.header);
+        cityName.setText(city.getName());
+  
 
 	    GridView gridview = (GridView) findViewById(R.id.gallery);
 	    gridview.setAdapter(new ImageAdapter(this));

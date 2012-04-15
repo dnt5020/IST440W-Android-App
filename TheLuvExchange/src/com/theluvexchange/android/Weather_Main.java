@@ -31,20 +31,28 @@ public class Weather_Main extends Activity {
 			// Need to call the superclass constructor first
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.weatherscreen);
+			
+			
 			TheLuvExchange application = (TheLuvExchange)getApplication();	 	 
 	 	 	city = application.getCity();
+	 	 		 	 	
+	 	   // Set Header to selected city name
+	        TextView cityName = (TextView)findViewById(R.id.header);
+	        cityName.setText(city.getName());
+	  
+	 	 	
 			weatherO=(WebService.getWeather(city));
 			setText(city.getName(),R.id.citySelected);
-	 	    setText(" "+weatherO.getWeatherCurrentCondition().getTempF()+" °F",R.id.currentF);
+	 	    setText(" "+weatherO.getWeatherCurrentCondition().getTempF()+" ï¿½F",R.id.currentF);
 	 	    setText(" "+weatherO.getWeatherCurrentCondition().getHumidity()+" %",R.id.humidity);
 	 	    
 	 	    setText(weatherO.getWeatherForecastConditions().get(3).getDesc(),R.id.desc3);
 	 	    setText(weatherO.getWeatherForecastConditions().get(2).getDesc(),R.id.desc2);
 	 	    setText(weatherO.getWeatherForecastConditions().get(1).getDesc(),R.id.desc1);
 		 		 	
-		 	setText(weatherO.getWeatherForecastConditions().get(1).getTempMinF()+" °F/"+ weatherO.getWeatherForecastConditions().get(1).getTempMaxF()+" °F"  ,R.id.minmax1);
-		 	setText(weatherO.getWeatherForecastConditions().get(2).getTempMinF()+" °F/"+ weatherO.getWeatherForecastConditions().get(2).getTempMaxF()+" °F"  ,R.id.minmax2);
-		 	setText(weatherO.getWeatherForecastConditions().get(3).getTempMinF()+" °F/"+ weatherO.getWeatherForecastConditions().get(3).getTempMaxF()+" °F"  ,R.id.minmax3);
+		 	setText(weatherO.getWeatherForecastConditions().get(1).getTempMinF()+" ï¿½F/"+ weatherO.getWeatherForecastConditions().get(1).getTempMaxF()+" ï¿½F"  ,R.id.minmax1);
+		 	setText(weatherO.getWeatherForecastConditions().get(2).getTempMinF()+" ï¿½F/"+ weatherO.getWeatherForecastConditions().get(2).getTempMaxF()+" ï¿½F"  ,R.id.minmax2);
+		 	setText(weatherO.getWeatherForecastConditions().get(3).getTempMinF()+" ï¿½F/"+ weatherO.getWeatherForecastConditions().get(3).getTempMaxF()+" ï¿½F"  ,R.id.minmax3);
 		 	
 		 	
 		 	
@@ -52,8 +60,8 @@ public class Weather_Main extends Activity {
 	 	    setText(" "+weatherO.getWeatherCurrentCondition().getPrecMM()+" in",R.id.prec); 
 	 	    setText(weatherO.getWeatherCurrentCondition().getDescription(),R.id.desc); 
 	 	    setText(" "+weatherO.getWeatherCurrentCondition().getWindDirection()+" at "+weatherO.getWeatherCurrentCondition().getWindspeedMiles()+" mph",R.id.windD); 
-	 	    setText(" "+weatherO.getWeatherForecastConditions().get(0).getTempMaxF()+" °F",R.id.tempMax); 
-	 	    setText(" "+weatherO.getWeatherForecastConditions().get(0).getTempMinF()+" °F" ,R.id.tempMin); 
+	 	    setText(" "+weatherO.getWeatherForecastConditions().get(0).getTempMaxF()+" ï¿½F",R.id.tempMax); 
+	 	    setText(" "+weatherO.getWeatherForecastConditions().get(0).getTempMinF()+" ï¿½F" ,R.id.tempMin); 
 		 	
 	 	    setImage(weatherO.getWeatherCurrentCondition().getIconURL(),R.id.currentImage);
 	 	    /*setImage(weatherO.getWeatherForecastConditions().get(1).getIconURL(),R.id.weather_image1);

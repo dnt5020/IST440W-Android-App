@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,15 +47,21 @@ public class CityMenu extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.citymenu);
         
-        ImageView imageViewCityPhoto = (ImageView) findViewById(R.id.imageViewCityPhoto);
         application = (TheLuvExchange)this.getApplication();
         city = application.getCity();
-
+        
+        // Set the city photo 
+        ImageView imageViewCityPhoto = (ImageView) findViewById(R.id.imageViewCityPhoto);
         imageViewCityPhoto.setImageDrawable(WebService.getCityPhoto(city));
+        
+        // Set Header to selected city name
+        TextView cityName = (TextView)findViewById(R.id.header);
+        cityName.setText(city.getName());
+        
+        
         
         menuList = new ArrayList<HashMap<String,Object>>();
         HashMap<String, Object> hashMap;
-        
         
         // HashMap and key Values of list
         hashMap = new HashMap<String, Object>();
@@ -205,6 +212,28 @@ public class CityMenu extends Activity {
 		}
     	
     }
+    
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.options_menu, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case R.id.itemAbout:
+			
+			
+			break;
+		case R.id.itemLogout:
+   		 startActivity(new Intent(activity, Login.class));
+
+			
+		}
+		return false;
+	}  
    
 }
 

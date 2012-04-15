@@ -51,14 +51,18 @@ public class Restaurants extends Activity {
 	        
 	        ListView listViewRestaurants = (ListView)findViewById(R.id.picksList);
 	        
-	        Log.d("ThingsToDo.java", "just before user ");
-	        
+	       
+	        	        
 	        user = application.getUser();
 	        city = application.getCity();
 	        
 	     // Call the WebService.getRestaurants() method to populate the cities list.
 	     	picksList.addAll(WebService.getRestaurants(user, city));
 	        
+	     	
+	     	 // Set Header to selected city name
+	        TextView cityName = (TextView)findViewById(R.id.header);
+	        cityName.setText(city.getName());
 	        
 	     
 	        
@@ -77,6 +81,9 @@ public class Restaurants extends Activity {
 	        		// Pass Pick to the PickComments activity
 	        		 intent.putExtra("Pick", picksList.get(position));
 	        		 
+	        		 TextView textViewPickTitle= (TextView) findViewById(R.id.textViewPickTitle);
+	        		 intent.putExtra("Title", textViewPickTitle.getText());
+
 	        		 startActivity(intent);
 	        	        
 	        	 }
@@ -184,5 +191,4 @@ public class Restaurants extends Activity {
 	 }
 
 }
-
 

@@ -25,14 +25,25 @@ public class PickComments extends Activity {
 	private List<Rating> ratingsList = null;
 	private Pick pickSelected = null;
 
+	private TheLuvExchange application = null;
+	private City city;
+
 	
 	private Activity activity = this;
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.pickcomments);
+	        
+	        application = (TheLuvExchange)this.getApplication();
+	        city = application.getCity();
+
+	        // Set Header to selected city name
+	        TextView cityName = (TextView)findViewById(R.id.header);
+	        cityName.setText(city.getName());
 	  
 	        	// get the selected Pick passed through the intent 
 	        	pickSelected = (Pick) getIntent().getSerializableExtra("Pick");
+	        	
 	        
 	        	// List containing all the ratings
 	        	ratingsList  = new ArrayList<Rating>();
@@ -49,15 +60,34 @@ public class PickComments extends Activity {
 		        Button map = (Button)findViewById(R.id.MapButton);
 		        
 		        
-		        map.setOnClickListener(new OnClickListener(){
-	        	 public void onClick(View view) {
-	 	        	String url = "geo:0,0?q=" + pickSelected.getAddress();
-	 	            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
-	 	            startActivity(intent);
-	        	        
-	        	 }
+		map.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				String url = "geo:0,0?q=" + pickSelected.getAddress();
+				Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+						Uri.parse(url));
+				startActivity(intent);
 
-	        });
+			}
+
+		});
+		
+		 addVote.setOnClickListener(new OnClickListener(){
+        	 public void onClick(View view) {
+ 	        	
+        		 // Intent to start PickVote activity
+        		 Intent intent = new Intent(activity, PickVote.class);
+        		 
+        		// Pass Pick to the PickVote activity
+        		 intent.putExtra("Pick", pickSelected);
+        		 
+        		 intent.putExtra("Title", getIntent().getCharSequenceExtra("Title"));
+
+        		 
+        		 startActivity(intent);
+        	        
+        	 }
+
+        });
 		        
 //		        addVote.setOnClickListener(new OnClickListener(){
 //		        	 public void onClick(View view) {
@@ -76,7 +106,7 @@ public class PickComments extends Activity {
 		        } else {
 			        textViewPickDiscount.setText(pickSelected.getDiscounts().equals("1")?"Yes":"No");
 
-		        }
+		        } 
 		        
 		        // Set the location text view
 		        TextView textViewPickLocation = (TextView) findViewById(R.id.textViewPickLocation);

@@ -59,7 +59,9 @@ public class AirportEats extends Activity {
 	     // Call the WebService.getAirportEats() method to populate the cities list.
 	     	picksList.addAll(WebService.getAirportEats(user, city));
 	        
-	        
+	     	 // Set Header to selected city name
+	        TextView cityName = (TextView)findViewById(R.id.header);
+	        cityName.setText(city.getName());
 	     
 	        
 	        listViewAirportEats.setAdapter(new RestaurantAdapter());
@@ -77,6 +79,9 @@ public class AirportEats extends Activity {
 	        		// Pass Pick to the PickComments activity
 	        		 intent.putExtra("Pick", picksList.get(position));
 	        		 
+	        		 TextView textViewPickTitle= (TextView) findViewById(R.id.textViewPickTitle);
+	        		 intent.putExtra("Title", textViewPickTitle.getText());
+
 	        		 startActivity(intent);
 	        	        
 	        	 }
@@ -194,5 +199,4 @@ public class AirportEats extends Activity {
 	 }
 
 }
-
 

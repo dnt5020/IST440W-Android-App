@@ -16,6 +16,10 @@
             android:name=".Cities"
             android:label="@string/cities" >
         </activity>
+         <activity
+            android:name=".PickVote"
+            android:label="@string/add_vote" >
+        </activity>
         <activity android:name=".CityMenu" >
         </activity>
         <activity android:name=".FullImageActivity">

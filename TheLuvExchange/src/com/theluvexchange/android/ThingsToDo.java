@@ -57,7 +57,9 @@ public class ThingsToDo extends Activity {
 	        thingToDoList.addAll(WebService.getThings(user, city));
 	        
 	        
-	     
+	        // Set Header to selected city name
+	        TextView cityName = (TextView)findViewById(R.id.header);
+	        cityName.setText(city.getName());
 	        
 	        listViewThings.setAdapter(new ThingsToDoAdapter());
 	        listViewThings.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -74,6 +76,9 @@ public class ThingsToDo extends Activity {
 	        		// Pass Pick to the PickComments activity
 	        		 intent.putExtra("Pick", thingToDoList.get(position));
 	        		 
+	        		 TextView textViewPickTitle= (TextView) findViewById(R.id.textViewPickTitle);
+	        		 intent.putExtra("Title", textViewPickTitle.getText());
+
 	        		 startActivity(intent);
 	        	        
 	        	 }
@@ -162,5 +167,4 @@ public class ThingsToDo extends Activity {
 	 }
 
 }
-
 

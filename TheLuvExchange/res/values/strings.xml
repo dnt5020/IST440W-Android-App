@@ -52,5 +52,7 @@
    <color name="Black">#372c24</color>
    <color name="White">#ffffff</color>
    <string name="Addcomm">Add comment</string>
+      <string name="add_vote">Add Vote</string>
+         <string name="change_city">Change City</string>
   
 </resources>
