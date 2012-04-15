@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff" >
+
+    
+    <TextView
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#003684"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:drawablePadding="5dip"
+            android:padding="5dip"
+            android:text="@string/app_name"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:gravity="center" />
+
+    <Button
+        android:id="@+id/checkinbtn"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:layout_x="83dp"
+        android:layout_y="428dp"
+        android:text="@string/checkin" />
+    <ListView
+        android:id="@+id/commentlistView1"
+        android:layout_width="fill_parent"
+        android:layout_height="372dp"
+        android:layout_x="3dp"
+        android:layout_y="58dp" >
+
+    </ListView>
+    
+</AbsoluteLayout>

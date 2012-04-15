@@ -299,7 +299,38 @@ public class WebService {
 
 		return ratings;
 	}
+	/*added by Shibani Chadha 4/13
+	*/
+	
+	public static List<Comment> getComment(City city) {
+		List<Comment> comments = null;
 
+		try {
+			// URL object used to create a connection to the cities XML page
+			URL url = new URL(ADDRESS + "intown/"+city.getId()+"/sort:CityMessage.created/direction:desc");
+
+			// SAX XMLReader object used for parsing the XML file
+			XMLReader reader = getParser().getXMLReader();
+
+			// SAXHandler class used for parsing the XML
+			CommentHandler handler = new CommentHandler();
+
+			// Set the XMLReader to use the SAXHandler for parsing rules
+			reader.setContentHandler(handler);
+
+			// Run the parsing
+			reader.parse(new InputSource(url.openStream()));
+
+			// Receive the list of City objects from the parse
+			comments = handler.getCommentData();
+
+		} catch (Exception e) {
+			// Log error to be able to debug using LogCat
+			Log.e("TheLuvExchange", "WebServiceError", e);
+		}
+
+		return comments;
+	}
 	/**
 	 * @param user
 	 * @param city
@@ -410,7 +441,18 @@ public class WebService {
 			return "Error: " + e;
 		}
 	}
+	/**
+	 * edited by Shibani Chadha 4/11 added postMessage
+	 * @param city 
+	 * @return message
+	 */
+	
+	/*public static String postMessage(User user, AddMessage message, City city) {
 
+		
+	}*/
+
+	
 	/**
 	 * edited by Shibani Chadha 3/29 added getWeather
 	 * @param city
@@ -423,7 +465,7 @@ public class WebService {
 		try {
 
 			String queryString="http://free.worldweatheronline.com/feed/weather.ashx?q="
-					+ city.getName()+"&format=xml&num_of_days=4&key=359fc57879001200121303";
+					+ city.getName()+",&format=xml&num_of_days=4&key=94e4b77f82022251121304";
 			// URL object used to create a connection to the weather's XML page
 			url = new URL(queryString.replace(" ", "%20"));
 			// SAX XMLReader object used for parsing the XML file
@@ -590,5 +632,47 @@ public class WebService {
 			return "Error: " + e;
 		}
 
+	}
+	/*
+	 * added by Shibani Chadha 4/12
+*/
+	public static String postMessage(User user, AddMessage message, City city) {
+		// TODO Auto-generated method stub
+		HttpClient httpClient = new DefaultHttpClient();
+
+		StringBuilder address = new StringBuilder(ADDRESS);
+		address.append("intown_add?user_id=");
+		address.append(user.getUserId());
+		address.append("&code=");
+		address.append(user.getCode());
+
+		HttpPost httpPost = new HttpPost(address.toString());
+		try {
+			
+			List<NameValuePair> pairs = new ArrayList<NameValuePair>(2);
+			pairs.add(new BasicNameValuePair("data[CityMessage][body]", message.getMessage()));
+			pairs.add(new BasicNameValuePair("data[CityMessage][city_id]", city.getId()));
+
+			httpPost.setEntity(new UrlEncodedFormEntity(pairs));
+
+			XMLReader reader = getParser().getXMLReader();
+
+			PostHandler handler = new PostHandler();
+			reader.setContentHandler(handler);
+
+			String response = httpClient.execute(httpPost, new BasicResponseHandler());
+			InputSource input = new InputSource();
+			input.setCharacterStream(new StringReader(response));
+			reader.parse(input);
+		
+			String result = handler.getResult();
+
+			return result;
+
+		} catch (Exception e) {
+			Log.e("TheLuvExchange", "WebServiceError", e);
+			return "Error: " + e;
+		
+		}
 	}
 }

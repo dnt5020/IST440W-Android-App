@@ -48,5 +48,8 @@
    <string name="disc">"Disc: "</string>
    <string name="near">"Near: "</string>
    <string name="votes">"Votes: "</string>
+   <string name="checkin">Check In</string>
+   <color name="Black">#372c24</color>
+   <color name="White">#ffffff</color>
   
 </resources>
