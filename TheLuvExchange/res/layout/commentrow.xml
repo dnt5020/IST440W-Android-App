@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/textViewNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="1." 
+        android:textAppearance="?android:attr/textAppearanceLarge"
+         android:textColor="#372c24"/>
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/textViewNo"
+        android:text="Username"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+         android:textColor="#372c24" />
+
+    <TextView
+        android:id="@+id/textViewMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewUsername"
+        android:layout_marginTop="18dp"
+        android:layout_toRightOf="@+id/textViewNo"
+        android:text="Message"
+        android:textAppearance="?android:attr/textAppearanceLarge" 
+         android:textColor="#372c24"/>
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewMessage"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:text="time" 
+        android:textAppearance="?android:attr/textAppearanceLarge"
+         android:textColor="#372c24"/>
+   
+</RelativeLayout>

@@ -133,7 +133,7 @@ public class CityMenu extends Activity {
         		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Whos in town")){
         			 
         			 // Add activity here
-//            		 startActivity(new Intent(activity, Whos_in_town.class));
+                  startActivity(new Intent(activity, Whos_in_town.class));
 
         		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("About App")){
         			 //startActivity(new Intent(activity, AboutApp.class));
