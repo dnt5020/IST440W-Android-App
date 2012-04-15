@@ -51,5 +51,6 @@
    <string name="checkin">Check In</string>
    <color name="Black">#372c24</color>
    <color name="White">#ffffff</color>
+   <string name="Addcomm">Add comment</string>
   
 </resources>

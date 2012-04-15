@@ -14,12 +14,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Whos_in_town extends Activity{
 	private Activity activity = this;
 	private TheLuvExchange application = null;
 	private List<Comment> commentList = null;
 	private City city;
+	User user;
+	AddMessage message=new AddMessage();
+	String result;
 	 
 		public void onCreate(Bundle savedInstanceState) {
 		        super.onCreate(savedInstanceState);
@@ -34,17 +38,42 @@ public class Whos_in_town extends Activity{
 		        listViewRestaurants.setAdapter(new CommentAdapter());
 		        listViewRestaurants.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		        
-		        Button checkin = (Button)findViewById(R.id.checkinbtn);
+		        Button addcom = (Button)findViewById(R.id.addcominbtn);
+				addcom.setOnClickListener(onCom);
+				Button checkin = (Button)findViewById(R.id.checkinbtn);
 				checkin.setOnClickListener(onCheckIn);
+		 
+				
 		 }
 		 
 		 
-		 private View.OnClickListener onCheckIn = new View.OnClickListener() {
+		 private View.OnClickListener onCom = new View.OnClickListener() {
 				public void onClick(View v) {
 					
 					 startActivity(new Intent(activity, AddCommentActivity.class));
 				}
 		};
+		
+		 private View.OnClickListener onCheckIn = new View.OnClickListener() {
+				public void onClick(View v) {
+					
+					message.setMessage("Checked in");
+					TheLuvExchange application = (TheLuvExchange)getApplication();		
+					city=application.getCity();
+					user= application.getUser();
+					result= WebService.postMessage(user, message, city);
+					if(result=="success")
+					{
+						Toast.makeText(activity, "You have successfully checked in",Toast.LENGTH_LONG).show();
+						 startActivity(new Intent(activity, Whos_in_town.class));
+							}else
+				    {
+				    	Toast.makeText(activity, "Error in checking in",Toast.LENGTH_LONG).show();
+				    }
+					
+				}
+
+				};
 		
 		 private class CommentAdapter extends ArrayAdapter<Comment> {
 

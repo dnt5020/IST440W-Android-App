@@ -17,21 +17,31 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:gravity="center" />
-
-    <Button
-        android:id="@+id/checkinbtn"
-        android:layout_width="134dp"
-        android:layout_height="wrap_content"
-        android:layout_x="83dp"
-        android:layout_y="428dp"
-        android:text="@string/checkin" />
     <ListView
         android:id="@+id/commentlistView1"
         android:layout_width="fill_parent"
         android:layout_height="372dp"
         android:layout_x="3dp"
-        android:layout_y="58dp" >
+        android:layout_y="58dp"
+         android:cacheColorHint="#ffffff"
+     >
 
     </ListView>
+
+    <Button
+        android:id="@+id/addcominbtn"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:layout_x="180dp"
+        android:layout_y="430dp"
+        android:text="@string/Addcomm" />
+
+    <Button
+        android:id="@+id/checkinbtn"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_x="21dp"
+        android:layout_y="430dp"
+        android:text="@string/checkin" />
     
 </AbsoluteLayout>
