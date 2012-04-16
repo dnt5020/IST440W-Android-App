@@ -37,7 +37,7 @@
             android:label="@string/Weather" >
         </activity>
         <activity
-            android:name=".Restaurants"
+            android:name=".PicksDisplay"
             android:label="@string/restaurants" >
         </activity>
         <activity

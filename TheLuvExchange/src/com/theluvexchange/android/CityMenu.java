@@ -122,14 +122,14 @@ public class CityMenu extends Activity {
         	 public void onItemClick(AdapterView<?> parent, View view,
         	          int position, long id) {
         		 
-        		 if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Things To Do")){
-            		 startActivity(new Intent(activity, ThingsToDo.class));
-
-        		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Restaurants")){
-            		 startActivity(new Intent(activity, Restaurants.class));
-
-        		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("Airport Eats")){
-            		 startActivity(new Intent(activity, AirportEats.class));
+        		 String itemClicked = ((String)menuList.get(position).get(MENUITEM));
+        		 if(itemClicked.equalsIgnoreCase("Things To Do") || itemClicked.equalsIgnoreCase("Restaurants") || itemClicked.equalsIgnoreCase("Airport Eats")){
+        			 
+        			 Intent intent = new Intent(activity, PicksDisplay.class);
+        			 
+        			// Pass Pick to the PickComments activity
+	        		 intent.putExtra("MenuSelected", itemClicked);
+            		 startActivity(intent);
 
         		 } else if(((String)menuList.get(position).get(MENUITEM)).equalsIgnoreCase("City Gallery")){
             		 startActivity(new Intent(activity, IndivGallery.class));
