@@ -778,7 +778,7 @@ public class WebService {
 	 * @param photo object to get image for
 	 * @return Drawable of full size image
 	 */
-	public static Drawable getFullSizeImage(AlbumPhoto photo) {
+	public static Drawable getFullSizeImage(String filename) {
 		Drawable image = null;
 		/*if (images != null && photos != null) {
 			image = images.get(photos.indexOf(photo));
@@ -789,7 +789,7 @@ public class WebService {
 
 		try {
 			URL url = new URL("http://www.theluvexchange.com/files/photos/raw/"
-					+ photo.getFilename());
+					+ filename);
 			InputStream inputStream = (InputStream) url.getContent();
 			image = Drawable.createFromStream(inputStream, "image");
 		} catch (Exception e) {

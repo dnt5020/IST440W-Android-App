@@ -57,7 +57,7 @@ public class Login extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-
+		setContentView(R.layout.main);
 
 		activity = this;
 		savedUser = getPreferences(MODE_PRIVATE);
@@ -70,7 +70,7 @@ public class Login extends Activity {
 			//startActivity(new Intent(activity, Splash.class));
 		}
 
-		setContentView(R.layout.main);
+		
 
 		userNameField = (EditText)findViewById(R.id.editTextUsername);
 		passwordField = (EditText)findViewById(R.id.editTextPassword);
