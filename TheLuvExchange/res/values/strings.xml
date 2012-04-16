@@ -54,5 +54,8 @@
    <string name="Addcomm">Add comment</string>
       <string name="add_vote">Add Vote</string>
          <string name="change_city">Change City</string>
+         <string name="Popularity">Popularity</string>
+         <string name="rating2">Rating</string>
+         <string name="latest">Latest</string>
   
 </resources>

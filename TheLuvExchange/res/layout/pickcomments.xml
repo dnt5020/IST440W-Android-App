@@ -92,16 +92,19 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:text="Add Vote" android:background="@drawable/bg_vote" android:textColor="#ffffff"/>
+            android:background="@drawable/bg_vote"
+            android:text="Add Vote"
+            android:textColor="#ffffff" android:layout_marginLeft="70dp"/>
 
         <Button
             android:id="@+id/MapButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textViewPickLocation"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/map" />
+            android:layout_alignBaseline="@+id/AddVoteButton"
+            android:layout_alignBottom="@+id/AddVoteButton"
+            android:layout_toRightOf="@+id/AddVoteButton"
+            android:background="@drawable/map" android:layout_marginLeft="50dp"/>
 
     </RelativeLayout>
     

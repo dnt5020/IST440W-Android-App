@@ -26,7 +26,65 @@
         android:textColor="#372c24"
         
         android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center" android:padding="5dp" android:textStyle="bold"/>
-    
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:gravity="center_vertical|center_horizontal" android:padding="5dp">
+
+        <TextView
+            android:id="@+id/textViewPopularity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Popularity"
+            android:textColor="#372c24" android:onClick="onClickPopularity" android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textViewPopularity"
+            android:layout_alignBottom="@+id/textViewPopularity"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/textViewPopularity"
+            android:text="|" 
+            android:textColor="#372c24"/>
+
+          <TextView
+            android:id="@+id/textViewLatest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView1"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/textView1"
+            android:text="@string/latest"
+            android:textColor="#372c24" />
+          
+        
+         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textViewLatest"
+            android:layout_alignBottom="@+id/textViewLatest"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/textViewLatest"
+            android:text="|" 
+            android:textColor="#372c24"/>
+         
+        <TextView
+            android:id="@+id/textViewRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/textView2"
+            android:text="@string/rating2"
+            android:textColor="#372c24" />
+
+    </RelativeLayout>
     
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/picksList"
