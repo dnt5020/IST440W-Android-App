@@ -176,7 +176,7 @@ public class AirportEats extends Activity {
 				 * for it's address or telephone number. Although it does have ratings.
 				 */
 				
-				textViewAddress.setText(city.getAirport().toString());
+				textViewAddress.setText(city.getAirport());
 				textViewName.setText(restaurant.getName());
 				textViewPhoneNumber.setText(restaurant.getPhone());
 				textViewNumber.setText(Integer.toString(restaurant.getSerialNumber()) + ".");

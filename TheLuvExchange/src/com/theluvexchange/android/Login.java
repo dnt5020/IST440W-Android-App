@@ -153,10 +153,9 @@ public class Login extends Activity {
 
 				TheLuvExchange application = (TheLuvExchange)getApplication();
 				application.setUser(user);
-
-				if (rememberMe.isChecked()) {
-					user.save(editor);
-				}
+				
+				user.save(editor, rememberMe.isChecked());
+				
 				showCityPopUp();
 				//startActivity(new Intent(activity, Splash.class));
 			} else {

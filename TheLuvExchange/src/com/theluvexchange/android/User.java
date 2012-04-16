@@ -51,8 +51,8 @@ public class User {
 		this.message = message;
 	}
 	
-	public void save(Editor editor) {
-		editor.putBoolean("remember", true);
+	public void save(Editor editor, boolean remember) {
+		editor.putBoolean("remember", remember);
 		editor.putString("username", userName);
 		editor.putString("userid", userId);
 		editor.putString("code", code);

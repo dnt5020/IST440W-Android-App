@@ -60,13 +60,23 @@ public class Pick implements Serializable {
 		return latitude;
 	}
 	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+		try {
+			Double.parseDouble(latitude);
+			this.latitude = latitude;
+		} catch (NumberFormatException e) {
+			Log.e("PickLatitudeFormat", "Latitude was set with non-numeric value");
+		}
 	}
 	public String getLongitude() {
 		return longitude;
 	}
 	public void setLongitude(String longitude) {
-		this.longitude = longitude;
+		try {
+			Double.parseDouble(longitude);
+			this.longitude = longitude;
+		} catch (NumberFormatException e) {
+			Log.e("PickLongitudeFormat", "Longitude was set with non-numeric value");
+		}
 	}
 	public String getDiscounts() {
 		return discounts;
