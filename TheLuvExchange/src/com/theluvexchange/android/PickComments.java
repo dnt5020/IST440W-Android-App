@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,10 @@ public class PickComments extends Activity {
 	private TheLuvExchange application = null;
 	private City city;
 
+	TextView textViewRating;
+	TextView textViewLatest;
+	
+	ListView listViewRatings;
 
 	private Activity activity = this;
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,14 +49,21 @@ public class PickComments extends Activity {
 
 		// get the selected Pick passed through the intent 
 		pickSelected = (Pick) getIntent().getSerializableExtra("Pick");
+		
+		textViewRating = (TextView) findViewById(R.id.textViewRating);
+		textViewLatest = (TextView) findViewById(R.id.textViewLatest);
 
 
 		// List containing all the ratings
 		ratingsList  = new ArrayList<Rating>();
-		ratingsList.addAll(WebService.getRatings(pickSelected));
+		
+		// By default, the list is sorted by Rating
+		textViewRating.setTypeface(null, Typeface.BOLD);
+		textViewLatest.setTypeface(null, Typeface.NORMAL);
+		ratingsList.addAll(WebService.getRatings(pickSelected, "rating_avg", "desc"));
+				
 
-
-		ListView listViewRatings = (ListView)findViewById(R.id.pickCommentsList);
+		listViewRatings = (ListView)findViewById(R.id.pickCommentsList);
 
 		// Set the title to the restaurant name
 		TextView textViewPickCommentTitle = (TextView) findViewById(R.id.textViewPickCommentTitle);
@@ -111,15 +123,39 @@ public class PickComments extends Activity {
 
 		});
 
-		//		        addVote.setOnClickListener(new OnClickListener(){
-		//		        	 public void onClick(View view) {
-		//		        		 Intent intent = new Intent(activity, PickVote.class);
-		//		 	            startActivity(intent);
-		//		        	        
-		//		        	 }
-		//
-		//		        });
+		textViewRating.setOnClickListener(new View.OnClickListener() {
 
+			public void onClick(View v) {
+				ratingsList.clear();
+
+				// the list is sorted by Rating
+				textViewRating.setTypeface(null, Typeface.BOLD);
+				textViewLatest.setTypeface(null, Typeface.NORMAL);
+				ratingsList.addAll(WebService.getRatings(pickSelected, "viewer_rating", "desc"));
+						
+
+				// Refresh list view
+				listViewRatings.invalidateViews();
+			
+			}
+		});
+		
+		textViewLatest.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				ratingsList.clear();
+
+				// Sorted by Latest
+				textViewRating.setTypeface(null, Typeface.NORMAL);
+				textViewLatest.setTypeface(null, Typeface.BOLD);
+				ratingsList.addAll(WebService.getRatings(pickSelected, "created", "desc"));
+
+				
+				// Refresh list view
+				listViewRatings.invalidateViews();
+				
+			}
+		});
 
 		// Set the discount available text view
 		TextView textViewPickDiscount = (TextView) findViewById(R.id.textViewDiscountBool);

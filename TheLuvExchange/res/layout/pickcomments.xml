@@ -26,6 +26,47 @@
                             android:textColor="#372c24"
         
         android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center" android:padding="5dp" android:textStyle="bold"/>
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:gravity="center_vertical|center_horizontal" android:padding="5dp">
+
+         <TextView
+            android:id="@+id/textViewRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:layout_marginLeft="5dp"
+            android:text="@string/rating2"
+            android:textColor="#372c24" />
+         
+          
+         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textViewRating"
+            android:layout_alignBottom="@+id/textViewRating"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/textViewRating"
+            android:text="|" 
+            android:textColor="#372c24"/>
+         
+         <TextView
+              android:id="@+id/textViewLatest"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="5dp"
+              android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+                        android:layout_toRightOf="@+id/textView2"
+            
+              android:text="@string/latest"
+              android:textColor="#372c24" />
+        
+       
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"

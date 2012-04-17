@@ -59,37 +59,43 @@ public class Login extends Activity {
 
 		setContentView(R.layout.main);
 
-		activity = this;
-		savedUser = getPreferences(MODE_PRIVATE);
-		boolean ping = WebService.ping();
-		if (ping && savedUser.getBoolean("remember", false)) {
-			User user = new User(savedUser);
-			TheLuvExchange application = (TheLuvExchange)getApplication();
-			application.setUser(user);
+		// If intent asking to display city popup. Default is false
+		if(getIntent().getBooleanExtra("ShowCity", false)){
 			showCityPopUp();
-			//startActivity(new Intent(activity, Splash.class));
-		}
-
+		} else {
 		
-
-		userNameField = (EditText)findViewById(R.id.editTextUsername);
-		passwordField = (EditText)findViewById(R.id.editTextPassword);
-		rememberMe = (CheckBox)findViewById(R.id.rememberCheckbox);
-
-
-		// Testing -- next line edited by Niranjan
-		userNameField = (EditText)findViewById(R.id.editTextUsername);
-
-
-		Button login = (Button)findViewById(R.id.btnLogin);
-		login.setOnClickListener(onLogin);
-
-		TextView register = (TextView)findViewById(R.id.link_to_register);
-		register.setOnClickListener(onRegister);
-
-		if (!ping) {
-			Toast.makeText(activity, "Problem connecting to login service.",
-					Toast.LENGTH_LONG).show();
+			activity = this;
+			savedUser = getPreferences(MODE_PRIVATE);
+			boolean ping = WebService.ping();
+			if (ping && savedUser.getBoolean("remember", false)) {
+				User user = new User(savedUser);
+				TheLuvExchange application = (TheLuvExchange)getApplication();
+				application.setUser(user);
+				showCityPopUp();
+				//startActivity(new Intent(activity, Splash.class));
+			}
+	
+			
+	
+			userNameField = (EditText)findViewById(R.id.editTextUsername);
+			passwordField = (EditText)findViewById(R.id.editTextPassword);
+			rememberMe = (CheckBox)findViewById(R.id.rememberCheckbox);
+	
+	
+			// Testing -- next line edited by Niranjan
+			userNameField = (EditText)findViewById(R.id.editTextUsername);
+	
+	
+			Button login = (Button)findViewById(R.id.btnLogin);
+			login.setOnClickListener(onLogin);
+	
+			TextView register = (TextView)findViewById(R.id.link_to_register);
+			register.setOnClickListener(onRegister);
+	
+			if (!ping) {
+				Toast.makeText(activity, "Problem connecting to login service.",
+						Toast.LENGTH_LONG).show();
+			}
 		}
 	}
 

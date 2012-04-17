@@ -102,7 +102,7 @@ public class PickVote extends Activity {
 
 	private boolean validateFields() {
 		
-		if(comment.getText()==null)
+		if(comment.getText().length() == 0)
 			return false;
 		else
 			return true;

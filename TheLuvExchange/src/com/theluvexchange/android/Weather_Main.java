@@ -32,16 +32,15 @@ public class Weather_Main extends Activity {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.weatherscreen);
 			
-			
 			TheLuvExchange application = (TheLuvExchange)getApplication();	 	 
 	 	 	city = application.getCity();
 	 	 		 	 	
-	 	   // Set Header to selected city name
-	        TextView cityName = (TextView)findViewById(R.id.header);
-	        cityName.setText(city.getName());
+//	 	   // Set Header to selected city name
+//	        TextView cityName = (TextView)findViewById(R.id.header);
+//	        cityName.setText(city.getName());
 	  
-	 	 	
-			weatherO=(WebService.getWeather(city));
+	 	 	 
+			weatherO=(WebService.getWeather(city)); 
 			setText(city.getName(),R.id.citySelected);
 	 	    setText(" "+weatherO.getWeatherCurrentCondition().getTempF()+" �F",R.id.currentF);
 	 	    setText(" "+weatherO.getWeatherCurrentCondition().getHumidity()+" %",R.id.humidity);
@@ -68,6 +67,8 @@ public class Weather_Main extends Activity {
 	 	    setImage(weatherO.getWeatherForecastConditions().get(2).getIconURL(),R.id.weather_image2);
 	 	    setImage(weatherO.getWeatherForecastConditions().get(3).getIconURL(),R.id.weather_image3);
 	 	  */
+	 	    
+	 	    this.setVisible(true);
 	 	     
 }
 		catch (Exception e) {
