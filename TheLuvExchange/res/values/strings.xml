@@ -57,5 +57,6 @@
          <string name="Popularity">Popularity</string>
          <string name="rating2">Rating</string>
          <string name="latest">Latest</string>
+         <string name="exception_message">exception_message</string>
   
 </resources>

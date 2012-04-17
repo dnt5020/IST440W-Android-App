@@ -55,17 +55,17 @@ public class ImageUpload extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.imageupload);
 		
-//		//added for LUV
-//		TheLuvExchange application = (TheLuvExchange)getApplication();
-//		user = application.getUser();
-//		city = application.getCity();
-//		//
-//
-//		imgView = (ImageView) findViewById(R.id.ImageView);
-//		upload = (Button) findViewById(R.id.Upload);
-//		caption = (EditText) findViewById(R.id.Caption);
+		//added for LUV
+		TheLuvExchange application = (TheLuvExchange)getApplication();
+		user = application.getUser();
+		city = application.getCity();
+		//
+
+		imgView = (ImageView) findViewById(R.id.ImageView);
+		upload = (Button) findViewById(R.id.Upload);
+		caption = (EditText) findViewById(R.id.Caption);
 //		upload.setOnClickListener(new View.OnClickListener() {
-//
+
 //			public void onClick(View v) {
 //				if (bitmap == null) {
 //					Toast.makeText(getApplicationContext(),
@@ -167,6 +167,11 @@ public class ImageUpload extends Activity {
 //					int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 //					cursor.moveToFirst();
 //					return cursor.getString(column_index);
+//				}
+//
+//				public void execute() {
+//					// TODO Auto-generated method stub
+//					
 //				}
 //
 //				@Override

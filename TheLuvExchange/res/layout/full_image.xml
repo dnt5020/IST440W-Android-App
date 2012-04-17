@@ -7,5 +7,16 @@
     <ImageView android:id="@+id/full_image_view"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>
+
+    <RatingBar
+        android:id="@+id/ratingBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+     <Button android:layout_width="wrap_content" 
+         android:id="@+id/Submit"
+		android:layout_height="wrap_content" 
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentBottom="true" 
+		android:text="Submit" />
  
 </LinearLayout>
