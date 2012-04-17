@@ -47,7 +47,7 @@ public class IndivGallery extends Activity
 
 		addPhotoButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				startActivity(new Intent(activity, ImageUploader.class));
+				startActivity(new Intent(activity, ImageUpload.class));
 			}
 		});
 
