@@ -62,9 +62,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImageUploader" >
-           
-        </activity>
+        <activity 
+            android:name=".ImageUpload">
+       </activity>
+       
         <activity
             android:name=".Login"
             android:label="@string/app_name" >

@@ -610,11 +610,11 @@ public class WebService {
 	/**
 	 * For posting a rating to a photo.
 	 * @param user object
-	 * @param photo AlbumPhoto object to post rating to
+	 * @param id AlbumPhoto object to post rating to
 	 * @param rating as a number between 1 and 5
 	 * @return string that will be the word success or an error message
 	 */
-	public static String postRating(User user, AlbumPhoto photo, Integer rating) {
+	public static String postRating(User user, String id, Integer rating) {
 
 		HttpClient httpClient = new DefaultHttpClient();
 
@@ -627,7 +627,7 @@ public class WebService {
 		HttpPost httpPost = new HttpPost(address.toString());
 		try {
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>(2);
-			pairs.add(new BasicNameValuePair("data[Rating][item_id]", photo.getId()));
+			pairs.add(new BasicNameValuePair("data[Rating][item_id]", id));
 			pairs.add(new BasicNameValuePair("data[Rating][rating]", rating.toString()));
 
 			httpPost.setEntity(new UrlEncodedFormEntity(pairs));

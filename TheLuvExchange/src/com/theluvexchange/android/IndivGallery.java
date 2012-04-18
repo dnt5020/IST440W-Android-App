@@ -43,7 +43,7 @@ public class IndivGallery extends Activity
 		gridview.setAdapter(new ImageAdapter(this, photosData));
 
 
-		Button addPhotoButton = (Button)findViewById(R.id.button1); 
+		Button addPhotoButton = (Button)findViewById(R.id.addphoto); 
 
 		addPhotoButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
@@ -64,8 +64,10 @@ public class IndivGallery extends Activity
 					// Sending image id to FullScreenActivity
 					Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
 					// passing array index
-					i.putExtra("id", position);
-					i.putExtra("photo", photosData.get(position).getFilename());
+					AlbumPhoto photo = photosData.get(position);
+					i.putExtra("id", photo.getId());
+					i.putExtra("photo", photo.getFilename());
+					i.putExtra("rating", photo.getViewerRating());
 					startActivity(i);
 				}
 				catch (Exception e)
