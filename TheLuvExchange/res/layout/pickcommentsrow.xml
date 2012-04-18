@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -50,6 +50,16 @@
             android:layout_centerHorizontal="true"
             android:text="Jan 1"
             android:textColor="#BDB5B5" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/textViewUserCommentBody"
+            android:src="@drawable/back" 
+                        android:layout_marginLeft="10dp"
+            />
 
     </RelativeLayout>
 

@@ -3,12 +3,19 @@ package com.theluvexchange.android;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.theluvexchange.android.R.id;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils.TruncateAt;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -110,6 +117,7 @@ public class PicksDisplay extends Activity {
 
 				TextView textViewPickTitle = (TextView) findViewById(R.id.textViewPickTitle);
 				intent.putExtra("Title", textViewPickTitle.getText());
+				intent.putExtra("MenuSelected", itemClicked);
 
 				startActivity(intent);
 
@@ -238,6 +246,7 @@ public class PicksDisplay extends Activity {
 						.findViewById(R.id.textViewPickAddress);
 				textViewName = (TextView) row
 						.findViewById(R.id.textViewPickName);
+				textViewName.setEllipsize(TruncateAt.END);
 				textViewPhoneNumber = (TextView) row
 						.findViewById(R.id.textViewPickPhoneNumber);
 				textViewVoteCount = (TextView) row
@@ -267,6 +276,54 @@ public class PicksDisplay extends Activity {
 
 		}
 
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.options_menu_other, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case R.id.itemAbout:
+
+			break;
+		case R.id.itemLogout:
+
+			
+			SharedPreferences savedUser = getPreferences(MODE_PRIVATE);
+			Editor editor = savedUser.edit();
+			
+			User user = application.getUser();
+			user.save(editor, false);
+			application.setUser(null); 
+			application.setCity(null);
+			
+//			editor.clear();
+//			editor.commit();
+			
+			startActivity(new Intent(activity, Login.class));
+
+			break;
+		case R.id.itemChangeCity:
+
+			Intent intent = new Intent(activity, Login.class);
+
+			// Pass Pick to the Login activity to display the cities pop up
+			intent.putExtra("ShowCity", true);
+			startActivity(intent);
+			
+			break;
+			
+		case R.id.itemMainMenu:
+			
+			startActivity(new Intent(activity, CityMenu.class));
+			break;
+		}
+		return false;
 	}
 
 }

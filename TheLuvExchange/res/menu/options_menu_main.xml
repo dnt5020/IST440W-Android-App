@@ -3,7 +3,6 @@
     <item android:id="@+id/itemChangeCity" android:title="@string/change_city" android:icon="@android:drawable/ic_menu_mapmode"></item><item android:id="@+id/itemLogout" android:icon="@android:drawable/ic_lock_power_off" android:title="Logout"></item>
     
     <item android:id="@+id/itemAbout" android:icon="@android:drawable/ic_menu_info_details" android:title="About"></item>
-    <item android:id="@+id/itemMainMenu" android:title="Main Menu"></item>
     
 
 </menu>

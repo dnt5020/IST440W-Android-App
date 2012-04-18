@@ -203,7 +203,7 @@ public class CityMenu extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.options_menu, menu);
+		getMenuInflater().inflate(R.menu.options_menu_main, menu);
 		return true;
 	}
 
@@ -222,7 +222,7 @@ public class CityMenu extends Activity {
 			
 			User user = application.getUser();
 			user.save(editor, false);
-			application.setUser(null);
+			application.setUser(null); 
 			application.setCity(null);
 			
 //			editor.clear();

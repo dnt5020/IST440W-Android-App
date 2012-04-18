@@ -30,11 +30,12 @@
             android:layout_marginLeft="25dp"
             android:layout_toRightOf="@+id/textViewPickSerialNumber"
          
-            android:text="Restaurant - Flintstones"
+            android:text="Restaurant - Flintstones  sdnjsndjsndjsndjsjs"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#003684"
             android:textStyle="bold" 
-            android:maxWidth="200dp"/>
+            android:maxWidth="200dp"
+            android:singleLine="true" android:paddingBottom="5dp"/>
 
         <TextView
             android:id="@+id/textViewPickAddress"
