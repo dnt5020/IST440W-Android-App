@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android" -->
+<!-- android:layout_width="fill_parent" -->
+<!-- android:layout_height="fill_parent" -->
+<!-- android:padding="10dip" -->
+<!-- android:orientation="vertical" -->
+<!-- android:scrollbars="vertical" -->
+<!-- android:scrollbarAlwaysDrawVerticalTrack="true" android:background="@drawable/commentbg" android:paddingTop="200dip"> -->
+
+<!-- <TextView -->
+<!-- android:id="@+id/about_content" -->
+<!-- android:layout_width="wrap_content" -->
+<!-- android:layout_height="wrap_content" -->
+<!-- android:text="@string/about_text" -->
+<!-- android:layout_gravity="center_horizontal" -->
+<!-- android:layout_marginTop="200dp" -->
+<!-- android:maxHeight="100dip"> -->
+<!-- </TextView> -->
+
+<!-- </ScrollView> -->
+
+<!-- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="fill_parent" > -->
+
+<!--     <ImageView -->
+<!--         android:id="@+id/imageView1" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:background="@drawable/about_header" -->
+<!--         android:src="@drawable/about_header" /> -->
+
+<!-- <ScrollView -->
+<!--     xmlns:android="http://schemas.android.com/apk/res/android" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="fill_parent" -->
+<!--     android:orientation="vertical" -->
+<!--     android:padding="10dip" -->
+<!--     android:paddingTop="200dip" -->
+<!--     android:scrollbarAlwaysDrawVerticalTrack="true" -->
+<!--     android:scrollbars="vertical" > -->
+
+<!--     <TextView -->
+<!--         android:id="@+id/about_content" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_gravity="center_horizontal" -->
+<!--         android:layout_marginTop="200dp" -->
+<!--         android:background="@drawable/about_footer" -->
+<!--         android:maxHeight="100dip" -->
+<!--         android:text="@string/about_text" > -->
+<!--     </TextView> -->
+<!-- </ScrollView> -->
+<!-- </LinearLayout> -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" android:background="@drawable/about_header"/>
+        
+        <TextView
+            android:id="@+id/about_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/imageView1"
+            android:background="@drawable/about_footer"
+            android:text="@string/about_text" 
+            android:maxLines="15"
+            android:scrollbars="vertical" android:textColor="@color/White"/>
+
+    </RelativeLayout>
+</LinearLayout>

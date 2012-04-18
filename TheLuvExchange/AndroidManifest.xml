@@ -16,6 +16,11 @@
             android:name=".Cities"
             android:label="@string/cities" >
         </activity>
+        <activity
+            android:name=".AboutApp"
+            android:label="@string/about_title"
+            android:theme="@android:style/Theme.Dialog">
+        </activity>
          <activity
             android:name=".PickVote"
             android:label="@string/add_vote" >

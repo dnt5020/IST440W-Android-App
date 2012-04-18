@@ -123,6 +123,13 @@ public class PickVote extends Activity {
 
 		switch (item.getItemId()) {
 		case R.id.itemAbout:
+			/*
+			 * Note by: Pranav
+			 * Description: Added call to About class
+			 * --Check call
+			 */
+			Intent i = new Intent(this, AboutApp.class);
+			startActivity(i);
 
 			break;
 		case R.id.itemLogout:
