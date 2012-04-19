@@ -224,11 +224,11 @@ public class CityMenu extends Activity {
 		case R.id.itemLogout:
 
 			
-			SharedPreferences savedUser = getPreferences(MODE_PRIVATE);
+			SharedPreferences savedUser = getSharedPreferences("Login", MODE_PRIVATE);
 			Editor editor = savedUser.edit();
 			
 			User user = application.getUser();
-			user.save(editor, false);
+			user.clear(editor);
 			application.setUser(null); 
 			application.setCity(null);
 			

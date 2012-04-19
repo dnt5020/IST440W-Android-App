@@ -60,4 +60,10 @@ public class User {
 		editor.putString("message", message);
 		editor.commit();
 	}
+	
+	public void clear(Editor editor) {
+		editor.clear();
+		editor.putBoolean("remember", false);
+		editor.commit();
+	}
 }
