@@ -21,13 +21,17 @@ public class Whos_in_town extends Activity{
 	private TheLuvExchange application = null;
 	private List<Comment> commentList = null;
 	private City city;
+	TextView t;
 	User user;
 	AddMessage message=new AddMessage();
 	String result;
 	 
 		public void onCreate(Bundle savedInstanceState) {
-		        super.onCreate(savedInstanceState);
+				super.onCreate(savedInstanceState);
 		        setContentView(R.layout.whosintown);
+		        t=(TextView) findViewById(R.id.nomes);
+				t.setVisibility(View.INVISIBLE);
+		        
 		        application = (TheLuvExchange)this.getApplication();
 		        city=application.getCity();
 			    commentList  = new ArrayList<Comment>();
@@ -35,7 +39,13 @@ public class Whos_in_town extends Activity{
 			    ListView listViewRestaurants = (ListView)findViewById(R.id.commentlistView1);
 			    commentList.addAll(WebService.getComment(city));
 			    
-		        listViewRestaurants.setAdapter(new CommentAdapter());
+			    if (commentList.isEmpty()==true)
+			    {
+			    	
+			    	t.setVisibility(View.VISIBLE);
+			    }
+		       
+			    listViewRestaurants.setAdapter(new CommentAdapter());
 		        listViewRestaurants.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		        
 		        Button addcom = (Button)findViewById(R.id.addcominbtn);

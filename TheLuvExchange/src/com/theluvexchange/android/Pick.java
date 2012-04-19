@@ -22,6 +22,7 @@ public class Pick implements Serializable {
 	private String viewerRating;
 	private int serialNumber;
 	private String near;
+	private String comment;
 
 	public int getSerialNumber() {
 		return serialNumber;
@@ -137,6 +138,12 @@ public class Pick implements Serializable {
 	 */
 	public void setNear(String near) {
 		this.near = near;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 	

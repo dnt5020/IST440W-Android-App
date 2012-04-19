@@ -17,14 +17,14 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:gravity="center" />
-    <ListView
+
+    <ListView
         android:id="@+id/commentlistView1"
         android:layout_width="fill_parent"
-        android:layout_height="372dp"
+        android:layout_height="340dp"
         android:layout_x="3dp"
-        android:layout_y="58dp"
-         android:cacheColorHint="#ffffff"
-     >
+        android:layout_y="89dp"
+        android:cacheColorHint="#ffffff" >
 
     </ListView>
 
@@ -43,5 +43,35 @@
         android:layout_x="21dp"
         android:layout_y="430dp"
         android:text="@string/checkin" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="34dp"
+        android:layout_x="0dp"
+        android:layout_y="60dp" >
+
+        <TextView
+            android:id="@+id/nomes"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="23dp"
+            android:text="No messages"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/nomes"
+            android:layout_alignBottom="@+id/nomes"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="27dp"
+            android:text="Messages last 36 hours"
+            android:textColor="@color/Black" />
+
+    </RelativeLayout>
     
 </AbsoluteLayout>
