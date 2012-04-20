@@ -1,110 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    >
+    android:fillViewport="true" >
 
-<TextView
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff" >
+
+        <!-- Header  Starts -->
+
+        <TextView
             android:id="@+id/header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#003684"
             android:drawableLeft="@drawable/ic_launcher"
             android:drawablePadding="5dip"
+            android:gravity="center"
             android:padding="5dip"
             android:text="@string/app_name"
             android:textColor="#ffffff"
-            android:textSize="20sp"
-            android:gravity="center" />
+            android:textSize="20sp" />
+        <!-- Header Ends -->
 
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:orientation="vertical"
+            android:padding="10dip" >
 
+            <!-- Email Label -->
 
-<Button
-    android:id="@+id/button1"
-    android:layout_width="121dp"
-    android:layout_height="wrap_content"
-    android:layout_x="82dp"
-    android:layout_y="433dp"
-    android:text="Add" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:textColor="#372c24" />
 
-<TextView
-    android:id="@+id/textView1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_x="10dp"
-    android:layout_y="74dp"
-    android:text="Name:"
-    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <EditText
+                android:id="@+id/editTextPlaceName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:singleLine="true" />
 
-<TextView
-    android:id="@+id/textView2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_x="9dp"
-    android:layout_y="124dp"
-    android:text="Address:"
-    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <!-- Password Label -->
 
-<EditText
-    android:id="@+id/locaddr"
-    android:layout_width="215dp"
-    android:layout_height="89dp"
-    android:layout_x="86dp"
-    android:layout_y="120dp"
-    android:inputType="textPostalAddress" >
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Comment:"
+                android:textColor="#372c24" />
 
-    <requestFocus />
-</EditText>
+            <EditText
+                android:id="@+id/editTextPlaceComment"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:gravity="top"
+                android:lines="4"
+                android:singleLine="false" />
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Near:"
+                android:textColor="#372c24" />
 
-<EditText
-    android:id="@+id/locname"
-    android:layout_width="212dp"
-    android:layout_height="wrap_content"
-    android:layout_x="87dp"
-    android:layout_y="69dp" />
+            <EditText
+                android:id="@+id/editTextPlaceNear"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:singleLine="true" />
 
-<TextView
-    android:id="@+id/textView3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_x="9dp"
-    android:layout_y="222dp"
-    android:text="Phone #:"
-    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <CheckBox
+                android:id="@+id/placeDiscountCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discount"
+                android:textColor="#372c24" />
 
-<TextView
-    android:id="@+id/textView4"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_x="6dp"
-    android:layout_y="279dp"
-    android:text="Comment:"
-    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Rating:"
+                android:textColor="#372c24" />
+            
+            <RatingBar
+                android:id="@+id/addPlaceRating"
+                style="@style/MyCustomRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:numStars="5"
+                android:stepSize="1" />
 
-<EditText
-    android:id="@+id/loccomment"
-    android:layout_width="206dp"
-    android:layout_height="101dp"
-    android:layout_x="96dp"
-    android:layout_y="285dp"
-    android:inputType="textMultiLine" />
+            <Button
+                android:id="@+id/btnPlaceSubmit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text="Submit" />
+        </LinearLayout>
+    </RelativeLayout>
 
-<EditText
-    android:id="@+id/locno"
-    android:layout_width="198dp"
-    android:layout_height="wrap_content"
-    android:layout_x="96dp"
-    android:layout_y="221dp"
-    android:inputType="phone" />
-
-<CheckBox
-    android:id="@+id/checkBox1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_x="10dp"
-    android:layout_y="385dp"
-    android:text="Discount" />
-
-</AbsoluteLayout>
+</ScrollView>

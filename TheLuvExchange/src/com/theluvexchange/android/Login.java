@@ -75,16 +75,9 @@ public class Login extends Activity {
 				//startActivity(new Intent(activity, Splash.class));
 			}
 	
-			
-	
 			userNameField = (EditText)findViewById(R.id.editTextUsername);
 			passwordField = (EditText)findViewById(R.id.editTextPassword);
 			rememberMe = (CheckBox)findViewById(R.id.rememberCheckbox);
-	
-	
-			// Testing -- next line edited by Niranjan
-			userNameField = (EditText)findViewById(R.id.editTextUsername);
-	
 	
 			Button login = (Button)findViewById(R.id.btnLogin);
 			login.setOnClickListener(onLogin);

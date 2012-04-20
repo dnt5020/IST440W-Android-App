@@ -544,7 +544,7 @@ public class WebService {
 	 * If a Pick is returned, then the post was successful.
 	 * If the result is a String, then its an error message describing why it failed.
 	 */
-	private static Object postPick(User user, City city, String name, String comment,
+	public static Object postPick(User user, City city, String name, String comment,
 			String near, int rating, boolean discount, String location, String address,
 			String phone, int latitude, int longitude, int category) {
 

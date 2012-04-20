@@ -2,42 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="#ffffff" >
-    
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
     <TextView
-            android:id="@+id/header"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#003684"
-            android:drawableLeft="@drawable/ic_launcher"
-            android:drawablePadding="5dip"
-            android:padding="5dip"
-            android:text="@string/app_name"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
-            android:gravity="center" />
-    
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#003684"
+        android:drawableLeft="@drawable/ic_launcher"
+        android:drawablePadding="5dip"
+        android:gravity="center"
+        android:padding="5dip"
+        android:text="@string/app_name"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
     <TextView
         android:id="@+id/textViewPickTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
         android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#372c24"
-        
-        android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center" android:padding="5dp" android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:gravity="center_vertical|center_horizontal" android:padding="5dp">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="5dp" >
 
         <TextView
             android:id="@+id/textViewPopularity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="onClickPopularity"
             android:text="@string/Popularity"
-            android:textColor="#372c24" android:onClick="onClickPopularity" android:clickable="true"/>
+            android:textColor="#372c24" />
 
         <TextView
             android:id="@+id/textView1"
@@ -47,10 +53,10 @@
             android:layout_alignBottom="@+id/textViewPopularity"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/textViewPopularity"
-            android:text="|" 
-            android:textColor="#372c24"/>
+            android:text="|"
+            android:textColor="#372c24" />
 
-          <TextView
+        <TextView
             android:id="@+id/textViewLatest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,9 +66,8 @@
             android:layout_toRightOf="@+id/textView1"
             android:text="@string/latest"
             android:textColor="#372c24" />
-          
-        
-         <TextView
+
+        <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,9 +75,9 @@
             android:layout_alignBottom="@+id/textViewLatest"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/textViewLatest"
-            android:text="|" 
-            android:textColor="#372c24"/>
-         
+            android:text="|"
+            android:textColor="#372c24" />
+
         <TextView
             android:id="@+id/textViewRating"
             android:layout_width="wrap_content"
@@ -83,19 +88,24 @@
             android:layout_toRightOf="@+id/textView2"
             android:text="@string/rating2"
             android:textColor="#372c24" />
-
     </RelativeLayout>
-    
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/picksList"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    
-        android:background="#ffffff" 
-    android:textColor="#372c24"
-    android:cacheColorHint="#ffffff"
-    >
 
-</ListView>
+    <ListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/picksList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.0"
+        android:background="#ffffff"
+        android:cacheColorHint="#ffffff"
+        android:textColor="#372c24" >
+    </ListView>
+
+    <Button
+        android:id="@+id/btnAddPlace"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:text="Add New Place" />
 
 </LinearLayout>

@@ -3,8 +3,6 @@ package com.theluvexchange.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.theluvexchange.android.R.id;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,20 +10,18 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils.TruncateAt;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
 
 /**
  * @author Niranjan Singh
@@ -46,6 +42,7 @@ public class PicksDisplay extends Activity {
 	TextView textViewRating;
 	TextView textViewLatest;
 	String itemClicked;
+	private int type;
 
 	private Activity activity = this;
 
@@ -77,20 +74,20 @@ public class PicksDisplay extends Activity {
 		// Set the title
 		if (itemClicked.equalsIgnoreCase("Things To Do")) {
 			textViewPickTitle.setText("Things To Do");
-
+			type = WebService.THINGS_TO_DO;
 			// Call the WebService.getThings() method to populate the cities
 			// list. Default sorting- Popularity
 			picksList.addAll(WebService.getThings(user, city));
 
 		} else if (itemClicked.equalsIgnoreCase("Restaurants")) {
 			textViewPickTitle.setText("Restaurants");
-
+			type = WebService.RESTAURANTS;
 			// Call the WebService.getRestaurants() method to populate the cities
 			// list. Default sorting- Popularity
 			picksList.addAll(WebService.getRestaurants(user, city));
 		} else if (itemClicked.equalsIgnoreCase("Airport Eats")) {
 			textViewPickTitle.setText("Airport Eats");
-
+			type = WebService.AIRPORT_EATS;
 			// Call the WebService.getAirportEats() method to populate the cities
 			// list. Default sorting- Popularity
 			picksList.addAll(WebService.getAirportEats(user, city));
@@ -188,7 +185,15 @@ public class PicksDisplay extends Activity {
 				// Toast.LENGTH_LONG).show();
 			}
 		});
-
+		
+		Button addPlaceButton = (Button)findViewById(R.id.btnAddPlace);
+		addPlaceButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(activity, AddLocation.class);
+				intent.putExtra("type", type);
+				startActivity(intent);
+			}
+		});
 	}
 
 	private class RestaurantAdapter extends ArrayAdapter<Pick> {
