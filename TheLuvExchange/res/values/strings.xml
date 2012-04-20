@@ -60,5 +60,6 @@
          <string name="rating2">Rating</string>
          <string name="latest">Latest</string>
          <string name="exception_message">exception_message</string>
+         <string name="sitename">www.theluvexchange.com</string>
   
 </resources>

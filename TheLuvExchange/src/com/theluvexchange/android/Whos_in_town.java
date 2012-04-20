@@ -31,11 +31,16 @@ public class Whos_in_town extends Activity{
 		        setContentView(R.layout.whosintown);
 		        t=(TextView) findViewById(R.id.nomes);
 				t.setVisibility(View.INVISIBLE);
+				
 		        
 		        application = (TheLuvExchange)this.getApplication();
 		        city=application.getCity();
 			    commentList  = new ArrayList<Comment>();
-			        
+			     
+			    // Set Header to selected city name
+		        TextView cityName = (TextView)findViewById(R.id.header);
+		        cityName.setText(city.getName());
+		  
 			    ListView listViewRestaurants = (ListView)findViewById(R.id.commentlistView1);
 			    commentList.addAll(WebService.getComment(city));
 			    
@@ -127,13 +132,11 @@ public class Whos_in_town extends Activity{
 				
 			}
 			 class ViewHolder {
-					TextView textViewNumber = null;
 					TextView textViewName = null;
 					TextView textViewTime = null;
 					TextView textViewMessage = null;
 					
 					public ViewHolder (View row){
-						textViewNumber = (TextView) row.findViewById(R.id.textViewNo);
 						textViewName = (TextView) row.findViewById(R.id.textViewUsername);
 						textViewTime = (TextView) row.findViewById(R.id.textViewTime);
 						textViewMessage = (TextView) row.findViewById(R.id.textViewMessage);
@@ -143,7 +146,6 @@ public class Whos_in_town extends Activity{
 						textViewMessage.setText(message.getMessage());
 						textViewName.setText(message.getUsername());
 						textViewTime.setText(message.getTime());
-						textViewNumber.setText(Integer.toString(message.getSerialNumber()) + ".");
 								 
 					}
 					

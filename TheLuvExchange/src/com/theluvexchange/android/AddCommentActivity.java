@@ -3,7 +3,9 @@ package com.theluvexchange.android;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.widget.*;
 
 public class AddCommentActivity extends Activity {
@@ -18,9 +20,26 @@ public class AddCommentActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.addcomment);
+	       
 	        Button submit = (Button)findViewById(R.id.button1);
 			submit.setOnClickListener(onSubmit);
-	 }
+			
+			comment= (EditText)findViewById(R.id.comMessage);
+			comment.setOnKeyListener(new OnKeyListener() {
+
+		        public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+
+		                if (event.getAction() == KeyEvent.ACTION_DOWN
+		                        && event.getKeyCode() ==       KeyEvent.KEYCODE_ENTER) {
+		                   return true;
+		                } 
+		                
+		                return false;
+		        }
+		    });
+	
+	}
 	 
 	 
 	 private View.OnClickListener onSubmit = new View.OnClickListener() {

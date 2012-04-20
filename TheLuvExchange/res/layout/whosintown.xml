@@ -17,13 +17,13 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:gravity="center" />
-
+
     <ListView
         android:id="@+id/commentlistView1"
         android:layout_width="fill_parent"
-        android:layout_height="340dp"
+        android:layout_height="309dp"
         android:layout_x="3dp"
-        android:layout_y="89dp"
+        android:layout_y="117dp"
         android:cacheColorHint="#ffffff" >
 
     </ListView>
@@ -43,13 +43,25 @@
         android:layout_x="21dp"
         android:layout_y="430dp"
         android:text="@string/checkin" />
-
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="247dp"
+        android:layout_height="wrap_content"
+        android:layout_x="30dp"
+        android:layout_y="65dp"
+        android:gravity="center"
+        android:text="Who&apos;s in town?"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/Black"
+        android:textStyle="bold" />
+
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
         android:layout_height="34dp"
-        android:layout_x="0dp"
-        android:layout_y="60dp" >
+        android:layout_x="2dp"
+        android:layout_y="89dp" >
 
         <TextView
             android:id="@+id/nomes"
@@ -71,7 +83,6 @@
             android:layout_marginRight="27dp"
             android:text="Messages last 36 hours"
             android:textColor="@color/Black" />
-
     </RelativeLayout>
     
 </AbsoluteLayout>
