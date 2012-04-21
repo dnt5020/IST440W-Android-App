@@ -71,7 +71,7 @@ public class PickLocation extends MapActivity {
 			// add this overlay to the MapView and refresh it
 			List<Overlay> overlays = mapView.getOverlays();
 			overlays.add(tapOverlay);
-			// mapView.postInvalidate();
+			mapView.invalidate();
 
 			Button submitButton = (Button)findViewById(R.id.Submit);
 			submitButton.setOnClickListener(onSubmit);
@@ -86,9 +86,8 @@ public class PickLocation extends MapActivity {
 	private void zoomToMyLocation() {
 		if(locationGeoPoint != null) {
 			MapController mapController = mapView.getController();
-			// mapController.animateTo(locationGeoPoint);
+			mapController.animateTo(locationGeoPoint);
 			mapController.setZoom(5);
-			mapController.setCenter(locationGeoPoint);
 		} else {
 			Toast.makeText(this, "Cannot determine location", Toast.LENGTH_SHORT).show();
 		}

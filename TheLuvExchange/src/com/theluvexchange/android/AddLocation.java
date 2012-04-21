@@ -44,14 +44,15 @@ public class AddLocation extends Activity {
 			if (type != WebService.AIRPORT_EATS) {
 				startActivityForResult(new Intent(activity, PickLocation.class), 1);
 			}
+			
+			setContentView(R.layout.addlocation);
 
 			comment = (EditText)findViewById(R.id.editTextPlaceComment);
 			name = (EditText)findViewById(R.id.editTextPlaceName);
 			near = (EditText)findViewById(R.id.editTextPlaceNear);
-			discount = (CheckBox)findViewById(R.id.checkBoxDiscount);
+			discount = (CheckBox)findViewById(R.id.placeDiscountCheckbox);
 			rating = (RatingBar)findViewById(R.id.addPlaceRating);
-
-			setContentView(R.layout.addlocation);
+			
 			Button addButton = (Button)findViewById(R.id.btnPlaceSubmit);
 			addButton.setOnClickListener(onAdd);
 		} catch (Exception e) {
@@ -64,11 +65,12 @@ public class AddLocation extends Activity {
 			try {
 				Object result = WebService.postPick(user, city, name.getText().toString(), comment.getText().toString(),
 						near.getText().toString(), new Float(rating.getRating()).intValue(), discount.isChecked(), null,
-						address, null, latitude, longitude, type);
+						address, null, latitude / 1000000.0, longitude / 1000000.0, type);
 
 				if (result instanceof String) {
 					Toast.makeText(activity, (String)result, Toast.LENGTH_LONG);
 				} else {
+					Toast.makeText(activity, "Success", Toast.LENGTH_LONG);
 					activity.finish();
 				}
 			} catch (Exception e) {

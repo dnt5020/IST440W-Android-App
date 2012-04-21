@@ -546,7 +546,7 @@ public class WebService {
 	 */
 	public static Object postPick(User user, City city, String name, String comment,
 			String near, int rating, boolean discount, String location, String address,
-			String phone, int latitude, int longitude, int category) {
+			String phone, double latitude, double longitude, int category) {
 
 		Pick pick = new Pick();
 		pick.setName(name);
@@ -557,8 +557,8 @@ public class WebService {
 		pick.setLocation(location);
 		pick.setAddress(address);
 		pick.setPhone(phone);
-		pick.setLatitude(Integer.toString(latitude));
-		pick.setLongitude(Integer.toString(longitude));
+		pick.setLatitude(Double.toString(latitude));
+		pick.setLongitude(Double.toString(longitude));
 
 		HttpClient httpClient = new DefaultHttpClient();
 
@@ -577,8 +577,8 @@ public class WebService {
 			pairs.add(new BasicNameValuePair("data[Pick][near]", near)); // ?
 			pairs.add(new BasicNameValuePair("data[Pick][address]", address));
 			pairs.add(new BasicNameValuePair("data[Pick][phone]", phone));
-			pairs.add(new BasicNameValuePair("data[Pick][latitude]", Integer.toString(latitude)));
-			pairs.add(new BasicNameValuePair("data[Pick][longitude]", Integer.toString(longitude)));
+			pairs.add(new BasicNameValuePair("data[Pick][latitude]", Double.toString(latitude)));
+			pairs.add(new BasicNameValuePair("data[Pick][longitude]", Double.toString(longitude)));
 			pairs.add(new BasicNameValuePair("data[Pick][discounts]", discount ? "1" : "0"));
 			pairs.add(new BasicNameValuePair("data[Pick][category]", Integer.toString(category)));
 			pairs.add(new BasicNameValuePair("data[Pick][parent_id]", null));
