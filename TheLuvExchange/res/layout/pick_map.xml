@@ -3,12 +3,34 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+    <LinearLayout
+        android:id="@+id/searchAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true" >
+
+        <EditText
+            android:id="@+id/editTextAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/buttonAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Search" />
+    </LinearLayout>
+
     <com.google.android.maps.MapView
         android:id="@+id/mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@id/searchAddress"
         android:layout_above="@+id/Submit"
-        android:layout_alignParentTop="true"
         android:apiKey="0ap-lM_ys-FfPZa9SSsiBmj6JpR8cEpvV4IO3-g"
         android:clickable="true" />
 

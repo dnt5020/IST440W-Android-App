@@ -356,8 +356,8 @@ public class WebService {
 		return ratings;
 	}
 	/*added by Shibani Chadha 4/13
-	*/
-	
+	 */
+
 	public static List<Comment> getComment(City city) {
 		List<Comment> comments = null;
 
@@ -656,13 +656,13 @@ public class WebService {
 	 * @param city 
 	 * @return message
 	 */
-	
+
 	/*public static String postMessage(User user, AddMessage message, City city) {
 
-		
+
 	}*/
 
-	
+
 	/**
 	 * edited by Shibani Chadha 3/29 added getWeather
 	 * @param city
@@ -718,7 +718,7 @@ public class WebService {
 		}
 		return cityPhoto;
 	}
-	
+
 	/**
 	 * For getting photos for a city album
 	 * @param user object
@@ -904,9 +904,8 @@ public class WebService {
 	}
 	/*
 	 * added by Shibani Chadha 4/12
-*/
+	 */
 	public static String postMessage(User user, AddMessage message, City city) {
-		// TODO Auto-generated method stub
 		HttpClient httpClient = new DefaultHttpClient();
 
 		StringBuilder address = new StringBuilder(ADDRESS);
@@ -917,7 +916,7 @@ public class WebService {
 
 		HttpPost httpPost = new HttpPost(address.toString());
 		try {
-			
+
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>(2);
 			pairs.add(new BasicNameValuePair("data[CityMessage][body]", message.getMessage()));
 			pairs.add(new BasicNameValuePair("data[CityMessage][city_id]", city.getId()));
@@ -933,7 +932,7 @@ public class WebService {
 			InputSource input = new InputSource();
 			input.setCharacterStream(new StringReader(response));
 			reader.parse(input);
-		
+
 			String result = handler.getResult();
 
 			return result;
@@ -941,7 +940,41 @@ public class WebService {
 		} catch (Exception e) {
 			Log.e("TheLuvExchange", "WebServiceError", e);
 			return "Error: " + e;
-		
+
 		}
+	}
+
+	public static List<BuySellRent> getBuySellRent(City city, User user, int category) {
+
+		List<BuySellRent> buySellRent = null;
+
+		try {
+			// URL object used to create a connection to the cities XML page
+			URL url = new URL(ADDRESS + "assets/" + city.getId() + 
+					"/" + category + "/sort:Asset.created/direction:asc/viewer_id:" +
+					user.getUserId());
+
+			// SAX XMLReader object used for parsing the XML file
+			XMLReader reader = getParser().getXMLReader();
+
+			// SAXHandler class used for parsing the XML
+			BuySellRentHandler handler = new BuySellRentHandler();
+
+			// Set the XMLReader to use the SAXHandler for parsing rules
+			reader.setContentHandler(handler);
+
+			// Run the parsing
+			reader.parse(new InputSource(url.openStream()));
+
+			// Receive the list of City objects from the parse
+			buySellRent = handler.getBSRData();
+
+		} catch (Exception e) {
+			// Log error to be able to debug using LogCat
+			Log.e("TheLuvExchange", "WebServiceError", e);
+		}
+
+		// Return the list of cities
+		return buySellRent;
 	}
 }

@@ -2,6 +2,7 @@ package com.theluvexchange.android;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import android.app.Activity;
@@ -17,21 +18,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 // Initial screen
 
-public class BuySellRentActivity extends Activity{
+public class BuySellRentDisplay extends Activity{
 
 	private Activity activity = this;
-	//private TheLuvExchange application = null;
 	private City city;
-	private TheLuvExchange application = null;
-	//private List<BuySellRent> picksList = null;
 	private User user;
-	//private City city;
-
-
-
+	private TheLuvExchange application = null;
 	private List<String> menuList;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,35 +37,24 @@ public class BuySellRentActivity extends Activity{
 			
 			application = (TheLuvExchange)this.getApplication();
 			city = application.getCity();
+			user = application.getUser();
+			
+			int category = getIntent().getExtras().getInt("category");
 			
 			TextView header = (TextView) findViewById(R.id.header);
 			header.setText(city.getName());
-			
-
-			// picksList  = new ArrayList<BuySellRent>();
-
-			//  ListView listViewBuySellRent = (ListView)findViewById(R.id.picksList);
-
-			// Log.d("ThingsToDo.java", "just before user ");
-
-			// user = application.getUser();
-
-
-			// Call the WebService.getRestaurants() method to populate the cities list.
-			//	picksList.addAll(WebService.getRestaurants(user, city));
-
-
-
-
 
 			menuList = new ArrayList<String>();
 
-			menuList.add("All Items");
-			menuList.add("For Sale");
-			menuList.add("Housing & Rentals");
-			menuList.add("Cars & Vehicles");
-			menuList.add("Wanted");
-
+			List<BuySellRent> results = WebService.getBuySellRent(city, user, category);
+			
+			if (results == null) {
+				Toast.makeText(this, "Unable to display items", Toast.LENGTH_LONG);
+			} else {
+				for (BuySellRent item : results) {
+					menuList.add(item.getName() + ":::" + item.getPrice());
+				}
+			}
 
 			// *****		what is this menulist pointing to ????/
 			ListView listViewMenuList = (ListView)findViewById(R.id.menulist);
@@ -79,7 +64,7 @@ public class BuySellRentActivity extends Activity{
 			// Listener to handle click of an Item in the List
 
 			// change to buy sell rent 
-			listViewMenuList.setOnItemClickListener(new OnItemClickListener() {
+			/*listViewMenuList.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 
@@ -111,17 +96,16 @@ public class BuySellRentActivity extends Activity{
 
 					} else if (((String) menuList.get(position))
 							.equals("All Items")) {
-						Intent intent = new Intent(activity, BuySellRentDisplay.class);
-						intent.putExtra("category", BuySellRent.ALL_ITEMS);
+
 						// Add activity here
-						startActivity(intent);
+						startActivity(new Intent(activity, BuySellRentDisplay.class));
 
 					}
 
 
 
 				}
-			});
+			});*/
 		} catch (Exception e) {
 			Log.e("Error","Error in BuySellRentActivity", e);
 		}
@@ -165,10 +149,11 @@ public class BuySellRentActivity extends Activity{
 
 			if (convertView == null) {
 				convertView = layoutInflater.inflate(R.layout.buysellrentrow, null);
-
+				
 				myViewHolder = new ViewHolder();
 				myViewHolder.textViewMenuItemName = (TextView) convertView
 						.findViewById(R.id.textViewMenuItemName);
+				myViewHolder.textViewPrice = (TextView) convertView.findViewById(R.id.textViewPrice);
 
 				//Take out for right now because I don'thave a image nor a drawable -->
 				//	myViewHolder.imageViewMenuItem = (ImageView) convertView
@@ -181,18 +166,19 @@ public class BuySellRentActivity extends Activity{
 			} else {
 				myViewHolder = (ViewHolder) convertView.getTag();
 			}
-
-			myViewHolder.textViewMenuItemName.setText((String) menuList.get(
-					position));
-
+			
+			String[] namePrice = menuList.get(position).split(":::");
+			
+			myViewHolder.textViewMenuItemName.setText(namePrice[0]);
+			myViewHolder.textViewPrice.setText("$" + namePrice[1]);
 
 
 			return convertView;
 		}
 
-		class ViewHolder {
+		private class ViewHolder {
 			TextView textViewMenuItemName = null;
-			//ImageView imageViewMenuItem = null;
+			TextView textViewPrice = null;
 
 		}
 

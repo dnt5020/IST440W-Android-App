@@ -9,13 +9,13 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
@@ -34,7 +34,7 @@ public class PickLocation extends MapActivity {
 	//private LocationListener locationListener;
 	private MapController mapController;
 	private GeoPoint locationGeoPoint;
-
+	private EditText addressText;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -67,11 +67,14 @@ public class PickLocation extends MapActivity {
 
 			tapOverlay = new TapOverlay();
 
-
 			// add this overlay to the MapView and refresh it
 			List<Overlay> overlays = mapView.getOverlays();
 			overlays.add(tapOverlay);
-			mapView.invalidate();
+			mapView.postInvalidate();
+			
+			Button searchButton = (Button)findViewById(R.id.buttonAddress);
+			addressText = (EditText)findViewById(R.id.editTextAddress);
+			searchButton.setOnClickListener(onSearch);
 
 			Button submitButton = (Button)findViewById(R.id.Submit);
 			submitButton.setOnClickListener(onSubmit);
@@ -87,7 +90,7 @@ public class PickLocation extends MapActivity {
 		if(locationGeoPoint != null) {
 			MapController mapController = mapView.getController();
 			mapController.animateTo(locationGeoPoint);
-			mapController.setZoom(5);
+			mapController.setZoom(17);
 		} else {
 			Toast.makeText(this, "Cannot determine location", Toast.LENGTH_SHORT).show();
 		}
@@ -140,6 +143,12 @@ public class PickLocation extends MapActivity {
 		}
 	}
 
+	private OnClickListener onSearch = new View.OnClickListener() {
+		public void onClick(View v) {
+			// TODO implement search address
+		}
+	};
+	
 	private OnClickListener onSubmit = new View.OnClickListener() {
 		public void onClick(View v) {
 			if (lastTap != null) {
