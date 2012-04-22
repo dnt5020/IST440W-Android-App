@@ -1,6 +1,12 @@
 package com.theluvexchange.android;
 
-public class BuySellRent {
+import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import android.util.Log;
+
+public class BuySellRent implements Serializable {
 	
 	public static final int ALL_ITEMS = 0;
 	/*public static final int ALL_ASSETS = 1;
@@ -33,6 +39,10 @@ public class BuySellRent {
 	public static final int OTHER_HOUSING = 29;
 	public static final int MERCHANDISE = 31;
 	public static final int SERVICES = 32;
+	
+	private static final long MILLISECONDS_PER_DAY = 86400000;
+	
+	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			
 	private String id;
 	private String userId;
@@ -44,6 +54,7 @@ public class BuySellRent {
 	private String created;
 	private String albumId;
 	private String filename;
+	private long timeToExpire;
 	/**
 	 * @return the id
 	 */
@@ -136,13 +147,23 @@ public class BuySellRent {
 	}
 	/**
 	 * @param created the created to set
+	 * @throws ParseException 
 	 */
 	public void setCreated(String created) {
 		this.created = created;
+		try {
+			long timeCreated = dateFormat.parse(created).getTime();
+			long current = System.currentTimeMillis();
+			long days = Math.round((current - timeCreated) / ((double)MILLISECONDS_PER_DAY));
+			timeToExpire = 60 - days;
+		} catch (ParseException e) {
+			Log.e("BuySellRent Error", "Problem parsing date returned for created.", e);
+		}
 	}
-	/**
-	 * @return the albumId
-	 */
+	public long getTimeToExpire()
+	{
+		return timeToExpire;
+	}
 	public String getAlbumId() {
 		return albumId;
 	}

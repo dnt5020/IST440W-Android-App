@@ -2,7 +2,6 @@ package com.theluvexchange.android;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import android.app.Activity;
@@ -30,29 +29,37 @@ public class BuySellRentDisplay extends Activity{
 	private TheLuvExchange application = null;
 	private List<String> menuList;
 
+	private ArrayList<BuySellRent> items;
+
 	public void onCreate(Bundle savedInstanceState) {
 		try {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.buysellrent);
-			
+
 			application = (TheLuvExchange)this.getApplication();
 			city = application.getCity();
 			user = application.getUser();
-			
+
 			int category = getIntent().getExtras().getInt("category");
-			
+
 			TextView header = (TextView) findViewById(R.id.header);
 			header.setText(city.getName());
 
 			menuList = new ArrayList<String>();
+			items = new ArrayList<BuySellRent>();
 
 			List<BuySellRent> results = WebService.getBuySellRent(city, user, category);
-			
+
+
+
 			if (results == null) {
 				Toast.makeText(this, "Unable to display items", Toast.LENGTH_LONG);
 			} else {
 				for (BuySellRent item : results) {
-					menuList.add(item.getName() + ":::" + item.getPrice());
+					if (item.getTimeToExpire() > 0) {
+						menuList.add(item.getName() + ":::" + item.getPrice());
+						items.add(item);
+					}
 				}
 			}
 
@@ -64,48 +71,17 @@ public class BuySellRentDisplay extends Activity{
 			// Listener to handle click of an Item in the List
 
 			// change to buy sell rent 
-			/*listViewMenuList.setOnItemClickListener(new OnItemClickListener() {
+			listViewMenuList.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 
-					String itemClicked = ((String) menuList.get(position));
-					if (itemClicked.equals("For Sale")
-							) {
+					Intent intent = new Intent(activity, BuySellRentItem.class);
 
-						Intent intent = new Intent(activity, BuySellRentActivityFS.class);
-
-						// Pass Pick to the PickComments activity
-						intent.putExtra("MenuSelected", itemClicked);
-						startActivity(intent);
-
-					} else if (((String) menuList.get(position))
-							.equals("Housing & Rentals")) {
-						startActivity(new Intent(activity, BuySellRentActivityHSR.class));
-
-					} else if (((String) menuList.get(position))
-							.equals("Cars & Vehicles")) {
-						startActivity(new Intent(activity, BuySellRentActivityCV.class));
-
-					} 
-
-					else if (((String) menuList.get(position))
-							.equals("Wanted")) {
-
-						// Add activity here
-						startActivity(new Intent(activity, BuySellRentActivityWanted.class));
-
-					} else if (((String) menuList.get(position))
-							.equals("All Items")) {
-
-						// Add activity here
-						startActivity(new Intent(activity, BuySellRentDisplay.class));
-
-					}
-
-
-
+					// Pass Pick to the PickComments activity
+					intent.putExtra("item", items.get(position));
+					startActivity(intent);
 				}
-			});*/
+			});
 		} catch (Exception e) {
 			Log.e("Error","Error in BuySellRentActivity", e);
 		}
@@ -149,7 +125,7 @@ public class BuySellRentDisplay extends Activity{
 
 			if (convertView == null) {
 				convertView = layoutInflater.inflate(R.layout.buysellrentrow, null);
-				
+
 				myViewHolder = new ViewHolder();
 				myViewHolder.textViewMenuItemName = (TextView) convertView
 						.findViewById(R.id.textViewMenuItemName);
@@ -166,9 +142,9 @@ public class BuySellRentDisplay extends Activity{
 			} else {
 				myViewHolder = (ViewHolder) convertView.getTag();
 			}
-			
+
 			String[] namePrice = menuList.get(position).split(":::");
-			
+
 			myViewHolder.textViewMenuItemName.setText(namePrice[0]);
 			myViewHolder.textViewPrice.setText("$" + namePrice[1]);
 
