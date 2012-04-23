@@ -15,8 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="40dp"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#372c24"
@@ -38,18 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textViewUserName"
             android:layout_below="@+id/textViewUserName"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:text="TextView"
             android:textColor="#003684" android:paddingBottom="20dp"/>
-
-        <TextView
-            android:id="@+id/textViewCommentDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/textViewUserCommentBody"
-            android:layout_centerHorizontal="true"
-            android:text="Jan 1"
-            android:textColor="#BDB5B5" />
 
         <ImageView
             android:id="@+id/imageView1"
@@ -60,6 +50,16 @@
             android:src="@drawable/back" 
                         android:layout_marginLeft="10dp"
             />
+
+        <TextView
+            android:id="@+id/textViewCommentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewUserName"
+            android:layout_toLeftOf="@+id/ratingBarViewCommentPick"
+            android:layout_marginRight="30dp"
+            android:text="Jan 1"
+            android:textColor="#BDB5B5" />
 
     </RelativeLayout>
 

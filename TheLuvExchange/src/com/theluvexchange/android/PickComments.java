@@ -72,60 +72,7 @@ public class PickComments extends Activity {
 		// Set the title to the restaurant name
 		TextView textViewPickCommentTitle = (TextView) findViewById(R.id.textViewPickCommentTitle);
 		textViewPickCommentTitle.setText(pickSelected.getName());
-
-		Button addVote = (Button)findViewById(R.id.AddVoteButton);
-		Button map = (Button)findViewById(R.id.MapButton);
-
-
-		map.setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				String latitude = pickSelected.getLatitude();
-				String longitude = pickSelected.getLongitude();
-
-				String url = "geo:";
-				String address = pickSelected.getAddress();
-				if (latitude == null || longitude == null || latitude.trim().equals("") || longitude.trim().equals("")) {
-					if (address == null || address.trim().equals("")) {
-						Toast.makeText(activity, "No valid address, map forwarding to center of city.",
-								Toast.LENGTH_SHORT).show();
-						url = String.format(url + "%s,%s", city.getLat(), city.getLongitude());
-					} else {
-						url = String.format(url + "%s,%s?q=%s", city.getLat(), city.getLongitude(), Uri.encode(address));
-					}
-				} else {
-					if (address == null || address.trim().equals("")) {
-						Toast.makeText(activity, "No valid address, map centering on place location.",
-								Toast.LENGTH_SHORT).show();
-						url = String.format(url + "%s,%s", pickSelected.getLatitude(), pickSelected.getLongitude());
-					} else {
-						url = String.format(url + "%s,%s?q=%s", pickSelected.getLatitude(), pickSelected.getLongitude(), Uri.encode(address));
-					}
-				}
-				Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-						Uri.parse(url));
-				startActivity(intent);
-
-			}
-
-		});
-
-		addVote.setOnClickListener(new OnClickListener(){
-			public void onClick(View view) {
-
-				// Intent to start PickVote activity
-				Intent intent = new Intent(activity, PickVote.class);
-
-				// Pass Pick to the PickVote activity
-				intent.putExtra("Pick", pickSelected);
-
-				intent.putExtra("Title", getIntent().getCharSequenceExtra("Title"));
-
-
-				startActivity(intent);
-
-			}
-
-		});
+		
 
 		textViewRating.setOnClickListener(new View.OnClickListener() {
 

@@ -64,7 +64,7 @@ public class CityMenu extends Activity {
 
 		// HashMap and key Values of list
 		hashMap = new HashMap<String, Object>();
-		hashMap.put(MENUITEM, "Restaurants");
+		hashMap.put(MENUITEM, "Restaurants & Clubs");
 		hashMap.put(RESOURCE_ID, R.drawable.restaurants_clubs);
 		menuList.add(hashMap);
 
@@ -116,7 +116,7 @@ public class CityMenu extends Activity {
 				String itemClicked = ((String) menuList.get(position).get(
 						MENUITEM));
 				if (itemClicked.equalsIgnoreCase("Things To Do")
-						|| itemClicked.equalsIgnoreCase("Restaurants")
+						|| itemClicked.equalsIgnoreCase("Restaurants & Clubs")
 						|| itemClicked.equalsIgnoreCase("Airport Eats")) {
 
 					Intent intent = new Intent(activity, PicksDisplay.class);

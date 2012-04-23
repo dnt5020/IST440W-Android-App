@@ -18,18 +18,25 @@
             android:textSize="20sp"
             android:gravity="center" />
 
-    <TextView
-        android:id="@+id/textViewPickCommentTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Large Text"
-                            android:textColor="#372c24"
-        
-        android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center" android:padding="5dp" android:textStyle="bold"/>
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:gravity="center_vertical|center_horizontal">
+
+        <TextView
+            android:id="@+id/textViewPickCommentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#372c24"
+            android:textStyle="bold" />
+
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:gravity="center_vertical|center_horizontal" android:padding="5dp">
+        android:layout_height="wrap_content" android:gravity="center_vertical|center_horizontal">
 
          <TextView
             android:id="@+id/textViewRating"
@@ -71,7 +78,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="122dp"
+        android:layout_height="wrap_content"
         android:paddingBottom="5dp" >
 
         <TextView
@@ -90,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView1"
-            android:layout_centerVertical="true"
+            android:layout_below="@+id/textView1"
             android:text="@string/disc"
             android:textColor="#372c24" />
 
@@ -126,27 +133,6 @@
             android:layout_toRightOf="@+id/textView3"
             android:text="TextView"
             android:textColor="#372c24" />
-
-        <Button
-            android:id="@+id/AddVoteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/bg_vote"
-            android:text="Add Vote"
-            android:textColor="#ffffff" android:layout_marginLeft="70dp"/>
-
-        <Button
-            android:id="@+id/MapButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/AddVoteButton"
-            android:layout_alignBottom="@+id/AddVoteButton"
-            android:layout_toRightOf="@+id/AddVoteButton"
-            android:background="@drawable/map" android:layout_marginLeft="50dp"/>
-
     </RelativeLayout>
     
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
