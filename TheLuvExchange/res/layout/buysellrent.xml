@@ -22,14 +22,14 @@
         android:id="@+id/textViewPickTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Large Text"
+        android:text="Buy/Sell/Rent"
         android:textColor="#372c24"
         
         android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center" android:padding="5dp" android:textStyle="bold"/>
     
     
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/picksList"
+    android:id="@+id/menulist"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
     
@@ -40,4 +40,4 @@
 
 </ListView>
 
-</LinearLayout>
+</LinearLayout> 

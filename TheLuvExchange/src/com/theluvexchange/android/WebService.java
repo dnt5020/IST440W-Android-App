@@ -1,7 +1,9 @@
 package com.theluvexchange.android;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -19,6 +21,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -30,6 +33,9 @@ import org.apache.http.util.EntityUtils;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -356,8 +362,8 @@ public class WebService {
 		return ratings;
 	}
 	/*added by Shibani Chadha 4/13
-	*/
-	
+	 */
+
 	public static List<Comment> getComment(City city) {
 		List<Comment> comments = null;
 
@@ -656,13 +662,13 @@ public class WebService {
 	 * @param city 
 	 * @return message
 	 */
-	
+
 	/*public static String postMessage(User user, AddMessage message, City city) {
 
-		
+
 	}*/
 
-	
+
 	/**
 	 * edited by Shibani Chadha 3/29 added getWeather
 	 * @param city
@@ -718,7 +724,7 @@ public class WebService {
 		}
 		return cityPhoto;
 	}
-	
+
 	/**
 	 * For getting photos for a city album
 	 * @param user object
@@ -726,6 +732,9 @@ public class WebService {
 	 * @return List of AlbumPhoto objects or null if error
 	 */
 	public static List<AlbumPhoto> getPhotos(User user, City city) {
+		if (photos != null && city.getId().equals(cityId)) {
+			return photos;
+		}
 		return getPhotos(user, city, "created", "desc");
 	}
 	/**
@@ -737,12 +746,7 @@ public class WebService {
 	 * @return List of AlbumPhoto objects or null if error
 	 */
 	public static List<AlbumPhoto> getPhotos(User user, City city, String sort, String direction) {
-		if (photos != null && city.getId().equals(cityId)) {
-			return photos;
-		}
-
 		photos = null;
-		// images = null;
 
 		try {
 			URL url = new URL(ADDRESS + "photos/" + city.getId() 
@@ -790,7 +794,7 @@ public class WebService {
 		try {
 			URL url = new URL("http://www.theluvexchange.com/files/photos/raw/"
 					+ filename);
-			InputStream inputStream = (InputStream) url.getContent();
+			InputStream inputStream = (InputStream)url.getContent();
 			image = Drawable.createFromStream(inputStream, "image");
 		} catch (Exception e) {
 			// Log error to be able to debug using LogCat
@@ -824,7 +828,24 @@ public class WebService {
 			for(int index=0; index < pairs.size(); index++) {
 				if(pairs.get(index).getName().equalsIgnoreCase("data[City][Photo]")) {
 					// If the key equals to "image", we use FileBody to transfer the data
-					entity.addPart(pairs.get(index).getName(), new FileBody(new File (pairs.get(index).getValue())));
+					Bitmap bitmap = BitmapFactory.decodeFile(pairs.get(index).getValue());
+					ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+					
+					int width = bitmap.getWidth();
+					int height = bitmap.getHeight();
+					if (width > 640) {
+						height = (int)Math.round(640.0 / width * height);
+						width = 640;
+					}
+					if (height > 640) {
+						width = (int)Math.round(640.0 / height * width);
+						width = 640;
+					}
+					
+					Bitmap compressed = Bitmap.createScaledBitmap(bitmap, width, height, true);
+					compressed.compress(CompressFormat.PNG, 100, outputStream);
+					byte[] data = outputStream.toByteArray();
+					entity.addPart(pairs.get(index).getName(), new ByteArrayBody(data, "upload.png"));
 				} else {
 					// Normal string data
 					entity.addPart(pairs.get(index).getName(), new StringBody(pairs.get(index).getValue()));
@@ -904,9 +925,8 @@ public class WebService {
 	}
 	/*
 	 * added by Shibani Chadha 4/12
-*/
+	 */
 	public static String postMessage(User user, AddMessage message, City city) {
-		// TODO Auto-generated method stub
 		HttpClient httpClient = new DefaultHttpClient();
 
 		StringBuilder address = new StringBuilder(ADDRESS);
@@ -917,7 +937,7 @@ public class WebService {
 
 		HttpPost httpPost = new HttpPost(address.toString());
 		try {
-			
+
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>(2);
 			pairs.add(new BasicNameValuePair("data[CityMessage][body]", message.getMessage()));
 			pairs.add(new BasicNameValuePair("data[CityMessage][city_id]", city.getId()));
@@ -933,7 +953,7 @@ public class WebService {
 			InputSource input = new InputSource();
 			input.setCharacterStream(new StringReader(response));
 			reader.parse(input);
-		
+
 			String result = handler.getResult();
 
 			return result;
@@ -941,7 +961,41 @@ public class WebService {
 		} catch (Exception e) {
 			Log.e("TheLuvExchange", "WebServiceError", e);
 			return "Error: " + e;
-		
+
 		}
+	}
+
+	public static List<BuySellRent> getBuySellRent(City city, User user, int category) {
+
+		List<BuySellRent> buySellRent = null;
+
+		try {
+			// URL object used to create a connection to the cities XML page
+			URL url = new URL(ADDRESS + "assets/" + city.getId() + 
+					"/" + category + "/sort:Asset.created/direction:asc/viewer_id:" +
+					user.getUserId());
+
+			// SAX XMLReader object used for parsing the XML file
+			XMLReader reader = getParser().getXMLReader();
+
+			// SAXHandler class used for parsing the XML
+			BuySellRentHandler handler = new BuySellRentHandler();
+
+			// Set the XMLReader to use the SAXHandler for parsing rules
+			reader.setContentHandler(handler);
+
+			// Run the parsing
+			reader.parse(new InputSource(url.openStream()));
+
+			// Receive the list of City objects from the parse
+			buySellRent = handler.getBSRData();
+
+		} catch (Exception e) {
+			// Log error to be able to debug using LogCat
+			Log.e("TheLuvExchange", "WebServiceError", e);
+		}
+
+		// Return the list of cities
+		return buySellRent;
 	}
 }
