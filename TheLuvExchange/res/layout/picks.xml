@@ -23,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="5dp"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#372c24"
@@ -33,8 +32,7 @@
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
-        android:padding="5dp" >
+        android:gravity="center_vertical|center_horizontal">
 
         <TextView
             android:id="@+id/textViewPopularity"

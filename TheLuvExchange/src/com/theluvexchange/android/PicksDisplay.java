@@ -8,12 +8,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils.TruncateAt;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,6 +25,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author Niranjan Singh
@@ -232,6 +236,7 @@ public class PicksDisplay extends Activity {
 
 			myViewHolder.populateFrom(picksList.get(position));
 
+
 			return row;
 
 		}
@@ -243,6 +248,9 @@ public class PicksDisplay extends Activity {
 			TextView textViewPhoneNumber = null;
 			TextView textViewVoteCount = null;
 			RatingBar rating = null;
+			Button buttonAddVote = null;
+			Button buttonMap = null;
+			Pick currentPick;
 
 			public ViewHolder(View row) {
 				textViewNumber = (TextView) row
@@ -258,25 +266,85 @@ public class PicksDisplay extends Activity {
 						.findViewById(R.id.textViewVoteCount);
 
 				rating = (RatingBar) row.findViewById(R.id.ratingBarPicks);
+				
+				buttonAddVote = (Button) row.findViewById(R.id.AddVoteButton);
+				buttonMap = (Button) row.findViewById(R.id.MapButton);
+				
 
 			}
 
-			public void populateFrom(Pick restaurant) {
+			public void populateFrom(Pick pick) {
+
+				currentPick = pick;
 				
 				if(itemClicked.equalsIgnoreCase("Airport Eats")){
 					textViewAddress.setText(city.getAirport());
 				} else {
-					textViewAddress.setText(restaurant.getAddress());
+					textViewAddress.setText(pick.getAddress());
 				}
 				
 				
-				textViewName.setText(restaurant.getName());
-				textViewPhoneNumber.setText(restaurant.getPhone());
-				textViewNumber.setText(Integer.toString(restaurant
+				textViewName.setText(pick.getName());
+				textViewPhoneNumber.setText(pick.getPhone());
+				textViewNumber.setText(Integer.toString(pick
 						.getSerialNumber()) + ".");
-				textViewVoteCount.setText(restaurant.getRatingCount());
-				rating.setRating(Integer.parseInt(restaurant.getRatingAverage()));
+				textViewVoteCount.setText(pick.getRatingCount());
+				rating.setRating(Integer.parseInt(pick.getRatingAverage()));
+				
+				// Set focusable to false else list view click lictener will not work
+				buttonAddVote.setFocusable(false);
+				buttonMap.setFocusable(false);
+				
+				buttonAddVote.setOnClickListener(new OnClickListener() {
+					
+					public void onClick(View v) {
+						// Intent to start PickVote activity
+						Intent intent = new Intent(activity, PickVote.class);
+						
+						// Pass Pick to the PickVote activity
+						intent.putExtra("Pick",  currentPick);
 
+						intent.putExtra("Title", getIntent().getCharSequenceExtra("Title"));
+
+
+						startActivity(intent);
+					}
+				});
+				
+				buttonMap.setOnClickListener(new OnClickListener() {
+					public void onClick(View view) {
+						String latitude = currentPick.getLatitude();
+						String longitude = currentPick.getLongitude();
+
+						String url = "geo:";
+						String address = currentPick.getAddress();
+						if (latitude == null || longitude == null || latitude.trim().equals("") || longitude.trim().equals("")) {
+							if (address == null || address.trim().equals("")) {
+								Toast.makeText(activity, "No valid address, map forwarding to center of city.",
+										Toast.LENGTH_SHORT).show();
+								url = String.format(url + "%s,%s", city.getLat(), city.getLongitude());
+							} else {
+								url = String.format(url + "%s,%s?q=%s", city.getLat(), city.getLongitude(), Uri.encode(address));
+							}
+						} else {
+							if (address == null || address.trim().equals("")) {
+								Toast.makeText(activity, "No valid address, map centering on place location.",
+										Toast.LENGTH_SHORT).show();
+								url = String.format(url + "%s,%s", currentPick.getLatitude(), currentPick.getLongitude());
+							} else {
+								url = String.format(url + "%s,%s?q=%s", currentPick.getLatitude(), currentPick.getLongitude(), Uri.encode(address));
+							}
+						}
+						Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+								Uri.parse(url));
+						startActivity(intent);
+
+					}
+
+				});
+
+			
+				
 			}
 
 		}
