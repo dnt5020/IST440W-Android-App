@@ -16,7 +16,7 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 public class AddLocation extends Activity {
-	private Activity activity = this;
+	private Activity activity;
 	City city;
 	User user;
 	private EditText near;
@@ -35,6 +35,8 @@ public class AddLocation extends Activity {
 			super.onCreate(savedInstanceState);
 
 			application = (TheLuvExchange) this.getApplication();
+			
+			activity = this;
 
 			city = application.getCity();
 			user = application.getUser();
@@ -63,8 +65,12 @@ public class AddLocation extends Activity {
 	private View.OnClickListener onAdd = new View.OnClickListener() {
 		public void onClick(View v) {
 			try {
-				Object result = WebService.postPick(user, city, name.getText().toString(), comment.getText().toString(),
-						near.getText().toString(), new Float(rating.getRating()).intValue(), discount.isChecked(), null,
+				String nameString =  name.getText().toString();
+				if (nameString.equals("") || rating.getRating() < 1) {
+					Toast.makeText(activity, "Name and rating are required.", Toast.LENGTH_LONG);
+				}
+				Object result = WebService.postPick(user, city, nameString, comment.getText().toString(),
+						near.getText().toString(), new Float(rating.getRating()).intValue(), discount.isChecked(), nameString,
 						address, null, latitude / 1000000.0, longitude / 1000000.0, type);
 
 				if (result instanceof String) {

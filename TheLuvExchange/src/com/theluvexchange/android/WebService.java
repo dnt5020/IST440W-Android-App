@@ -587,7 +587,7 @@ public class WebService {
 			pairs.add(new BasicNameValuePair("data[Pick][longitude]", Double.toString(longitude)));
 			pairs.add(new BasicNameValuePair("data[Pick][discounts]", discount ? "1" : "0"));
 			pairs.add(new BasicNameValuePair("data[Pick][category]", Integer.toString(category)));
-			pairs.add(new BasicNameValuePair("data[Pick][parent_id]", null));
+			pairs.add(new BasicNameValuePair("data[Pick][parent_id]", "0"));
 			pairs.add(new BasicNameValuePair("data[Pick][city_id]", city.getId()));
 			pairs.add(new BasicNameValuePair("data[Pick][rating]", Integer.toString(rating)));
 
