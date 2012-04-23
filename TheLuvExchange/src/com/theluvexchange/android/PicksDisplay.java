@@ -10,7 +10,9 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.text.TextUtils.TruncateAt;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -291,9 +293,33 @@ public class PicksDisplay extends Activity {
 				textViewVoteCount.setText(pick.getRatingCount());
 				rating.setRating(Integer.parseInt(pick.getRatingAverage()));
 				
-				// Set focusable to false else list view click lictener will not work
+//				// To underline the phone number text view
+//				SpannableString content = new SpannableString(pick.getPhone());
+//				content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+//				textViewPhoneNumber.setText(content);
+
+				// Add action listener to dial phone number when clicked
+				textViewPhoneNumber.setOnClickListener(new OnClickListener() {
+					
+					public void onClick(View v) {
+
+						try {
+		                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+		                    callIntent.setData(Uri.parse("tel:"+currentPick.getPhone()));
+		                    startActivity(callIntent);
+		                } catch (Exception exception) {
+		                    Log.e("Calling a Phone Number", "Call failed", exception);
+		                }
+
+					}
+				});
+				
+				
+				// Set focusable to false else list view click listener will not work
 				buttonAddVote.setFocusable(false);
 				buttonMap.setFocusable(false);
+				
+				
 				
 				buttonAddVote.setOnClickListener(new OnClickListener() {
 					
