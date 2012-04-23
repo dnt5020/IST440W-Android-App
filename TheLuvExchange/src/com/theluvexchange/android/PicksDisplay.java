@@ -78,21 +78,20 @@ public class PicksDisplay extends Activity {
 		textViewLatest.setTypeface(null, Typeface.NORMAL);
 
 		// Set the title
+		textViewPickTitle.setText(itemClicked);
+
 		if (itemClicked.equalsIgnoreCase("Things To Do")) {
-			textViewPickTitle.setText("Things To Do");
 			type = WebService.THINGS_TO_DO;
 			// Call the WebService.getThings() method to populate the cities
 			// list. Default sorting- Popularity
 			picksList.addAll(WebService.getThings(user, city));
-
-		} else if (itemClicked.equalsIgnoreCase("Restaurants")) {
-			textViewPickTitle.setText("Restaurants");
+ 
+		} else if (itemClicked.equalsIgnoreCase("Restaurants & Clubs")) {
 			type = WebService.RESTAURANTS;
 			// Call the WebService.getRestaurants() method to populate the cities
 			// list. Default sorting- Popularity
 			picksList.addAll(WebService.getRestaurants(user, city));
 		} else if (itemClicked.equalsIgnoreCase("Airport Eats")) {
-			textViewPickTitle.setText("Airport Eats");
 			type = WebService.AIRPORT_EATS;
 			// Call the WebService.getAirportEats() method to populate the cities
 			// list. Default sorting- Popularity
