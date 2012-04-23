@@ -1,7 +1,9 @@
 package com.theluvexchange.android;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -19,6 +21,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -30,6 +33,9 @@ import org.apache.http.util.EntityUtils;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -726,6 +732,9 @@ public class WebService {
 	 * @return List of AlbumPhoto objects or null if error
 	 */
 	public static List<AlbumPhoto> getPhotos(User user, City city) {
+		if (photos != null && city.getId().equals(cityId)) {
+			return photos;
+		}
 		return getPhotos(user, city, "created", "desc");
 	}
 	/**
@@ -737,12 +746,7 @@ public class WebService {
 	 * @return List of AlbumPhoto objects or null if error
 	 */
 	public static List<AlbumPhoto> getPhotos(User user, City city, String sort, String direction) {
-		if (photos != null && city.getId().equals(cityId)) {
-			return photos;
-		}
-
 		photos = null;
-		// images = null;
 
 		try {
 			URL url = new URL(ADDRESS + "photos/" + city.getId() 
@@ -790,7 +794,7 @@ public class WebService {
 		try {
 			URL url = new URL("http://www.theluvexchange.com/files/photos/raw/"
 					+ filename);
-			InputStream inputStream = (InputStream) url.getContent();
+			InputStream inputStream = (InputStream)url.getContent();
 			image = Drawable.createFromStream(inputStream, "image");
 		} catch (Exception e) {
 			// Log error to be able to debug using LogCat
@@ -824,7 +828,24 @@ public class WebService {
 			for(int index=0; index < pairs.size(); index++) {
 				if(pairs.get(index).getName().equalsIgnoreCase("data[City][Photo]")) {
 					// If the key equals to "image", we use FileBody to transfer the data
-					entity.addPart(pairs.get(index).getName(), new FileBody(new File (pairs.get(index).getValue())));
+					Bitmap bitmap = BitmapFactory.decodeFile(pairs.get(index).getValue());
+					ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+					
+					int width = bitmap.getWidth();
+					int height = bitmap.getHeight();
+					if (width > 640) {
+						height = (int)Math.round(640.0 / width * height);
+						width = 640;
+					}
+					if (height > 640) {
+						width = (int)Math.round(640.0 / height * width);
+						width = 640;
+					}
+					
+					Bitmap compressed = Bitmap.createScaledBitmap(bitmap, width, height, true);
+					compressed.compress(CompressFormat.PNG, 100, outputStream);
+					byte[] data = outputStream.toByteArray();
+					entity.addPart(pairs.get(index).getName(), new ByteArrayBody(data, "upload.png"));
 				} else {
 					// Normal string data
 					entity.addPart(pairs.get(index).getName(), new StringBody(pairs.get(index).getValue()));
