@@ -18,13 +18,21 @@
         <uses-library android:name="com.google.android.maps" />
 		<activity android:name=".ServiceTester" />
         <activity android:name=".BuySellRentDisplay" />
-        <activity android:name=".BuySellRentActivity" />
+            "
+        <activity android:name=".BuySellRentActivityCV" />
+        <activity android:name=".BuySellRentActivityFS" />
+        <activity android:name=".BuySellRentActivityHSR" />
+        <activity android:name=".BuySellRentActivityWanted" />
+        <activity android:name=".BuySellRentItem" />
         <activity android:name=".AddLocation" />
         <activity android:name=".PickLocation" />
         <activity
             android:name=".Cities"
-            android:label="@string/cities" >
-        </activity>
+            android:label="@string/cities" ></activity>
+        <activity
+            android:name=".BuySellRentActivity"
+            android:label="@string/app_name" ></activity>
+        
         <activity
             android:name=".AboutApp"
             android:label="@string/about_title"

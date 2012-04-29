@@ -984,9 +984,20 @@ public class WebService {
 			// Set the XMLReader to use the SAXHandler for parsing rules
 			reader.setContentHandler(handler);
 
+			/*
+ *  Your implementation
+ * 
+ * String xmlString = source.getCharacterStream().toString().replaceAll("<p>", "");
+			xmlString = xmlString.replaceAll("</p>", "\r\n");
+
+			// Run the parsing
+			reader.parse(xmlString);
+ * 
+ * */
 			// Run the parsing
 			reader.parse(new InputSource(url.openStream()));
 
+			
 			// Receive the list of City objects from the parse
 			buySellRent = handler.getBSRData();
 

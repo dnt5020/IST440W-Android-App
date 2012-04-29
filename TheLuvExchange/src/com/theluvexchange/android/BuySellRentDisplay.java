@@ -56,10 +56,10 @@ public class BuySellRentDisplay extends Activity{
 				Toast.makeText(this, "Unable to display items", Toast.LENGTH_LONG);
 			} else {
 				for (BuySellRent item : results) {
-					if (item.getTimeToExpire() > 0) {
+					//if (item.getTimeToExpire() > 0) {
 						menuList.add(item.getName() + ":::" + item.getPrice());
 						items.add(item);
-					}
+					//}
 				}
 			}
 

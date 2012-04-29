@@ -44,19 +44,19 @@ public class BuySellRentActivity extends Activity{
 			
 			TextView header = (TextView) findViewById(R.id.header);
 			header.setText(city.getName());
+
+		//	 picksList  = new ArrayList<BuySellRent>();
+
+			  ListView listViewBuySellRent = (ListView)findViewById(R.id.picksList);
 			
 
-			// picksList  = new ArrayList<BuySellRent>();
+			 Log.d("ThingsToDo.java", "just before user ");
 
-			//  ListView listViewBuySellRent = (ListView)findViewById(R.id.picksList);
-
-			// Log.d("ThingsToDo.java", "just before user ");
-
-			// user = application.getUser();
+			 user = application.getUser();
 
 
-			// Call the WebService.getRestaurants() method to populate the cities list.
-			//	picksList.addAll(WebService.getRestaurants(user, city));
+			 //Call the WebService.getRestaurants() method to populate the cities list.
+				//picksList.addAll(WebService.getRestaurants(user, city));
 
 
 
@@ -85,7 +85,7 @@ public class BuySellRentActivity extends Activity{
 
 					String itemClicked = ((String) menuList.get(position));
 					if (itemClicked.equals("For Sale")
-							) {
+						) {
 
 						Intent intent = new Intent(activity, BuySellRentActivityFS.class);
 
@@ -116,15 +116,14 @@ public class BuySellRentActivity extends Activity{
 						// Add activity here
 						startActivity(intent);
 
-					}
-
-
-
 				}
+				
+
+				   }
 			});
 		} catch (Exception e) {
 			Log.e("Error","Error in BuySellRentActivity", e);
-		}
+					}
 
 	}
 

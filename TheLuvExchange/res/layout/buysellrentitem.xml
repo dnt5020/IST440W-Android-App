@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#003684"
+        android:drawableLeft="@drawable/ic_launcher"
+        android:drawablePadding="5dip"
+        android:gravity="center"
+        android:padding="5dip"
+        android:text="@string/app_name"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewPickTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="Buy/Sell/Rent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#372c24"
+        android:textStyle="bold" />
+    
+    <TextView
+        android:id="@+id/textViewPickTitle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#372c24"
+        android:textStyle="bold" />
+    
+    
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Description:"
+        android:textColor="#372c24"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/displaydescription"
+        android:layout_width="fill_parent"
+        android:layout_height="132dp"
+        android:textColor="#372c24"
+        android:text=""
+        
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Price:"
+        android:textColor="#372c24"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/displayprice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#372c24"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+
+</LinearLayout> 
