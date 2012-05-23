@@ -209,10 +209,10 @@ public class PickComments extends Activity {
 				textViewUserName.setText(rating.getUserName());
 				textViewCreated.setText(rating.getCreated());
 				textViewBody.setText(rating.getBody());
-				ratingBar.setRating(Integer.parseInt(rating.getViewerRating()));
+//				ratingBar.setRating(Integer.parseInt(rating.getViewerRating()));
 
-				//				// if rating is not specified, assign 0
-				//				ratingBar.setRating(rating.getRatingAverage()==null?0:Integer.parseInt(rating.getRatingAverage()));
+				// if rating is not specified, assign 0
+				ratingBar.setRating(rating.getViewerRating()==null?0:Integer.parseInt(rating.getViewerRating()));
 
 
 

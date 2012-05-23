@@ -19,102 +19,111 @@
             android:textSize="20sp"
             android:gravity="center" />
 
-     <RelativeLayout
-         android:id="@+id/relativeLayout1"
+     <ScrollView
+         android:id="@+id/scrollView1"
          android:layout_width="fill_parent"
-         android:layout_height="fill_parent" >
+         android:layout_height="wrap_content" >
 
-         <TextView
-             android:id="@+id/textViewCommentTitle"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentTop="true"
-             android:layout_centerHorizontal="true"
-             android:paddingTop="10dp"
-             android:text="Title"
-             android:textAppearance="?android:attr/textAppearanceLarge"
-             android:textColor="#372c24"
-             android:textStyle="bold" />
+         <RelativeLayout
+             android:id="@+id/relativeLayout1"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent" >
 
-         <TextView
-             android:id="@+id/textViewCommentPickName"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/textViewCommentTitle"
-             android:layout_centerHorizontal="true"
-             android:layout_marginTop="14dp"
-             android:text="Large Text"
-             android:textAppearance="?android:attr/textAppearanceLarge"
-             android:textColor="#372c24"
-             android:textStyle="bold" />
+             <TextView
+                 android:id="@+id/textViewCommentTitle"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentTop="true"
+                 android:layout_centerHorizontal="true"
+                 android:paddingTop="10dp"
+                 android:text="Title"
+                 android:textAppearance="?android:attr/textAppearanceLarge"
+                 android:textColor="#372c24"
+                 android:textStyle="bold" />
 
-         <TextView
-             android:id="@+id/textView2"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentLeft="true"
-             android:layout_below="@+id/textViewCommentPickName"
-             android:layout_marginLeft="15dp"
-             android:layout_marginTop="21dp"
-             android:text="@string/comment"
-             android:textColor="#372c24" />
+             <TextView
+                 android:id="@+id/textViewCommentPickName"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/textViewCommentTitle"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="14dp"
+                 android:text="Large Text"
+                 android:textAppearance="?android:attr/textAppearanceLarge"
+                 android:textColor="#372c24"
+                 android:textStyle="bold" />
 
-         <EditText
-             android:id="@+id/editTextPickComment"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignTop="@+id/textView2"
-             android:layout_centerHorizontal="true"
-             android:height="150dp"
-             android:inputType="textMultiLine"
-             android:scrollbarStyle="insideOverlay"
-             android:width="150dp" />
+             <TextView
+                 android:id="@+id/textView2"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_below="@+id/textViewCommentPickName"
+                 android:layout_marginLeft="15dp"
+                 android:layout_marginTop="21dp"
+                 android:text="@string/comment"
+                 android:textColor="#372c24" />
 
-         <TextView
-             android:id="@+id/textView1"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignLeft="@+id/textView2"
-             android:layout_below="@+id/editTextPickComment"
-             android:layout_marginTop="15dp"
-             android:text="@string/rating"
-             android:textColor="#372c24" />
+             <EditText
+                 android:id="@+id/editTextPickComment"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignTop="@+id/textView2"
+                 android:layout_centerHorizontal="true"
+                 android:height="150dp"
+                 android:inputType="textMultiLine"
+                 android:scrollbarStyle="insideOverlay"
+                 android:width="150dp" >
 
-         <RatingBar
-             android:id="@+id/ratingBarCommentPick"
-             style="@style/MyCustomRatingBar"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignBottom="@+id/textView1"
-             android:layout_centerHorizontal="true" />
+                 <requestFocus />
+             </EditText>
 
-         <TextView
-             android:id="@+id/textView3"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignLeft="@+id/textView1"
-             android:layout_below="@+id/textView1"
-             android:layout_marginTop="15dp"
-             android:text="@string/discount"
-             android:textColor="#372c24" />
+             <TextView
+                 android:id="@+id/textView1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignLeft="@+id/textView2"
+                 android:layout_below="@+id/editTextPickComment"
+                 android:layout_marginTop="15dp"
+                 android:text="@string/rating"
+                 android:textColor="#372c24" />
 
-         <CheckBox
-             android:id="@+id/checkBoxDiscount"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/ratingBarCommentPick"
-             android:layout_centerHorizontal="true" />
+             <RatingBar
+                 android:id="@+id/ratingBarCommentPick"
+                 style="@style/MyCustomRatingBar"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignBottom="@+id/textView1"
+                 android:layout_centerHorizontal="true" />
 
-         <Button
-             android:id="@+id/buttonSubmit"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/checkBoxDiscount"
-             android:layout_marginTop="20dp"
-             android:text="@string/submit"
-             android:textStyle="bold" 
-             android:layout_centerHorizontal="true" />
+             <TextView
+                 android:id="@+id/textView3"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignLeft="@+id/textView1"
+                 android:layout_below="@+id/textView1"
+                 android:layout_marginTop="15dp"
+                 android:text="@string/discount"
+                 android:textColor="#372c24" />
 
-     </RelativeLayout>
+             <CheckBox
+                 android:id="@+id/checkBoxDiscount"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/ratingBarCommentPick"
+                 android:layout_centerHorizontal="true" />
+
+             <Button
+                 android:id="@+id/buttonSubmit"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/checkBoxDiscount"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="20dp"
+                 android:text="@string/submit"
+                 android:textStyle="bold" />
+         </RelativeLayout>
+
+     </ScrollView>
 
 </LinearLayout>
