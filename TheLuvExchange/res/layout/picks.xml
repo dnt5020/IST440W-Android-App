@@ -32,7 +32,7 @@
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal">
+        android:gravity="center_vertical|center_horizontal" >
 
         <TextView
             android:id="@+id/textViewPopularity"
@@ -84,6 +84,17 @@
             android:layout_toRightOf="@+id/textView2"
             android:text="@string/rating2"
             android:textColor="#372c24" />
+
+        <TextView
+            android:id="@+id/textViewVotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+            
+                        android:layout_marginRight="10dp"
+            
+            android:text="@string/votes"
+            android:textColor="#372c24" android:textStyle="bold"/>
     </RelativeLayout>
 
     <ListView

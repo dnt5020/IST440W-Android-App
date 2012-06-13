@@ -19,6 +19,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:text="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#003684"
             android:textStyle="bold" />
 
@@ -27,11 +28,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout1"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="45dp"
+            android:gravity="center"
             android:maxWidth="230dp"
             android:text="Address sd sd sd  sd sd  sds d sd sd s d s dsd s  s dsd"
-            android:textColor="#372c24" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#372c24"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewPickPhoneNumber"
@@ -62,14 +65,14 @@
             android:layout_below="@+id/textViewPickPhoneNumber"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:isIndicator="true"/>
+            android:isIndicator="true" />
 
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textViewPickSerialNumber"
             android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@+id/imageView1"
             android:layout_toRightOf="@+id/textViewPickSerialNumber"
             android:gravity="center_vertical|center_horizontal" >
 
@@ -78,40 +81,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:gravity="center"
                 android:maxWidth="240dp"
-                android:text="Restaurant - Flintstones"
+                android:text="Restaurant - Flintstones bjas ajbs bjas"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#003684"
                 android:textStyle="bold" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/ratingBarPicks"
-            android:layout_below="@+id/ratingBarPicks"
-            android:text="@string/votes"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#372c24" />
-
-        <TextView
-            android:id="@+id/textViewVoteCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView1"
-            android:layout_alignBottom="@+id/textView1"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/textView1"
-            android:text="5"
-            android:textColor="#372c24"
-            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/textViewPickAddress"
+            android:layout_alignTop="@+id/textViewPickPhoneNumber"
             android:layout_marginRight="10dp"
             android:src="@drawable/forward" />
 
@@ -119,8 +102,8 @@
             android:id="@+id/AddVoteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewPickPhoneNumber"
-            android:layout_toRightOf="@+id/textViewPickSerialNumber"
+            android:layout_alignLeft="@+id/linearLayout1"
+            android:layout_alignTop="@+id/textViewPickPhoneNumber"
             android:background="@drawable/bg_vote"
             android:text="Add Vote"
             android:textColor="#ffffff" />
@@ -130,10 +113,22 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/AddVoteButton"
-            android:layout_alignBottom="@+id/AddVoteButton"
-            android:layout_toRightOf="@+id/textViewPickPhoneNumber"
-            android:background="@drawable/map" android:layout_marginLeft="25dp"/>
+            android:layout_alignTop="@+id/AddVoteButton"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/ratingBarPicks"
+            android:background="@drawable/map" />
+
+        <TextView
+            android:id="@+id/textViewVoteCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textViewPickSerialNumber"
+            android:layout_alignBottom="@+id/textViewPickSerialNumber"
+            android:layout_alignRight="@+id/imageView1"
+            android:text="5"
+            android:textColor="#372c24"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>
 

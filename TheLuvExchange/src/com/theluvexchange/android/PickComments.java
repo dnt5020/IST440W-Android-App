@@ -78,12 +78,16 @@ public class PickComments extends Activity {
 
 			public void onClick(View v) {
 				ratingsList.clear();
+				
+				Log.d("Sorting", "cleared list for rating.. " + ratingsList.isEmpty() + " pick id - " + pickSelected.getId());
 
 				// the list is sorted by Rating
 				textViewRating.setTypeface(null, Typeface.BOLD);
 				textViewLatest.setTypeface(null, Typeface.NORMAL);
-				ratingsList.addAll(WebService.getRatings(pickSelected, "viewer_rating", "desc"));
+				ratingsList.addAll(WebService.getRatings(pickSelected)); // default is sorted by 'Viewer_rating'
 						
+				Log.d("Sorting", "added new list for rating.. " + ratingsList.isEmpty());
+
 
 				// Refresh list view
 				listViewRatings.invalidateViews();
@@ -96,10 +100,17 @@ public class PickComments extends Activity {
 			public void onClick(View v) {
 				ratingsList.clear();
 
+				Log.d("Sorting", "cleared list for lastest.. " + ratingsList.isEmpty());
+
+				
 				// Sorted by Latest
 				textViewRating.setTypeface(null, Typeface.NORMAL);
 				textViewLatest.setTypeface(null, Typeface.BOLD);
 				ratingsList.addAll(WebService.getRatings(pickSelected, "created", "desc"));
+
+				
+				
+				Log.d("Sorting", "added new list for lastest.. " + ratingsList.isEmpty());
 
 				
 				// Refresh list view

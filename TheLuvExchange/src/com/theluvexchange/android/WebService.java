@@ -321,7 +321,9 @@ public class WebService {
 	 * @return list of ratings for the pick, will be null if there was an error
 	 */
 	public static List<Rating> getRatings(Pick pick) {
-		return getRatings(pick, "rating_count", "desc");
+//		return getRatings(pick, "rating_count", "desc");
+		return getRatings(pick, "viewer_rating", "desc");
+
 	}
 	/**
 	 * @param pick object to get ratings for

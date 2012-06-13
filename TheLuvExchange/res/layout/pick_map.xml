@@ -31,7 +31,7 @@
         android:layout_height="fill_parent"
         android:layout_above="@+id/Submit"
         android:layout_below="@id/searchAddress"
-        android:apiKey="0ap-lM_ys-FfPZa9SSsiBmj6JpR8cEpvV4IO3-g"
+        android:apiKey="0vFkCcHMrnhOZbV3SYCCUgENm-4ZhWZ62Qy5vDA"
         android:clickable="true" />
 
     <ImageView
