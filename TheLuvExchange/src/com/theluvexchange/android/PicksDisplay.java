@@ -347,20 +347,29 @@ public class PicksDisplay extends Activity {
 						String url = "geo:";
 						String address = currentPick.getAddress();
 						if (latitude == null || longitude == null || latitude.trim().equals("") || longitude.trim().equals("")) {
+							Log.d("Maps", "test 1");
+
 							if (address == null || address.trim().equals("")) {
 								Toast.makeText(activity, "No valid address, map forwarding to center of city.",
 										Toast.LENGTH_SHORT).show();
-								url = String.format(url + "%s,%s", city.getLat(), city.getLongitude());
+								url = String.format(url + "%s,%s", city.getLat(), city.getLongitude()); 
 							} else {
-								url = String.format(url + "%s,%s?q=%s", city.getLat(), city.getLongitude(), Uri.encode(address));
+								Log.d("Maps", "before test");
+								url = String.format(url + "%s,%s?q=%s", city.getLat(), city.getLongitude(), Uri.encode(currentPick.getName() + ", " +address));
+								Log.d("Maps", "after test + address - " + currentPick.getName() + ", " +address);
+
 							}
 						} else {
+							Log.d("Maps", "test 2");
+
 							if (address == null || address.trim().equals("")) {
 								Toast.makeText(activity, "No valid address, map centering on place location.",
 										Toast.LENGTH_SHORT).show();
 								url = String.format(url + "%s,%s", currentPick.getLatitude(), currentPick.getLongitude());
 							} else {
-								url = String.format(url + "%s,%s?q=%s", currentPick.getLatitude(), currentPick.getLongitude(), Uri.encode(address));
+								Log.d("Maps", "test 3");
+
+								url = String.format(url + "%s,%s?q=%s", currentPick.getLatitude(), currentPick.getLongitude(), Uri.encode(currentPick.getName() + ", " + address));
 							}
 						}
 						Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
