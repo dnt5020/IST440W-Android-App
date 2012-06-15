@@ -290,7 +290,10 @@ public class PicksDisplay extends Activity {
 				textViewNumber.setText(Integer.toString(pick
 						.getSerialNumber()) + ".");
 				textViewVoteCount.setText(pick.getRatingCount());
-				rating.setRating(Integer.parseInt(pick.getRatingAverage()));
+//				rating.setRating(Integer.parseInt(pick.getRatingAverage()));
+				
+				// if rating is not specified, assign 0
+				rating.setRating(pick.getRatingAverage()==null?0:Integer.parseInt(pick.getRatingAverage()));
 				
 //				// To underline the phone number text view
 //				SpannableString content = new SpannableString(pick.getPhone());
