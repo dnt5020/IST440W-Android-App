@@ -4,14 +4,26 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import com.theluvexchange.weather.WeatherSet;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.text.format.Formatter;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.ImageView;
  
@@ -21,9 +33,13 @@ import android.widget.ImageView;
 
 public class Weather_Main extends Activity {
  WeatherSet weatherO = new WeatherSet();
+	private TheLuvExchange application = null;
+	private User user;
+	private City city;
+	private Activity activity = this;
+
 	
 	
-	City city;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +48,11 @@ public class Weather_Main extends Activity {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.weatherlayout);
 			
-			TheLuvExchange application = (TheLuvExchange)getApplication();	 	 
+			application = (TheLuvExchange) this.getApplication();
+			
+			user = application.getUser();
+
+			
 	 	 	city = application.getCity();
 	 	 		 	 	
 //	 	   // Set Header to selected city name
@@ -56,9 +76,54 @@ public class Weather_Main extends Activity {
 			setImage(weatherO.getWeatherCurrentCondition().getIconURL(),R.id.CurrentWeatherImage);
 		 	//Current Visibility
 			setText(" "+weatherO.getWeatherCurrentCondition().getVisibiltiy()+" mi",R.id.TextView06); 
+			 
+			
+			int year;
+			int month;
+			int day;
 
+			GregorianCalendar gregorianCalendar;
+			
+			//create an array of days
+		    String[] strDays = new String[]{
+		                      "Thusday",
+		                      "Friday",
+		                      "Saturday",
+		                      "Sunday",
+		                      "Monday",
+		                      "Tuesday",
+		                      "Wednesday"
+		                    };
+		    
+		    String strDaysForecast[] = new String[3];
+			
+		 	Log.d("Weather", weatherO.getWeatherForecastConditions().get(2).getDate().substring(0, 4));
+		 	Log.d("Weather", weatherO.getWeatherForecastConditions().get(2).getDate().substring(5, 7));
+		 	Log.d("Weather", weatherO.getWeatherForecastConditions().get(2).getDate().substring(8, 10));
+		 			 	
+		 	for(int i=1;i<=3;i++){
+		 		
+		 		year = Integer.parseInt(weatherO.getWeatherForecastConditions().get(i).getDate().substring(0, 4));
+				month = Integer.parseInt(weatherO.getWeatherForecastConditions().get(i).getDate().substring(5, 7));
+				day = Integer.parseInt(weatherO.getWeatherForecastConditions().get(i).getDate().substring(8, 10));
+				
+				gregorianCalendar =  new GregorianCalendar(year, month, day);
+				
+				strDaysForecast[i-1] = strDays[gregorianCalendar.get(Calendar.DAY_OF_WEEK)-1];
+				
+		 		
+		 	}
 
+		 	
+
+		 	
+  
 			//3 Day Forecast Descriptions
+		 	setText(strDaysForecast[0], R.id.textViewForecast1);
+		 	setText(strDaysForecast[1], R.id.textViewForecast2);
+		 	setText(strDaysForecast[2], R.id.textViewForecast3);
+
+		 	
 	 	    setText(weatherO.getWeatherForecastConditions().get(1).getDesc(),R.id.TextView10);
 	 	    setText(weatherO.getWeatherForecastConditions().get(2).getDesc(),R.id.TextView11);
 	 	    setText(weatherO.getWeatherForecastConditions().get(3).getDesc(),R.id.TextView05);
@@ -66,7 +131,7 @@ public class Weather_Main extends Activity {
 		 	setText(weatherO.getWeatherForecastConditions().get(1).getTempMinF()+(char) 0x00B0+"F"+"/"+ weatherO.getWeatherForecastConditions().get(1).getTempMaxF()+(char) 0x00B0+"F",R.id.TextView12);
 		 	setText(weatherO.getWeatherForecastConditions().get(2).getTempMinF()+(char) 0x00B0+"F"+"/"+ weatherO.getWeatherForecastConditions().get(2).getTempMaxF()+(char) 0x00B0+"F",R.id.TextView13);
 		 	setText(weatherO.getWeatherForecastConditions().get(3).getTempMinF()+(char) 0x00B0+"F"+"/"+ weatherO.getWeatherForecastConditions().get(3).getTempMaxF()+(char) 0x00B0+"F",R.id.TextView14);
-
+		 	
 /*
  * Author Notes: Pranav		 	
  */
@@ -114,4 +179,53 @@ public class Weather_Main extends Activity {
 		}
 		
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.options_menu_other, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case R.id.itemAbout:
+
+			break;
+		case R.id.itemLogout:
+
+			
+			SharedPreferences savedUser = getPreferences(MODE_PRIVATE);
+			Editor editor = savedUser.edit();
+			
+			User user = application.getUser();
+			user.save(editor, false);
+			application.setUser(null); 
+			application.setCity(null);
+			
+//			editor.clear();
+//			editor.commit();
+			
+			startActivity(new Intent(activity, Login.class));
+
+			break;
+		case R.id.itemChangeCity:
+
+			Intent intent = new Intent(activity, Login.class);
+
+			// Pass Pick to the Login activity to display the cities pop up
+			intent.putExtra("ShowCity", true);
+			startActivity(intent);
+			
+			break;
+			
+		case R.id.itemMainMenu:
+			
+			startActivity(new Intent(activity, CityMenu.class));
+			break;
+		}
+		return false;
+	}
+
 }

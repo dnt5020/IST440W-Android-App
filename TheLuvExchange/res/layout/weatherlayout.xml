@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:background="@color/White">
+    android:layout_height="fill_parent"
+    android:background="@color/White" >
 
     <TextView
         android:id="@+id/header"
@@ -25,8 +26,9 @@
         android:layout_x="104dp"
         android:layout_y="64dp"
         android:text="City Weather"
-        android:textAppearance="?android:attr/textAppearanceMedium" android:textColor="@color/Black"/>
-
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/Black" />
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="183dp"
@@ -147,9 +149,8 @@
             android:text="Sunny"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/Black" />
-
     </RelativeLayout>
-
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="188dp"
@@ -182,7 +183,7 @@
             android:layout_alignTop="@+id/ImageView02"
             android:layout_marginRight="23dp"
             android:src="@drawable/weather" />
-
+
         <TextView
             android:id="@+id/TextView10"
             android:layout_width="wrap_content"
@@ -190,9 +191,10 @@
             android:layout_alignLeft="@+id/ImageView01"
             android:layout_below="@+id/ImageView01"
             android:layout_marginTop="22dp"
+            android:maxWidth="80dp"
             android:text="TextView"
             android:textColor="@color/Black" />
-
+
         <TextView
             android:id="@+id/TextView11"
             android:layout_width="wrap_content"
@@ -200,9 +202,10 @@
             android:layout_alignBaseline="@+id/TextView10"
             android:layout_alignBottom="@+id/TextView10"
             android:layout_alignLeft="@+id/ImageView02"
+            android:maxWidth="80dp"
             android:text="TextView"
             android:textColor="@color/Black" />
-
+
         <TextView
             android:id="@+id/TextView05"
             android:layout_width="wrap_content"
@@ -210,6 +213,7 @@
             android:layout_alignBaseline="@+id/TextView11"
             android:layout_alignBottom="@+id/TextView11"
             android:layout_alignLeft="@+id/ImageView03"
+            android:maxWidth="80dp"
             android:text="TextView"
             android:textColor="@color/Black" />
 
@@ -242,6 +246,36 @@
             android:layout_alignLeft="@+id/TextView05"
             android:text="TextView"
             android:textColor="@color/Black" />
+
+        <TextView
+            android:id="@+id/textViewForecast2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ImageView02"
+            android:layout_alignParentTop="true"
+            android:text="TextView"
+            android:textColor="@color/Black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewForecast3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ImageView03"
+            android:layout_alignParentTop="true"
+            android:text="TextView"
+            android:textColor="@color/Black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewForecast1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ImageView01"
+            android:layout_alignParentTop="true"
+            android:text="TextView"
+            android:textColor="@color/Black"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

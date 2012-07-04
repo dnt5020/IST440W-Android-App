@@ -207,6 +207,10 @@ public class WeatherHandler extends DefaultHandler {
 					// If this text is inside an id tag, set the city id
 					this.myWeatherSet.getLastWeatherForecastCondition().setIconURL(new String(ch, start, length));
 					}
+				if(date){
+					// If this text is inside an id tag, set the date
+					this.myWeatherSet.getLastWeatherForecastCondition().setDate(new String(ch, start, length));
+				}
 		}
 		}
 

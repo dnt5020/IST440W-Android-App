@@ -134,8 +134,23 @@ public class PicksDisplay extends Activity {
 				// Call the WebService.getRestaurants() method to populate the
 				// cities
 				// Sorted by rating
-				picksList.addAll(WebService.getRestaurants(user, city,
-						"rating_avg", "desc"));
+				
+				switch(type){
+				case WebService.RESTAURANTS:
+					picksList.addAll(WebService.getRestaurants(user, city,
+							"rating_avg", "desc"));
+					break;
+				case WebService.THINGS_TO_DO:
+					picksList.addAll(WebService.getThings(user, city,
+							"rating_avg", "desc"));
+					break;
+				case WebService.AIRPORT_EATS:
+					picksList.addAll(WebService.getAirportEats(user, city,
+							"rating_avg", "desc"));
+					break;
+					
+				}
+				
 
 				// Refresh list view
 				listViewRestaurants.invalidateViews();
@@ -156,8 +171,19 @@ public class PicksDisplay extends Activity {
 				// Call the WebService.getRestaurants() method to populate the
 				// cities
 				// Sorted by default popularity
-				picksList.addAll(WebService.getRestaurants(user, city));
-
+				switch(type){
+				case WebService.RESTAURANTS:
+					picksList.addAll(WebService.getRestaurants(user, city));
+					break;
+				case WebService.THINGS_TO_DO:
+					picksList.addAll(WebService.getThings(user, city));
+					break;
+				case WebService.AIRPORT_EATS:
+					picksList.addAll(WebService.getAirportEats(user, city));
+					break;
+					
+				}
+				
 				// Refresh list view
 				listViewRestaurants.invalidateViews();
 				textViewPopularity.setTypeface(null, Typeface.BOLD);
@@ -177,8 +203,21 @@ public class PicksDisplay extends Activity {
 				// Call the WebService.getRestaurants() method to populate the
 				// cities
 				// Sorted by created
-				picksList.addAll(WebService.getRestaurants(user, city,
-						"created", "desc"));
+				switch(type){
+				case WebService.RESTAURANTS:
+					picksList.addAll(WebService.getRestaurants(user, city,
+							"created", "desc"));
+					break;
+				case WebService.THINGS_TO_DO:
+					picksList.addAll(WebService.getThings(user, city,
+							"created", "desc"));
+					break;
+				case WebService.AIRPORT_EATS:
+					picksList.addAll(WebService.getAirportEats(user, city,
+							"created", "desc"));
+					break;
+					
+				}
 
 				// Refresh list view
 				listViewRestaurants.invalidateViews();
@@ -355,7 +394,7 @@ public class PicksDisplay extends Activity {
 								url = String.format(url + "%s,%s", city.getLat(), city.getLongitude()); 
 							} else {
 								Log.d("Maps", "before test");
-								url = String.format(url + "%s,%s?q=%s", city.getLat(), city.getLongitude(), Uri.encode(currentPick.getName() + ", " +address));
+								url = String.format(url + "%s,%s?q=%s", city.getLat(), city.getLongitude(), Uri.encode(address));
 								Log.d("Maps", "after test + address - " + currentPick.getName() + ", " +address);
 
 							}
