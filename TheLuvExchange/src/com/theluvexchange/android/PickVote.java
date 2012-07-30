@@ -78,7 +78,10 @@ public class PickVote extends Activity {
 				if(validateFields()){
 					
 					if(WebService.postRating(user, city, pickSelected, comment.getText().toString(), (int)rateBar.getRating(), discount.isChecked()) instanceof Object){
-						 // Intent to start PickComments activity
+						Toast.makeText(activity, "Comment successully posted",
+								Toast.LENGTH_LONG).show(); 
+						
+						// Intent to start PickComments activity
 			       		 Intent intent = new Intent(activity, PickComments.class);
 			       		// Pass Pick to the PickComments activity
 			       		 intent.putExtra("Pick", pickSelected);
@@ -93,7 +96,7 @@ public class PickVote extends Activity {
 					
 		       		 
 				} else {
-					Toast.makeText(activity, "Please enter a comment",
+					Toast.makeText(activity, "Please enter a comment/rating",
 							Toast.LENGTH_LONG).show();
 				}
 				
@@ -106,7 +109,7 @@ public class PickVote extends Activity {
 
 	private boolean validateFields() {
 		
-		if(comment.getText().length() == 0)
+		if(comment.getText().length() == 0 || (int)rateBar.getRating() == 0)
 			return false;
 		else
 			return true;

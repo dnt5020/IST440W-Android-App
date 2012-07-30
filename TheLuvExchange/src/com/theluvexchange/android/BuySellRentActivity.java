@@ -41,7 +41,14 @@ public class BuySellRentActivity extends Activity{
 	public void onCreate(Bundle savedInstanceState) {
 		try {
 			super.onCreate(savedInstanceState);
-			setContentView(R.layout.buysellrent);
+//			setContentView(R.layout.buysellrent);
+			
+			
+			// ----------------------------------------------
+				// Till buy/sell/rent incomplete
+			
+			setContentView(R.layout.coming_soon);
+			// --------------------------------------------
 			
 			application = (TheLuvExchange)this.getApplication();
 			city = application.getCity();

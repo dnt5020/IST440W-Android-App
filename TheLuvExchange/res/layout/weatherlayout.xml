@@ -216,34 +216,14 @@
             android:maxWidth="80dp"
             android:text="TextView"
             android:textColor="@color/Black" />
-
+
         <TextView
             android:id="@+id/TextView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/TextView10"
             android:layout_below="@+id/TextView10"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            android:textColor="@color/Black" />
-
-        <TextView
-            android:id="@+id/TextView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/TextView12"
-            android:layout_alignBottom="@+id/TextView12"
-            android:layout_alignLeft="@+id/TextView11"
-            android:text="TextView"
-            android:textColor="@color/Black" />
-
-        <TextView
-            android:id="@+id/TextView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/TextView13"
-            android:layout_alignBottom="@+id/TextView13"
-            android:layout_alignLeft="@+id/TextView05"
+            android:layout_marginTop="15dp"
             android:text="TextView"
             android:textColor="@color/Black" />
 
@@ -276,6 +256,26 @@
             android:text="TextView"
             android:textColor="@color/Black"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/TextView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/TextView11"
+            android:layout_below="@+id/TextView11"
+            android:layout_marginTop="15dp"
+            android:text="TextView"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:id="@+id/TextView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/TextView05"
+            android:layout_below="@+id/TextView05"
+            android:layout_marginTop="15dp"
+            android:text="TextView"
+            android:textColor="@color/Black" />
 
     </RelativeLayout>
 

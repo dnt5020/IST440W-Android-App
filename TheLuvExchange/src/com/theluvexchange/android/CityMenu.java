@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -79,6 +80,13 @@ public class CityMenu extends Activity {
 		hashMap.put(MENUITEM, "Airport Eats");
 		hashMap.put(RESOURCE_ID, R.drawable.airport_eats);
 		menuList.add(hashMap);
+		
+
+		// HashMap and key Values of list
+		hashMap = new HashMap<String, Object>();
+		hashMap.put(MENUITEM, "Deals of the Day");
+		hashMap.put(RESOURCE_ID, R.drawable.dealsoftheday);
+		menuList.add(hashMap);
 
 		// HashMap and key Values of list
 		hashMap = new HashMap<String, Object>();
@@ -142,7 +150,13 @@ public class CityMenu extends Activity {
 				} else if (((String) menuList.get(position).get(MENUITEM))
 						.equalsIgnoreCase("Buy/Sell/Rent")) {
 					startActivity(new Intent(activity, BuySellRentActivity.class));
+				} else if (((String) menuList.get(position).get(MENUITEM))
+						.equalsIgnoreCase("Deals of the Day")) {
+					Intent intent = new Intent(Intent.ACTION_VIEW,
+							Uri.parse("http://theluvexchange.com/deals/dealsoftheday.html"));
+					startActivity(intent);
 				}
+
 
 			}
 		});

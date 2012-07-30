@@ -27,7 +27,7 @@
          <RelativeLayout
              android:id="@+id/relativeLayout1"
              android:layout_width="fill_parent"
-             android:layout_height="fill_parent" >
+             android:layout_height="435dp" >
 
              <TextView
                  android:id="@+id/textViewCommentTitle"
@@ -68,22 +68,45 @@
                  android:id="@+id/editTextPickComment"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
                  android:layout_alignTop="@+id/textView2"
-                 android:layout_centerHorizontal="true"
+                 android:layout_marginLeft="15dp"
+                 android:layout_marginRight="15dp"
+                 android:layout_toRightOf="@+id/textView2"
+                 android:ems="10"
                  android:height="150dp"
                  android:inputType="textMultiLine"
+                 android:scrollHorizontally="true"
                  android:scrollbarStyle="insideOverlay"
+                 android:maxLength="129"
                  android:width="150dp" >
 
                  <requestFocus />
              </EditText>
 
              <TextView
-                 android:id="@+id/textView1"
+                 android:id="@+id/textView3"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:layout_alignLeft="@+id/textView2"
                  android:layout_below="@+id/editTextPickComment"
+                 android:layout_marginTop="15dp"
+                 android:text="@string/discount"
+                 android:textColor="#372c24" />
+
+             <CheckBox
+                 android:id="@+id/checkBoxDiscount"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/editTextPickComment"
+                 android:layout_centerHorizontal="true" />
+
+             <TextView
+                 android:id="@+id/textView1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignLeft="@+id/textView3"
+                 android:layout_below="@+id/checkBoxDiscount"
                  android:layout_marginTop="15dp"
                  android:text="@string/rating"
                  android:textColor="#372c24" />
@@ -93,35 +116,19 @@
                  style="@style/MyCustomRatingBar"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_alignBottom="@+id/textView1"
-                 android:layout_centerHorizontal="true" />
-
-             <TextView
-                 android:id="@+id/textView3"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_alignLeft="@+id/textView1"
-                 android:layout_below="@+id/textView1"
-                 android:layout_marginTop="15dp"
-                 android:text="@string/discount"
-                 android:textColor="#372c24" />
-
-             <CheckBox
-                 android:id="@+id/checkBoxDiscount"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/ratingBarCommentPick"
+                 android:layout_alignTop="@+id/textView1"
                  android:layout_centerHorizontal="true" />
 
              <Button
                  android:id="@+id/buttonSubmit"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_below="@+id/checkBoxDiscount"
+                 android:layout_below="@+id/ratingBarCommentPick"
                  android:layout_centerHorizontal="true"
-                 android:layout_marginTop="20dp"
+                 android:layout_marginTop="28dp"
                  android:text="@string/submit"
                  android:textStyle="bold" />
+
          </RelativeLayout>
 
      </ScrollView>

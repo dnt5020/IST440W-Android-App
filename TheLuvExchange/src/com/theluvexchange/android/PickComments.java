@@ -84,13 +84,15 @@ public class PickComments extends Activity {
 				// the list is sorted by Rating
 				textViewRating.setTypeface(null, Typeface.BOLD);
 				textViewLatest.setTypeface(null, Typeface.NORMAL);
-				ratingsList.addAll(WebService.getRatings(pickSelected)); // default is sorted by 'Viewer_rating'
+				ratingsList.addAll(WebService.getRatings(pickSelected, "rating_avg", "desc")); // default is sorted by 'Viewer_rating'
 						
 				Log.d("Sorting", "added new list for rating.. " + ratingsList.isEmpty());
 
 
 				// Refresh list view
 				listViewRatings.invalidateViews();
+				
+			
 			
 			}
 		});
@@ -115,6 +117,8 @@ public class PickComments extends Activity {
 				
 				// Refresh list view
 				listViewRatings.invalidateViews();
+				
+			
 				
 			}
 		});
@@ -165,6 +169,8 @@ public class PickComments extends Activity {
 			super(activity, R.layout.pickcommentsrow, ratingsList);
 
 		}
+		
+		
 
 		private LayoutInflater layoutInflater = getLayoutInflater();
 
