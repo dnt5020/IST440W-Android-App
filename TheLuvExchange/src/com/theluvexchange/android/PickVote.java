@@ -23,6 +23,14 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+/**
+ * @author Niranjan Singh
+ * email - developer.nir@gmail.com
+ * 
+ *      
+ * 
+ * 
+ * */
 
 public class PickVote extends Activity {
 
@@ -66,7 +74,7 @@ public class PickVote extends Activity {
 		rateBar = (RatingBar) findViewById(R.id.ratingBarCommentPick);
 		comment = (EditText) findViewById(R.id.editTextPickComment);
 		discount = (CheckBox) findViewById(R.id.checkBoxDiscount);
-		
+		 
 
 		title.setText(getIntent().getCharSequenceExtra("Title"));
 		restaurantName.setText(pickSelected.getName());
@@ -82,10 +90,10 @@ public class PickVote extends Activity {
 								Toast.LENGTH_LONG).show(); 
 						
 						// Intent to start PickComments activity
-			       		 Intent intent = new Intent(activity, PickComments.class);
+			       		 Intent intent = new Intent(activity, PicksDisplay.class);
 			       		// Pass Pick to the PickComments activity
 			       		 intent.putExtra("Pick", pickSelected);
-			       		 intent.putExtra("Title", getIntent().getCharSequenceExtra("Title"));
+			       		 intent.putExtra("MenuSelected", getIntent().getStringExtra("itemClicked"));
 			       		 startActivity(intent);
 					}	else {
 						Toast.makeText(activity, "Could not post comment",

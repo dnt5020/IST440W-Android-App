@@ -26,6 +26,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * @author Niranjan Singh
+ * email - developer.nir@gmail.com
+ * 
+ *       
+ * 
+ * 
+ */
+
 public class PickComments extends Activity {
 
 	private List<Rating> ratingsList = null;
@@ -54,6 +63,8 @@ public class PickComments extends Activity {
 		// get the selected Pick passed through the intent 
 		pickSelected = (Pick) getIntent().getSerializableExtra("Pick");
 		
+
+		
 		textViewRating = (TextView) findViewById(R.id.textViewRating);
 		textViewLatest = (TextView) findViewById(R.id.textViewLatest);
 
@@ -69,7 +80,7 @@ public class PickComments extends Activity {
 
 		listViewRatings = (ListView)findViewById(R.id.pickCommentsList);
 
-		// Set the title to the restaurant name
+		// Set the title to the pick name
 		TextView textViewPickCommentTitle = (TextView) findViewById(R.id.textViewPickCommentTitle);
 		textViewPickCommentTitle.setText(pickSelected.getName());
 		
@@ -154,8 +165,27 @@ public class PickComments extends Activity {
 //
 //				startActivity(intent);
 				
-				onBackPressed();
+				//onBackPressed();
+		
+				
+				// get the title passed through the intent 
+				String title = getIntent().getStringExtra("Title");
 
+				
+				// *************** testing
+				Log.d("PickComments", "PickSelected name = " + title);
+				
+				
+				Intent intent = new Intent(activity, PicksDisplay.class);
+
+				// Pass Pick to the PickComments activity
+				//intent.putExtra("MenuSelected", pickSelected.getName());
+				intent.putExtra("MenuSelected", title);
+
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+				startActivity(intent);
+				
 			}
 		});
 
@@ -239,6 +269,13 @@ public class PickComments extends Activity {
 
 
 
+	}
+	
+	// To refresh page on going back
+	@Override
+	public void onResume() { // After a pause OR at startup
+		super.onResume();
+		// Refresh your stuff here
 	}
 	
 	@Override

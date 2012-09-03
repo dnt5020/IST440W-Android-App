@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 /**
  * @author Niranjan Singh
+ * email - developer.nir@gmail.com
  * 
  *         Activity to set up the custom list view of PicksDisplay
  * 
@@ -85,19 +86,21 @@ public class PicksDisplay extends Activity {
 			// Call the WebService.getThings() method to populate the cities
 			// list. Default sorting- Popularity
 			picksList.addAll(WebService.getThings(user, city));
- 
+
 		} else if (itemClicked.equalsIgnoreCase("Restaurants & Clubs")) {
 			type = WebService.RESTAURANTS;
-			// Call the WebService.getRestaurants() method to populate the cities
+			// Call the WebService.getRestaurants() method to populate the
+			// cities
 			// list. Default sorting- Popularity
 			picksList.addAll(WebService.getRestaurants(user, city));
 		} else if (itemClicked.equalsIgnoreCase("Airport Eats")) {
 			type = WebService.AIRPORT_EATS;
-			// Call the WebService.getAirportEats() method to populate the cities
+			// Call the WebService.getAirportEats() method to populate the
+			// cities
 			// list. Default sorting- Popularity
 			picksList.addAll(WebService.getAirportEats(user, city));
 		}
-		
+
 		// Set Header to selected city name
 		TextView cityName = (TextView) findViewById(R.id.header);
 		cityName.setText(city.getName());
@@ -134,8 +137,8 @@ public class PicksDisplay extends Activity {
 				// Call the WebService.getRestaurants() method to populate the
 				// cities
 				// Sorted by rating
-				
-				switch(type){
+
+				switch (type) {
 				case WebService.RESTAURANTS:
 					picksList.addAll(WebService.getRestaurants(user, city,
 							"rating_avg", "desc"));
@@ -148,9 +151,8 @@ public class PicksDisplay extends Activity {
 					picksList.addAll(WebService.getAirportEats(user, city,
 							"rating_avg", "desc"));
 					break;
-					
+
 				}
-				
 
 				// Refresh list view
 				listViewRestaurants.invalidateViews();
@@ -171,7 +173,7 @@ public class PicksDisplay extends Activity {
 				// Call the WebService.getRestaurants() method to populate the
 				// cities
 				// Sorted by default popularity
-				switch(type){
+				switch (type) {
 				case WebService.RESTAURANTS:
 					picksList.addAll(WebService.getRestaurants(user, city));
 					break;
@@ -181,9 +183,9 @@ public class PicksDisplay extends Activity {
 				case WebService.AIRPORT_EATS:
 					picksList.addAll(WebService.getAirportEats(user, city));
 					break;
-					
+
 				}
-				
+
 				// Refresh list view
 				listViewRestaurants.invalidateViews();
 				textViewPopularity.setTypeface(null, Typeface.BOLD);
@@ -203,7 +205,7 @@ public class PicksDisplay extends Activity {
 				// Call the WebService.getRestaurants() method to populate the
 				// cities
 				// Sorted by created
-				switch(type){
+				switch (type) {
 				case WebService.RESTAURANTS:
 					picksList.addAll(WebService.getRestaurants(user, city,
 							"created", "desc"));
@@ -216,7 +218,7 @@ public class PicksDisplay extends Activity {
 					picksList.addAll(WebService.getAirportEats(user, city,
 							"created", "desc"));
 					break;
-					
+
 				}
 
 				// Refresh list view
@@ -229,13 +231,16 @@ public class PicksDisplay extends Activity {
 				// Toast.LENGTH_LONG).show();
 			}
 		});
-		
-		Button addPlaceButton = (Button)findViewById(R.id.btnAddPlace);
+
+		Button addPlaceButton = (Button) findViewById(R.id.btnAddPlace);
 		addPlaceButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(activity, AddLocation.class);
 				intent.putExtra("type", type);
-				startActivity(intent);
+				// startActivity(intent);
+				
+				 Toast.makeText(activity, "Feature coming soon!",
+				 Toast.LENGTH_LONG).show();
 			}
 		});
 	}
@@ -276,7 +281,6 @@ public class PicksDisplay extends Activity {
 
 			myViewHolder.populateFrom(picksList.get(position));
 
-
 			return row;
 
 		}
@@ -306,78 +310,79 @@ public class PicksDisplay extends Activity {
 						.findViewById(R.id.textViewVoteCount);
 
 				rating = (RatingBar) row.findViewById(R.id.ratingBarPicks);
-				
+
 				buttonAddVote = (Button) row.findViewById(R.id.AddVoteButton);
 				buttonMap = (Button) row.findViewById(R.id.MapButton);
-				
 
 			}
 
 			public void populateFrom(Pick pick) {
 
 				currentPick = pick;
-				
-				if(itemClicked.equalsIgnoreCase("Airport Eats")){
+
+				if (itemClicked.equalsIgnoreCase("Airport Eats")) {
 					textViewAddress.setText(city.getAirport());
 				} else {
 					textViewAddress.setText(pick.getAddress());
 				}
-				
-				
+
 				textViewName.setText(pick.getName());
 				textViewPhoneNumber.setText(pick.getPhone());
-				textViewNumber.setText(Integer.toString(pick
-						.getSerialNumber()) + ".");
+				textViewNumber.setText(Integer.toString(pick.getSerialNumber())
+						+ ".");
 				textViewVoteCount.setText(pick.getRatingCount());
-//				rating.setRating(Integer.parseInt(pick.getRatingAverage()));
-				
+				// rating.setRating(Integer.parseInt(pick.getRatingAverage()));
+
 				// if rating is not specified, assign 0
-				rating.setRating(pick.getRatingAverage()==null?0:Integer.parseInt(pick.getRatingAverage()));
-				
-//				// To underline the phone number text view
-//				SpannableString content = new SpannableString(pick.getPhone());
-//				content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
-//				textViewPhoneNumber.setText(content);
+				rating.setRating(pick.getRatingAverage() == null ? 0 : Integer
+						.parseInt(pick.getRatingAverage()));
+
+				// // To underline the phone number text view
+				// SpannableString content = new
+				// SpannableString(pick.getPhone());
+				// content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+				// textViewPhoneNumber.setText(content);
 
 				// Add action listener to dial phone number when clicked
 				textViewPhoneNumber.setOnClickListener(new OnClickListener() {
-					
+
 					public void onClick(View v) {
 
 						try {
-		                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-		                    callIntent.setData(Uri.parse("tel:"+currentPick.getPhone()));
-		                    startActivity(callIntent);
-		                } catch (Exception exception) {
-		                    Log.e("Calling a Phone Number", "Call failed", exception);
-		                }
+							Intent callIntent = new Intent(Intent.ACTION_CALL);
+							callIntent.setData(Uri.parse("tel:"
+									+ currentPick.getPhone()));
+							startActivity(callIntent);
+						} catch (Exception exception) {
+							Log.e("Calling a Phone Number", "Call failed",
+									exception);
+						}
 
 					}
 				});
-				
-				
-				// Set focusable to false else list view click listener will not work
+
+				// Set focusable to false else list view click listener will not
+				// work
 				buttonAddVote.setFocusable(false);
 				buttonMap.setFocusable(false);
-				
-				
-				
+
 				buttonAddVote.setOnClickListener(new OnClickListener() {
-					
+
 					public void onClick(View v) {
 						// Intent to start PickVote activity
 						Intent intent = new Intent(activity, PickVote.class);
-						
+
 						// Pass Pick to the PickVote activity
-						intent.putExtra("Pick",  currentPick);
+						intent.putExtra("Pick", currentPick);
+						intent.putExtra("itemClicked", itemClicked);
 
-						intent.putExtra("Title", getIntent().getCharSequenceExtra("Title"));
-
+						intent.putExtra("Title", getIntent()
+								.getCharSequenceExtra("Title"));
 
 						startActivity(intent);
 					}
 				});
-				
+
 				buttonMap.setOnClickListener(new OnClickListener() {
 					public void onClick(View view) {
 						String latitude = currentPick.getLatitude();
@@ -385,48 +390,72 @@ public class PicksDisplay extends Activity {
 
 						String url = "geo:";
 						String address = currentPick.getAddress();
-						if (latitude == null || longitude == null || latitude.trim().equals("") || longitude.trim().equals("")) {
+						if (latitude == null || longitude == null
+								|| latitude.trim().equals("")
+								|| longitude.trim().equals("")) {
 							Log.d("Maps", "test 1");
 
 							if (address == null || address.trim().equals("")) {
-								Toast.makeText(activity, "No valid address, map forwarding to center of city.",
+								Toast.makeText(
+										activity,
+										"No valid address, map forwarding to center of city.",
 										Toast.LENGTH_SHORT).show();
-								url = String.format(url + "%s,%s", city.getLat(), city.getLongitude()); 
+								url = String.format(url + "%s,%s",
+										city.getLat(), city.getLongitude());
 							} else {
 								Log.d("Maps", "before test");
-								url = String.format(url + "%s,%s?q=%s", city.getLat(), city.getLongitude(), Uri.encode(address));
-								Log.d("Maps", "after test + address - " + currentPick.getName() + ", " +address);
+								url = String.format(url + "%s,%s?q=%s",
+										city.getLat(), city.getLongitude(),
+										Uri.encode(address));
+								Log.d("Maps", "after test + address - "
+										+ currentPick.getName() + ", "
+										+ address);
 
 							}
 						} else {
 							Log.d("Maps", "test 2");
 
 							if (address == null || address.trim().equals("")) {
-								Toast.makeText(activity, "No valid address, map centering on place location.",
+								Toast.makeText(
+										activity,
+										"No valid address, map centering on place location.",
 										Toast.LENGTH_SHORT).show();
-								url = String.format(url + "%s,%s", currentPick.getLatitude(), currentPick.getLongitude());
+								url = String.format(url + "%s,%s",
+										currentPick.getLatitude(),
+										currentPick.getLongitude());
 							} else {
 								Log.d("Maps", "test 3");
 
-								url = String.format(url + "%s,%s?q=%s", currentPick.getLatitude(), currentPick.getLongitude(), Uri.encode(currentPick.getName() + ", " + address));
+								url = String.format(
+										url + "%s,%s?q=%s",
+										currentPick.getLatitude(),
+										currentPick.getLongitude(),
+										Uri.encode(currentPick.getName() + ", "
+												+ address));
 							}
 						}
-						Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-								Uri.parse(url));
+						Intent intent = new Intent(
+								android.content.Intent.ACTION_VIEW, Uri
+										.parse(url));
 						startActivity(intent);
 
 					}
 
 				});
 
-			
-				
 			}
 
 		}
 
 	}
-	
+
+	// To refresh page on going back
+	@Override
+	public void onResume() { // After a pause OR at startup
+		super.onResume();
+		// Refresh your stuff here
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.options_menu_other, menu);
@@ -442,18 +471,17 @@ public class PicksDisplay extends Activity {
 			break;
 		case R.id.itemLogout:
 
-			
 			SharedPreferences savedUser = getPreferences(MODE_PRIVATE);
 			Editor editor = savedUser.edit();
-			
+
 			User user = application.getUser();
 			user.save(editor, false);
-			application.setUser(null); 
+			application.setUser(null);
 			application.setCity(null);
-			
-//			editor.clear();
-//			editor.commit();
-			
+
+			// editor.clear();
+			// editor.commit();
+
 			startActivity(new Intent(activity, Login.class));
 
 			break;
@@ -464,11 +492,11 @@ public class PicksDisplay extends Activity {
 			// Pass Pick to the Login activity to display the cities pop up
 			intent.putExtra("ShowCity", true);
 			startActivity(intent);
-			
+
 			break;
-			
+
 		case R.id.itemMainMenu:
-			
+
 			startActivity(new Intent(activity, CityMenu.class));
 			break;
 		}

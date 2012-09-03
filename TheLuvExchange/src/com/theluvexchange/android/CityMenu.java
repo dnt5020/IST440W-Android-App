@@ -29,6 +29,7 @@ import java.util.HashMap;
 
 /**
  * @author Niranjan Singh
+ * email - developer.nir@gmail.com
  * 
  *         Main Menu Acitvity
  * 

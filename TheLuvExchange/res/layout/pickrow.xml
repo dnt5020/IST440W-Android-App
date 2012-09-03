@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout1"
-            android:layout_marginLeft="45dp"
+             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:maxWidth="230dp"
             android:text="Address sd sd sd  sd sd  sds d sd sd s d s dsd s  s dsd"
